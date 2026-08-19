@@ -1,0 +1,278 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}New Players Guide — Rites of Passage{% endblock %}
+
+{% block content %}
+
+<div class="content-card">
+  <h1>New Players Guide</h1>
+
+  <p>
+    Welcome to <strong>Rites of Passage</strong>! Never played a MUD before? No problem.
+    This guide will walk you through everything you need to know to get from your first
+    connection to your first adventure.
+  </p>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>What Is a MUD?</h2>
+
+  <p>
+    MUD stands for <strong>Multi-User Dungeon</strong>. Think of it as an online
+    multiplayer RPG where the graphics are driven entirely by your imagination,
+    described through rich text. You type commands, and the world responds. There
+    are no pictures, no clicks — only words, choices, and consequences.
+  </p>
+
+  <p>
+    If you've played games like <em>World of Warcraft</em>, <em>Skyrim</em>, or
+    <em>Baldur's Gate</em>, you'll find many familiar concepts: classes, stats, combat,
+    quests, loot, and exploration. The key difference is that everything happens
+    through text.
+  </p>
+
+  <blockquote>
+    "You are in a torch-lit chamber deep beneath the fortress. The air is thick with
+    the smell of damp stone and old blood. A narrow passage leads north. Faint
+    chanting echoes from somewhere below. In the corner, a chest glints in the
+    flickering light."
+  </blockquote>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Step-by-Step: Your First Session</h2>
+
+  <h3>1. Open the Web Client</h3>
+  <p>
+    Click <a href="/webclient/">Play Now</a> in the navigation bar to open the
+    browser-based client. It's split into two parts: the large output pane where
+    the game world appears, and a text input bar at the bottom where you type
+    commands.
+  </p>
+
+  <h3>2. The Login Screen</h3>
+  <p>
+    When you first connect, you'll see an ornate ASCII art screen and a prompt.
+    This is where you create your account:
+  </p>
+  <blockquote>create MyName MySecretPassword</blockquote>
+  <p>
+    Replace <code>MyName</code> with the username you want, and
+    <code>MySecretPassword</code> with a real password. Remember these — you'll
+    need them every time you play.
+  </p>
+  <p>
+    Next time you connect, use:
+  </p>
+  <blockquote>connect MyName MySecretPassword</blockquote>
+
+  <h3>3. Character Creation</h3>
+  <p>
+    After logging in, you'll enter the character creation menu. Here you can:
+  </p>
+  <ol>
+    <li><strong>Create a new character</strong> — follow the prompts to choose
+    your race, class, and character name.</li>
+    <li><strong>Pick a race</strong> — this determines your faction (Good or Evil),
+    starting stats, and a special passive ability. Read the descriptions carefully!</li>
+    <li><strong>Pick a class</strong> — this is your profession. Warriors are
+    straightforward for new players; Mages offer depth if you enjoy complexity.</li>
+    <li><strong>Name your character</strong> — pick a name that fits the dark
+    fantasy setting.</li>
+  </ol>
+  <p>
+    Once created, you'll automatically enter the game world at your faction's
+    starting city.
+  </p>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Understanding the Screen</h2>
+
+  <p>When you first enter the world, here's what you'll see (and what it means):</p>
+
+  <table>
+    <thead>
+      <tr><th>Section</th><th>What It Tells You</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Room Name</strong></td><td>The title of your current location, e.g., "Aethelgard Grand Sanctum".</td></tr>
+      <tr><td><strong>Room Description</strong></td><td>A paragraph describing what you see, hear, and smell.</td></tr>
+      <tr><td><strong>Characters</strong></td><td>Any players or NPCs standing in the room with you.</td></tr>
+      <tr><td><strong>Items</strong></td><td>Objects on the floor that you can pick up.</td></tr>
+      <tr><td><strong>Exits</strong></td><td>The directions you can travel from this room (e.g., <code>[north, east, in]</code>).</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    <strong>Pro tip:</strong> Type <code>look</code> (or just <code>l</code>) at any
+    time to see the room description again.
+  </p>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Your First Five Commands</h2>
+
+  <p>
+    Here are the five most important commands to learn right now. Try each one:
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>#</th><th>Command</th><th>Try It To…</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><code>look</code> or <code>l</code></td><td>See the room description again.</td></tr>
+      <tr><td>2</td><td><code>n</code>, <code>s</code>, <code>e</code>, <code>w</code></td><td>Move around (north, south, east, west).</td></tr>
+      <tr><td>3</td><td><code>help</code></td><td>Open the full help system.</td></tr>
+      <tr><td>4</td><td><code>say hello</code></td><td>Speak to other players in the room.</td></tr>
+      <tr><td>5</td><td><code>stats</code> or <code>sc</code></td><td>View your character stats (HP, mana, attributes).</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Choosing Your Faction: Good vs. Evil</h2>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">☀️</div>
+      <h3>Good — Aethelgard</h3>
+      <p>
+        The forces of Light gather in the ancient city of Aethelgard. As a Good-aligned
+        character you'll start in the Grand Sanctum. Races: Human, High Elf, Wood Elf,
+        Mountain Dwarf, Stout Halfling, Gnome, Centaur, Pixie.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💀</div>
+      <h3>Evil — Gorgoroth</h3>
+      <p>
+        The legions of Darkness muster in the volcanic citadel of Gorgoroth. As an
+        Evil-aligned character you'll start in the Blood Forge. Races: Orc, Dark Elf,
+        Undead, Goblin, Minotaur, Lizardfolk, Ogre, Demonkin.
+      </p>
+    </div>
+  </div>
+
+  <p>
+    Your faction choice determines who your allies are, where you begin your journey,
+    and the tone of your starting experience. Both sides have equal content and
+    opportunities.
+  </p>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Recommended Starting Combinations</h2>
+
+  <p>New to MUDs? These race/class combos are beginner-friendly:</p>
+
+  <h3>Good Alignment</h3>
+  <table>
+    <thead>
+      <tr><th>Race</th><th>Class</th><th>Why It Works</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mountain Dwarf</td><td>Warrior</td><td>High HP, high armor — very forgiving in early combat.</td></tr>
+      <tr><td>Human</td><td>Paladin</td><td>Balanced stats with self-healing; great all-rounder.</td></tr>
+      <tr><td>High Elf</td><td>Mage</td><td>Largest mana pool; ideal if you want to be a pure caster.</td></tr>
+      <tr><td>Wood Elf</td><td>Ranger</td><td>High dexterity and dodge; deadly from a distance.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Evil Alignment</h3>
+  <table>
+    <thead>
+      <tr><th>Race</th><th>Class</th><th>Why It Works</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ogre</td><td>Warrior</td><td>Massive HP pool — nearly unkillable at low levels.</td></tr>
+      <tr><td>Orc</td><td>Warrior</td><td>Highest melee damage bonus; crush everything.</td></tr>
+      <tr><td>Demonkin</td><td>Warlock</td><td>Natural magic resistance paired with dark magic offense.</td></tr>
+      <tr><td>Dark Elf</td><td>Rogue</td><td>Stealth bonus plus high dexterity; master of shadows.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Common Beginner Mistakes (and How to Avoid Them)</h2>
+
+  <h3>❌ Not Typing <code>look</code> Often</h3>
+  <p>
+    The room description is your eyes. If you're lost or confused, type <code>l</code>.
+    It's a completely free action and often contains clues about exits, hidden items,
+    or NPCs to talk to.
+  </p>
+
+  <h3>❌ Wandering Into High-Level Zones</h3>
+  <p>
+    The world is open, but not all areas are safe for a new character. If a room
+    description sounds dangerous ("the air reeks of death", "massive footprints
+    scar the floor"), it probably is. Use <code>consider <target></code> before
+    attacking anything.
+  </p>
+
+  <h3>❌ Ignoring Exits</h3>
+  <p>
+    Always check which directions are listed. You might miss secret doors, climbable
+    surfaces, or portals. Type <code>exits</code> for a clean list of available exits.
+  </p>
+
+  <h3>❌ Not Using the Help System</h3>
+  <p>
+    <code>help</code> shows the main help menu. <code>help combat</code>,
+    <code>help magic</code>, <code>help communication</code> — there are dozens
+    of detailed help files. Use them!
+  </p>
+
+  <h3>❌ Playing Alone</h3>
+  <p>
+    MUDs are social games. Don't be shy — say hello to other players. Ask questions.
+    The community is the best resource for learning the ropes and finding adventure
+    partners.
+  </p>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>FAQ</h2>
+
+  <h4>Do I lose my character when I log out?</h4>
+  <p>No! Your character is saved permanently and will be right where you left them.</p>
+
+  <h4>Can I have more than one character?</h4>
+  <p>Yes. You can create multiple characters on one account from the character menu.</p>
+
+  <h4>Is the game free to play?</h4>
+  <p>Yes. Rites of Passage is completely free.</p>
+
+  <h4>What if I get stuck?</h4>
+  <p>Use <code>help</code>, ask other players with <code>tell</code> or <code>say</code>,
+  or contact a game admin.</p>
+
+  <h4>Can I switch factions later?</h4>
+  <p>No. Your faction choice is permanent — choose wisely. However, you can always
+  create a new character on the other side.</p>
+</div>
+
+<div class="section-divider">Your Journey Begins</div>
+
+<div class="content-card" style="text-align: center;">
+  <p style="font-size: 1.15rem; margin-bottom: var(--space-lg);">
+    You have everything you need. The realm awaits.
+  </p>
+  <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+    <a href="/webclient/" class="btn">◆ Enter the Realm ◆</a>
+    <a href="/how-to-play" class="btn btn-secondary">Read the Full How to Play Guide</a>
+  </div>
+</div>
+
+{% endblock %}

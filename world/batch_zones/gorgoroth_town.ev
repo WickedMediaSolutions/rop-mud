@@ -1,0 +1,168 @@
+# Gorgoroth Town — Evil Starting City
+# Builds 18 interconnected rooms, dark guards, cultists, slavers,
+# evil shopkeepers, guildmasters, and a tutorial NPC in the starting room.
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.gorgoroth_town")
+
+# ---------------------------------------------------------------
+# 1. Starting room with tutorial NPC
+# ---------------------------------------------------------------
+dig Gorgoroth - Dark Temple
+@desc You stand in the Dark Temple at the heart of Gorgoroth. Basalt pillars carved with leering faces rise into shadow, and the only light comes from smoldering braziers burning with sickly green flame. The air is thick with incense and the distant, rhythmic chant of dark rites. This is where the Horde welcomes its newest acolytes.
+@tags/set room-zone:gorgoroth
+
+# Tutorial NPC in the starting room
+@spawn dark_tutorial_guide
+@tel here
+
+# ---------------------------------------------------------------
+# 2. Central Plaza
+# ---------------------------------------------------------------
+dig Gorgoroth - The Obsidian Plaza
+@desc You stand in a grim plaza paved with slabs of polished obsidian. Slave-gangs toil under the whips of overseers, and guttural trade-songs echo from the market stalls. A colossal statue of a horned warlord looms over the square, and the volcanic heat of the Forge radiates from below.
+@open north=north to Gorgoroth - The Blood Forge
+@open south=south to Gorgoroth - The Gates of War
+@open east=east to Gorgoroth - Slave Market
+@open west=west to Gorgoroth - Cultist Quarter
+@open up=up to Gorgoroth - Dark Temple
+
+# ---------------------------------------------------------------
+# 3. Blood Forge (Warrior Guild)
+# ---------------------------------------------------------------
+dig Gorgoroth - The Blood Forge
+@desc The air is thick with sulfur and scorched metal. Rivers of molten iron flow in channels across the black floor, and demon-smiths hammer glowing blades on great anvils. This is the industrial heart of the Horde, where warbands are armed and armored.
+@open south=south to Gorgoroth - The Obsidian Plaza
+@spawn warrior_guildmaster
+@tel here
+
+# ---------------------------------------------------------------
+# 4. Cultist Quarter (Warlock Guild)
+# ---------------------------------------------------------------
+dig Gorgoroth - Cultist Quarter
+@desc This quarter reeks of rot and brimstone. Hooded cultists whisper in dead tongues before shrines of bound bone and blackened gold. Ritual candles gutter in the fetid air, and the shadows seem to writhe at the edge of sight.
+@open east=east to Gorgoroth - The Obsidian Plaza
+@spawn warlock_guildmaster
+@tel here
+
+# ---------------------------------------------------------------
+# 5. Necropolis (Necromancer Guild)
+# ---------------------------------------------------------------
+dig Gorgoroth - The Necropolis
+@desc Rows of empty sarcophagi and hanging cages of bone fill this silent catacomb. Pale lamps burn with corpse-light, and the clatter of reanimated servitors echoes in the gloom. Here the necromancers of Gorgoroth bind the dead to their will.
+@open south=south to Gorgoroth - Cultist Quarter
+@spawn necromancer_guildmaster
+@tel here
+
+# ---------------------------------------------------------------
+# 6. Slave Market (Shop District)
+# ---------------------------------------------------------------
+dig Gorgoroth - Slave Market
+@desc Whipping posts and auction blocks crowd this brutal marketplace. Chained captives huddle in iron pens while slavers bark prices and trade in dark coin. The fate of the conquered is bought and sold beneath the crimson lamplight.
+@open west=west to Gorgoroth - The Obsidian Plaza
+@open north=north to Gorgoroth - The War Emporium
+@open south=south to Gorgoroth - The Black Alchemist
+@open east=east to Gorgoroth - The Flesh Peddler
+
+# ---------------------------------------------------------------
+# 7. General Store
+# ---------------------------------------------------------------
+dig Gorgoroth - The Flesh Peddler
+@desc Shelves of black iron hold grisly provisions: strips of dried beast-flesh, flasks of bloodwine, coiled chains, and oiled leather. A hunched merchant with filed teeth grins at you from behind a counter of carved bone.
+@open west=west to Gorgoroth - Slave Market
+@spawn evil_general_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 8. Weaponsmith
+# ---------------------------------------------------------------
+dig Gorgoroth - The War Emporium
+@desc Racks of jagged blades and wicked polearms line this furnace-lit emporium. The ring of the hammer never ceases, and the weapons on display gleam with a cruel, hungry edge. A scarred war-smith sizes you up from behind his anvil.
+@open south=south to Gorgoroth - Slave Market
+@spawn evil_weaponsmith_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 9. Armorer
+# ---------------------------------------------------------------
+dig Gorgoroth - The Iron Bastion Armory
+@desc This armory is a fortress of spiked plate and chain. Suits of blackened armor stand like silent sentinels in the gloom, their steel stained with the rust of old battles. A hulking armorer grunts as you approach.
+@open north=north to Gorgoroth - Slave Market
+@spawn evil_armorer_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 10. Apothecary (Potions)
+# ---------------------------------------------------------------
+dig Gorgoroth - The Black Alchemist
+@desc Jars of preserved eyes, glowing catalysts, and viscous elixirs crowd the shelves of this alchemical den. The air is sharp with acrid fumes. A gaunt alchemist stirs a bubbling cauldron, muttering insanely.
+@open north=north to Gorgoroth - Slave Market
+@spawn evil_potion_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 11. Gates of War (Guards)
+# ---------------------------------------------------------------
+dig Gorgoroth - The Gates of War
+@desc Two titanic gates of black iron, studded with skulls and infernal sigils, mark the northern exit of Gorgoroth. Hulking demonic sentinels stand watch, their burning eyes tracking your every move. The desolate surface world lies beyond.
+@open south=south to Gorgoroth - The Obsidian Plaza
+@open north=north to The Ashen Wastes
+@spawn evil_city_guard
+@tel here
+
+# ---------------------------------------------------------------
+# 12. Tavern
+# ---------------------------------------------------------------
+dig Gorgoroth - The Bleeding Skull Pit
+@desc A raucous fell-tavern where brawls are constant and the ale is brewed with blood. Outcast warriors and deranged cultists drink and gamble beneath the smoke-blackened ceiling. A one-eyed barkeep polishes a tankard with grim boredom.
+@open west=west to Gorgoroth - The Obsidian Plaza
+
+# ---------------------------------------------------------------
+# 13. Sorcerous Library
+# ---------------------------------------------------------------
+dig Gorgoroth - The Forbidden Archive
+@desc Tomes bound in flayed skin and weeping lead fill these shelves. Forbidden knowledge penned in the blood of mages glows faintly in the dark. A silent archivist drifts between the stacks, its face hidden beneath a deep hood.
+@open south=south to Gorgoroth - Cultist Quarter
+
+# ---------------------------------------------------------------
+# 14. Barracks (Guard HQ)
+# ---------------------------------------------------------------
+dig Gorgoroth - The Legion Barracks
+@desc This cavern serves as the barracks for Gorgoroth's legions. Crude bunks are carved into the rock, and the air is thick with the guttural tongue of demonic soldiers. Captains shout orders at armored horrors preparing for the endless war.
+@open west=west to Gorgoroth - The Gates of War
+@spawn evil_city_guard
+@tel here
+
+# ---------------------------------------------------------------
+# 15. Ashen Wastes (Start of Newbie Zone)
+# ---------------------------------------------------------------
+dig The Ashen Wastes
+@desc A blanket of grey ash covers everything, muffling all sound. The sky is a perpetual sickly yellow-brown haze, and petrified trees claw at the heavens. To the northeast lies a crude goblin warren, its entrance half-hidden by soot.
+@open south=south to Gorgoroth - The Gates of War
+@open northeast=northeast to Newbie Zone - Goblin Warren Entrance
+
+# ---------------------------------------------------------------
+# 16. War Camp Approach
+# ---------------------------------------------------------------
+dig Gorgoroth - War Camp Approach
+@desc A trampled road of ash and old blood leads toward the forward war camps. Broken siege engines lie half-buried in the grey dust, and the smell of smoke hangs on the wind.
+@open south=south to The Ashen Wastes
+
+# ---------------------------------------------------------------
+# 17. Forward Outpost
+# ---------------------------------------------------------------
+dig Gorgoroth Forward Outpost
+@desc A crude outpost of lashed bone and scorched hide squats at the edge of the wastes. Feral scouts watch the horizon, and a guttering signal-fire sends black smoke spiraling into the false dawn.
+@open north=north to Gorgoroth - War Camp Approach
+
+# ---------------------------------------------------------------
+# 18. Plaza of Skulls
+# ---------------------------------------------------------------
+dig Gorgoroth - Plaza of Skulls
+@desc A broad plaza paved with the skulls of the conquered spreads before the war gates. The eyeless sockets of a thousand vanquished foes seem to watch you as banners of red and black snap overhead.
+@open south=south to Gorgoroth - The Gates of War
+
+# Done
+@teleport #2 Gorgoroth - Dark Temple
+@echo Gorgoroth Town build complete: 18 rooms, 4 shops, 5 guildmasters, 2 guards, 1 tutorial NPC.

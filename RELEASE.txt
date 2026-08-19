@@ -1,0 +1,1 @@
+v1.0.0-rc1 — 2026-08-15 00:06 UTC — Phase 5 complete. Audit: 223 PASS / 0 WARN / 0 FAIL.

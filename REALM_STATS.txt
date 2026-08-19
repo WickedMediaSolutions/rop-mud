@@ -1,0 +1,34 @@
+=======================================================
+           Realm Statistics
+=======================================================
+
+--- World Structure ---
+  Rooms:  0
+  Exits:  1
+
+--- Entities ---
+  Mobs:       0
+    Good:      0
+    Evil:      0
+    Neutral:   0
+    Aggressive: 0
+    Passive:    0
+  NPCs:       0
+  Shopkeepers: 0
+
+--- Items ---
+  Total Items:       0
+  On Ground:         0
+  In Inventories:    0
+
+--- Players & Accounts ---
+  Characters:  0
+    Good:      0
+    Evil:      0
+    Neutral:   0
+  Online Now:  0
+  Accounts:    2
+
+-------------------------------------------------------
+  Grand Total Entities: 0
+=======================================================

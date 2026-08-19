@@ -1,0 +1,261 @@
+# Magma Chambers — Level 30-40
+# Auto-generated zone: Volcanic tunnels with rivers of molten rock and fire elementals
+# Faction: Gorgoroth Horde
+# Rooms: 24
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.magma_chambers")
+
+# --- Room 1/24 ---
+dig Magma Chambers - Entrance
+@desc A cavernous tunnel narrows ahead, its walls slick with soot. The faint luminescence here is foreboding, and you hear skittering claws that seem to come from everywhere at once.
+@tags/set room-zone:magma_chambers
+@open south=south to Magma Chambers - Grotto 2
+@open east=east to Magma Chambers - Ascent
+
+# --- Room 2/24 ---
+dig Magma Chambers - Ascent
+@desc The cave opens into a cramped chamber where ethereal radiance reflects off obsidian formations on the walls. You hear strange whispers echoing from deeper within, and the air is sweltering and foreboding.
+@tags/set room-zone:magma_chambers
+@spawn gen_assassin_lvl35
+@tel here
+@spawn gen_caster_lvl40
+@tel here
+@open west=west to Magma Chambers - Entrance
+@open south=south to Magma Chambers - Overlook
+@open east=east to Magma Chambers - Crossroads
+
+# --- Room 3/24 ---
+dig Magma Chambers - Crossroads
+@desc You enter a foreboding grotto where quartz crystals pulse with a faint inner dim luminescence. You notice a broken altar carved into the stone floor, and the air hums with desolate energy.
+@tags/set room-zone:magma_chambers
+@open west=west to Magma Chambers - Ascent
+@open south=south to Magma Chambers - Nook
+@open east=east to Magma Chambers - Thicket
+
+# --- Room 4/24 ---
+dig Magma Chambers - Thicket
+@desc A sprawling tunnel narrows ahead, its walls slick with crystalline deposits. The sunlight here is crumbling, and you hear muffled voices that seem to come from everywhere at once.
+@tags/set room-zone:magma_chambers
+@open west=west to Magma Chambers - Crossroads
+@open south=south to Magma Chambers - Overlook 2
+@open east=east to Magma Chambers - Expanse
+
+# --- Room 5/24 ---
+dig Magma Chambers - Expanse
+@desc A cavernous tunnel narrows ahead, its walls slick with a strange slime. The ethereal radiance here is crumbling, and you hear faint chants that seem to come from everywhere at once.
+@tags/set room-zone:magma_chambers
+@spawn gen_balanced_lvl30
+@tel here
+@spawn gen_caster_lvl40
+@tel here
+@open west=west to Magma Chambers - Thicket
+@open south=south to Magma Chambers - Hollow 2
+
+# --- Room 6/24 ---
+dig Magma Chambers - Grotto 2
+@desc You enter a crumbling grotto where silver crystals pulse with a faint inner moonlight. You notice flickering torchlight carved into the stone floor, and the air hums with majestic energy.
+@tags/set room-zone:magma_chambers
+@spawn gen_assassin_lvl38
+@tel here
+@spawn gen_tank_lvl33
+@tel here
+@open north=north to Magma Chambers - Entrance
+@open south=south to Magma Chambers - Depths
+@open east=east to Magma Chambers - Overlook
+
+# --- Room 7/24 ---
+dig Magma Chambers - Overlook
+@desc Stalactites hang like crumbling teeth from the ceiling of this cavernous cavern. amethyst deposits glitter in the dim luminescence, and you hear distant howls reverberating through the stone.
+@tags/set room-zone:magma_chambers
+@spawn gen_skirmisher_lvl38
+@tel here
+@open north=north to Magma Chambers - Ascent
+@open west=west to Magma Chambers - Grotto 2
+@open south=south to Magma Chambers - Gallery
+@open east=east to Magma Chambers - Nook
+
+# --- Room 8/24 ---
+dig Magma Chambers - Nook
+@desc The cave opens into a immense chamber where moonlight reflects off obsidian formations on the walls. You hear distant howls echoing from deeper within, and the air is pleasantly cool and majestic.
+@tags/set room-zone:magma_chambers
+@spawn gen_assassin_lvl30
+@tel here
+@open north=north to Magma Chambers - Crossroads
+@open west=west to Magma Chambers - Overlook
+@open south=south to Magma Chambers - Descent
+@open east=east to Magma Chambers - Overlook 2
+
+# --- Room 9/24 ---
+dig Magma Chambers - Overlook 2
+@desc Stalactites hang like darkened teeth from the ceiling of this cavernous cavern. iron deposits glitter in the sunlight, and you hear muffled voices reverberating through the stone.
+@tags/set room-zone:magma_chambers
+@spawn gen_brute_lvl35
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Magma Chambers - Thicket
+@open west=west to Magma Chambers - Nook
+@open south=south to Magma Chambers - Descent 2
+@open east=east to Magma Chambers - Hollow 2
+
+# --- Room 10/24 ---
+dig Magma Chambers - Hollow 2
+@desc Stalactites hang like shimmering teeth from the ceiling of this sprawling cavern. iron deposits glitter in the ethereal radiance, and you hear skittering claws reverberating through the stone.
+@tags/set room-zone:magma_chambers
+@spawn gen_tank_lvl30
+@tel here
+@spawn gen_assassin_lvl38
+@tel here
+@open north=north to Magma Chambers - Expanse
+@open west=west to Magma Chambers - Overlook 2
+@open south=south to Magma Chambers - Stretch 2
+
+# --- Room 11/24 ---
+dig Magma Chambers - Depths
+@desc You enter a crumbling grotto where glowing crystal crystals pulse with a faint inner ethereal radiance. You notice scattered offerings carved into the stone floor, and the air hums with darkened energy.
+@tags/set room-zone:magma_chambers
+@open north=north to Magma Chambers - Grotto 2
+@open south=south to Magma Chambers - Ascent 3
+@open east=east to Magma Chambers - Gallery
+
+# --- Room 12/24 ---
+dig Magma Chambers - Gallery
+@desc A vast tunnel narrows ahead, its walls slick with ancient blood. The ethereal radiance here is shimmering, and you hear strange whispers that seem to come from everywhere at once.
+@tags/set room-zone:magma_chambers
+@open north=north to Magma Chambers - Overlook
+@open west=west to Magma Chambers - Depths
+@open south=south to Magma Chambers - Path
+@open east=east to Magma Chambers - Descent
+
+# --- Room 13/24 ---
+dig Magma Chambers - Descent
+@desc You enter a foreboding grotto where glowing crystal crystals pulse with a faint inner dim luminescence. You notice a dark bloodstain carved into the stone floor, and the air hums with darkened energy.
+@tags/set room-zone:magma_chambers
+@spawn gen_brute_lvl30
+@tel here
+@spawn gen_tank_lvl40
+@tel here
+@open north=north to Magma Chambers - Nook
+@open west=west to Magma Chambers - Gallery
+@open south=south to Magma Chambers - Stretch
+@open east=east to Magma Chambers - Descent 2
+
+# --- Room 14/24 ---
+dig Magma Chambers - Descent 2
+@desc You enter a desolate grotto where glowing crystal crystals pulse with a faint inner faint luminescence. You notice ancient runes carved into the stone floor, and the air hums with ancient energy.
+@tags/set room-zone:magma_chambers
+@open north=north to Magma Chambers - Overlook 2
+@open west=west to Magma Chambers - Descent
+@open south=south to Magma Chambers - Chamber 2
+@open east=east to Magma Chambers - Stretch 2
+
+# --- Room 15/24 ---
+dig Magma Chambers - Stretch 2
+@desc The cave opens into a sprawling chamber where filtered light reflects off amethyst formations on the walls. You hear muffled voices echoing from deeper within, and the air is sweltering and ancient.
+@tags/set room-zone:magma_chambers
+@spawn gen_skirmisher_lvl35
+@tel here
+@spawn gen_assassin_lvl33
+@tel here
+@open north=north to Magma Chambers - Hollow 2
+@open west=west to Magma Chambers - Descent 2
+@open south=south to Magma Chambers - Ridge
+
+# --- Room 16/24 ---
+dig Magma Chambers - Ascent 3
+@desc Stalactites hang like ethereal teeth from the ceiling of this cavernous cavern. amethyst deposits glitter in the faint luminescence, and you hear strange whispers reverberating through the stone.
+@tags/set room-zone:magma_chambers
+@open north=north to Magma Chambers - Depths
+@open south=south to Magma Chambers - Ridge 2
+@open east=east to Magma Chambers - Path
+
+# --- Room 17/24 ---
+dig Magma Chambers - Path
+@desc A immense tunnel narrows ahead, its walls slick with crystalline deposits. The moonlight here is shimmering, and you hear low rumbling tremors that seem to come from everywhere at once.
+@tags/set room-zone:magma_chambers
+@spawn gen_caster_lvl35
+@tel here
+@open north=north to Magma Chambers - Gallery
+@open west=west to Magma Chambers - Ascent 3
+@open south=south to Magma Chambers - Path 2
+@open east=east to Magma Chambers - Stretch
+
+# --- Room 18/24 ---
+dig Magma Chambers - Stretch
+@desc The cave opens into a narrow chamber where ethereal radiance reflects off quartz formations on the walls. You hear strange whispers echoing from deeper within, and the air is frigid and pristine.
+@tags/set room-zone:magma_chambers
+@spawn gen_skirmisher_lvl38
+@tel here
+@open north=north to Magma Chambers - Descent
+@open west=west to Magma Chambers - Path
+@open south=south to Magma Chambers - Ascent 2
+@open east=east to Magma Chambers - Chamber 2
+
+# --- Room 19/24 ---
+dig Magma Chambers - Chamber 2
+@desc You enter a ethereal grotto where quartz crystals pulse with a faint inner dim luminescence. You notice a discarded weapon carved into the stone floor, and the air hums with ancient energy.
+@tags/set room-zone:magma_chambers
+@open north=north to Magma Chambers - Descent 2
+@open west=west to Magma Chambers - Stretch
+@open south=south to Magma Chambers - Heart
+@open east=east to Magma Chambers - Ridge
+
+# --- Room 20/24 ---
+dig Magma Chambers - Ridge
+@desc A immense tunnel narrows ahead, its walls slick with crystalline deposits. The filtered light here is pristine, and you hear skittering claws that seem to come from everywhere at once.
+@tags/set room-zone:magma_chambers
+@spawn gen_skirmisher_lvl35
+@tel here
+@spawn gen_assassin_lvl33
+@tel here
+@open north=north to Magma Chambers - Stretch 2
+@open west=west to Magma Chambers - Chamber 2
+
+# --- Room 21/24 ---
+dig Magma Chambers - Ridge 2
+@desc You enter a ethereal grotto where obsidian crystals pulse with a faint inner moonlight. You notice a weathered statue carved into the stone floor, and the air hums with desolate energy.
+@tags/set room-zone:magma_chambers
+@spawn gen_balanced_lvl30
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Magma Chambers - Ascent 3
+@open east=east to Magma Chambers - Path 2
+
+# --- Room 22/24 ---
+dig Magma Chambers - Path 2
+@desc The cave opens into a narrow chamber where dim luminescence reflects off iron formations on the walls. You hear dripping echoes echoing from deeper within, and the air is unbearably hot and crumbling.
+@tags/set room-zone:magma_chambers
+@spawn gen_brute_lvl38
+@tel here
+@spawn gen_tank_lvl30
+@tel here
+@open north=north to Magma Chambers - Path
+@open west=west to Magma Chambers - Ridge 2
+@open east=east to Magma Chambers - Ascent 2
+
+# --- Room 23/24 ---
+dig Magma Chambers - Ascent 2
+@desc The cave opens into a cavernous chamber where ethereal radiance reflects off iron formations on the walls. You hear dripping echoes echoing from deeper within, and the air is pleasantly cool and majestic.
+@tags/set room-zone:magma_chambers
+@spawn gen_assassin_lvl40
+@tel here
+@spawn gen_tank_lvl33
+@tel here
+@open north=north to Magma Chambers - Stretch
+@open west=west to Magma Chambers - Path 2
+@open east=east to Magma Chambers - Heart
+
+# --- Room 24/24 ---
+dig Magma Chambers - Heart
+@desc A cavernous tunnel narrows ahead, its walls slick with moisture. The dim luminescence here is crumbling, and you hear distant howls that seem to come from everywhere at once.
+@tags/set room-zone:magma_chambers
+@spawn gen_balanced_lvl30
+@tel here
+@open north=north to Magma Chambers - Chamber 2
+@open west=west to Magma Chambers - Ascent 2
+@open east=east to Magma Chambers - Ridge
+
+# Zone 'Magma Chambers' complete — 24 rooms, 77 directed exits.

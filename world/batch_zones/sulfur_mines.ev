@@ -1,0 +1,231 @@
+# Sulfur Mines of Gorgoroth — Level 13-23
+# Auto-generated zone: Acrid mining tunnels where slave laborers extract brimstone
+# Faction: Gorgoroth Horde
+# Rooms: 22
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.sulfur_mines")
+
+# --- Room 1/22 ---
+dig Sulfur Mines of Gorgoroth - Entrance
+@desc A cavernous tunnel narrows ahead, its walls slick with crystalline deposits. The moonlight here is shimmering, and you hear low rumbling tremors that seem to come from everywhere at once.
+@tags/set room-zone:sulfur_mines
+@open south=south to Sulfur Mines of Gorgoroth - Ridge
+@open east=east to Sulfur Mines of Gorgoroth - Nook
+
+# --- Room 2/22 ---
+dig Sulfur Mines of Gorgoroth - Nook
+@desc Stalactites hang like foreboding teeth from the ceiling of this cramped cavern. glowing crystal deposits glitter in the moonlight, and you hear low rumbling tremors reverberating through the stone.
+@tags/set room-zone:sulfur_mines
+@spawn gen_brute_lvl15
+@tel here
+@open west=west to Sulfur Mines of Gorgoroth - Entrance
+@open south=south to Sulfur Mines of Gorgoroth - Clearing
+@open east=east to Sulfur Mines of Gorgoroth - Bend
+
+# --- Room 3/22 ---
+dig Sulfur Mines of Gorgoroth - Bend
+@desc Stalactites hang like shimmering teeth from the ceiling of this cramped cavern. amethyst deposits glitter in the ethereal radiance, and you hear distant howls reverberating through the stone.
+@tags/set room-zone:sulfur_mines
+@spawn gen_balanced_lvl15
+@tel here
+@spawn gen_brute_lvl15
+@tel here
+@open west=west to Sulfur Mines of Gorgoroth - Nook
+@open south=south to Sulfur Mines of Gorgoroth - Ascent
+@open east=east to Sulfur Mines of Gorgoroth - Nook 2
+
+# --- Room 4/22 ---
+dig Sulfur Mines of Gorgoroth - Nook 2
+@desc The cave opens into a vast chamber where moonlight reflects off iron formations on the walls. You hear low rumbling tremors echoing from deeper within, and the air is unbearably hot and majestic.
+@tags/set room-zone:sulfur_mines
+@spawn gen_caster_lvl15
+@tel here
+@open west=west to Sulfur Mines of Gorgoroth - Bend
+@open south=south to Sulfur Mines of Gorgoroth - Crossroads
+@open east=east to Sulfur Mines of Gorgoroth - Hollow
+
+# --- Room 5/22 ---
+dig Sulfur Mines of Gorgoroth - Hollow
+@desc You enter a foreboding grotto where quartz crystals pulse with a faint inner filtered light. You notice a dark bloodstain carved into the stone floor, and the air hums with pristine energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_brute_lvl20
+@tel here
+@open west=west to Sulfur Mines of Gorgoroth - Nook 2
+@open south=south to Sulfur Mines of Gorgoroth - Grotto
+
+# --- Room 6/22 ---
+dig Sulfur Mines of Gorgoroth - Ridge
+@desc You enter a crumbling grotto where amethyst crystals pulse with a faint inner ethereal radiance. You notice flickering torchlight carved into the stone floor, and the air hums with ethereal energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_balanced_lvl18
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Entrance
+@open south=south to Sulfur Mines of Gorgoroth - Grotto 2
+@open east=east to Sulfur Mines of Gorgoroth - Clearing
+
+# --- Room 7/22 ---
+dig Sulfur Mines of Gorgoroth - Clearing
+@desc The cave opens into a sprawling chamber where filtered light reflects off iron formations on the walls. You hear distant howls echoing from deeper within, and the air is unbearably hot and ancient.
+@tags/set room-zone:sulfur_mines
+@spawn gen_balanced_lvl15
+@tel here
+@spawn gen_skirmisher_lvl22
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Nook
+@open west=west to Sulfur Mines of Gorgoroth - Ridge
+@open south=south to Sulfur Mines of Gorgoroth - Ridge 2
+@open east=east to Sulfur Mines of Gorgoroth - Ascent
+
+# --- Room 8/22 ---
+dig Sulfur Mines of Gorgoroth - Ascent
+@desc Stalactites hang like majestic teeth from the ceiling of this cavernous cavern. amethyst deposits glitter in the moonlight, and you hear faint chants reverberating through the stone.
+@tags/set room-zone:sulfur_mines
+@open north=north to Sulfur Mines of Gorgoroth - Bend
+@open west=west to Sulfur Mines of Gorgoroth - Clearing
+@open south=south to Sulfur Mines of Gorgoroth - Ledge 2
+@open east=east to Sulfur Mines of Gorgoroth - Crossroads
+
+# --- Room 9/22 ---
+dig Sulfur Mines of Gorgoroth - Crossroads
+@desc A sprawling tunnel narrows ahead, its walls slick with moisture. The ethereal radiance here is pristine, and you hear distant howls that seem to come from everywhere at once.
+@tags/set room-zone:sulfur_mines
+@spawn gen_skirmisher_lvl20
+@tel here
+@spawn gen_skirmisher_lvl20
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Nook 2
+@open west=west to Sulfur Mines of Gorgoroth - Ascent
+@open south=south to Sulfur Mines of Gorgoroth - Expanse
+@open east=east to Sulfur Mines of Gorgoroth - Grotto
+
+# --- Room 10/22 ---
+dig Sulfur Mines of Gorgoroth - Grotto
+@desc You enter a ethereal grotto where obsidian crystals pulse with a faint inner filtered light. You notice a discarded weapon carved into the stone floor, and the air hums with foreboding energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_skirmisher_lvl22
+@tel here
+@spawn gen_tank_lvl15
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Hollow
+@open west=west to Sulfur Mines of Gorgoroth - Crossroads
+@open south=south to Sulfur Mines of Gorgoroth - Grove 2
+
+# --- Room 11/22 ---
+dig Sulfur Mines of Gorgoroth - Grotto 2
+@desc You enter a pristine grotto where obsidian crystals pulse with a faint inner dim luminescence. You notice a broken altar carved into the stone floor, and the air hums with darkened energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_brute_lvl20
+@tel here
+@spawn gen_balanced_lvl20
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Ridge
+@open south=south to Sulfur Mines of Gorgoroth - Bend 2
+@open east=east to Sulfur Mines of Gorgoroth - Ridge 2
+
+# --- Room 12/22 ---
+dig Sulfur Mines of Gorgoroth - Ridge 2
+@desc You enter a desolate grotto where obsidian crystals pulse with a faint inner sunlight. You notice a dark bloodstain carved into the stone floor, and the air hums with majestic energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_balanced_lvl15
+@tel here
+@spawn gen_tank_lvl18
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Clearing
+@open west=west to Sulfur Mines of Gorgoroth - Grotto 2
+@open south=south to Sulfur Mines of Gorgoroth - Ledge
+@open east=east to Sulfur Mines of Gorgoroth - Ledge 2
+
+# --- Room 13/22 ---
+dig Sulfur Mines of Gorgoroth - Ledge 2
+@desc Stalactites hang like ethereal teeth from the ceiling of this cramped cavern. silver deposits glitter in the sunlight, and you hear muffled voices reverberating through the stone.
+@tags/set room-zone:sulfur_mines
+@open north=north to Sulfur Mines of Gorgoroth - Ascent
+@open west=west to Sulfur Mines of Gorgoroth - Ridge 2
+@open south=south to Sulfur Mines of Gorgoroth - Clearing 3
+@open east=east to Sulfur Mines of Gorgoroth - Expanse
+
+# --- Room 14/22 ---
+dig Sulfur Mines of Gorgoroth - Expanse
+@desc A immense tunnel narrows ahead, its walls slick with crystalline deposits. The ethereal radiance here is pristine, and you hear skittering claws that seem to come from everywhere at once.
+@tags/set room-zone:sulfur_mines
+@open north=north to Sulfur Mines of Gorgoroth - Crossroads
+@open west=west to Sulfur Mines of Gorgoroth - Ledge 2
+@open south=south to Sulfur Mines of Gorgoroth - Gallery
+@open east=east to Sulfur Mines of Gorgoroth - Grove 2
+
+# --- Room 15/22 ---
+dig Sulfur Mines of Gorgoroth - Grove 2
+@desc A cramped tunnel narrows ahead, its walls slick with ancient blood. The sunlight here is shimmering, and you hear distant howls that seem to come from everywhere at once.
+@tags/set room-zone:sulfur_mines
+@open north=north to Sulfur Mines of Gorgoroth - Grotto
+@open west=west to Sulfur Mines of Gorgoroth - Expanse
+@open south=south to Sulfur Mines of Gorgoroth - Hollow 2
+
+# --- Room 16/22 ---
+dig Sulfur Mines of Gorgoroth - Bend 2
+@desc Stalactites hang like majestic teeth from the ceiling of this narrow cavern. silver deposits glitter in the filtered light, and you hear skittering claws reverberating through the stone.
+@tags/set room-zone:sulfur_mines
+@spawn gen_caster_lvl22
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Grotto 2
+@open south=south to Sulfur Mines of Gorgoroth - Stretch 3
+@open east=east to Sulfur Mines of Gorgoroth - Ledge
+
+# --- Room 17/22 ---
+dig Sulfur Mines of Gorgoroth - Ledge
+@desc You enter a shimmering grotto where iron crystals pulse with a faint inner sunlight. You notice a dark bloodstain carved into the stone floor, and the air hums with foreboding energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_tank_lvl15
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Ridge 2
+@open west=west to Sulfur Mines of Gorgoroth - Bend 2
+@open south=south to Sulfur Mines of Gorgoroth - Heart
+@open east=east to Sulfur Mines of Gorgoroth - Clearing 3
+
+# --- Room 18/22 ---
+dig Sulfur Mines of Gorgoroth - Clearing 3
+@desc You enter a corrupted grotto where quartz crystals pulse with a faint inner sunlight. You notice a discarded weapon carved into the stone floor, and the air hums with shimmering energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_skirmisher_lvl20
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Ledge 2
+@open west=west to Sulfur Mines of Gorgoroth - Ledge
+@open east=east to Sulfur Mines of Gorgoroth - Gallery
+
+# --- Room 19/22 ---
+dig Sulfur Mines of Gorgoroth - Gallery
+@desc You enter a crumbling grotto where iron crystals pulse with a faint inner ethereal radiance. You notice a dark bloodstain carved into the stone floor, and the air hums with ethereal energy.
+@tags/set room-zone:sulfur_mines
+@spawn gen_assassin_lvl18
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Expanse
+@open west=west to Sulfur Mines of Gorgoroth - Clearing 3
+@open east=east to Sulfur Mines of Gorgoroth - Hollow 2
+
+# --- Room 20/22 ---
+dig Sulfur Mines of Gorgoroth - Hollow 2
+@desc You enter a ethereal grotto where obsidian crystals pulse with a faint inner moonlight. You notice a weathered statue carved into the stone floor, and the air hums with crumbling energy.
+@tags/set room-zone:sulfur_mines
+@open north=north to Sulfur Mines of Gorgoroth - Grove 2
+@open west=west to Sulfur Mines of Gorgoroth - Gallery
+
+# --- Room 21/22 ---
+dig Sulfur Mines of Gorgoroth - Stretch 3
+@desc A cavernous tunnel narrows ahead, its walls slick with moisture. The moonlight here is shimmering, and you hear strange whispers that seem to come from everywhere at once.
+@tags/set room-zone:sulfur_mines
+@open north=north to Sulfur Mines of Gorgoroth - Bend 2
+@open east=east to Sulfur Mines of Gorgoroth - Heart
+
+# --- Room 22/22 ---
+dig Sulfur Mines of Gorgoroth - Heart
+@desc The cave opens into a cramped chamber where filtered light reflects off quartz formations on the walls. You hear skittering claws echoing from deeper within, and the air is sweltering and crumbling.
+@tags/set room-zone:sulfur_mines
+@spawn gen_assassin_lvl18
+@tel here
+@open north=north to Sulfur Mines of Gorgoroth - Ledge
+@open west=west to Sulfur Mines of Gorgoroth - Stretch 3
+@open east=east to Sulfur Mines of Gorgoroth - Gallery
+
+# Zone 'Sulfur Mines of Gorgoroth' complete — 22 rooms, 69 directed exits.

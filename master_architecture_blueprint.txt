@@ -1,0 +1,1641 @@
+# ============================================================================
+# RITES OF PASSAGE — MASTER ARCHITECTURE BLUEPRINT & IMPLEMENTATION ROADMAP
+# Evennia MUD | MajorMUD + EmlenMUD Hybrid | System Audit & Full Spec
+# ============================================================================
+
+---
+
+## SECTION 1: RACE, CLASS & SKILL MATRIX (Fixing the Orc Warrior Bug)
+
+### 1.1 DATA SCHEMA — RACE DEFINITIONS
+
+```python
+# world/race_class_matrix.py
+
+from dataclasses import dataclass, field
+from typing import Dict, List, Set, Optional, Tuple
+
+@dataclass
+class RaceDef:
+    key: str                          # "Orc", "Human", etc.
+    alignment: str                    # "Good", "Neutral", "Evil"
+    stats: Dict[str, int]             # {"str":14, "dex":9, "con":13, "int":6, "wis":7, "cha":5}
+    allowed_classes: List[str]        # ["Warrior", "Rogue", "Warlock"] — explicit whitelist
+    passive: str                      # "Berserk Rage (+10% Melee Damage)"
+    passive_effect: Dict[str, any]    # {"type":"melee_dmg_pct", "value":0.10}
+    start_room_key: str               # "Gorgoroth - Dark Temple"
+    desc: str
+    # Equipment slot restrictions (e.g., Pixie can't wear heavy armor)
+    forbidden_slots: List[str] = field(default_factory=list)  # ["chest_heavy", "two_handed"]
+    # Spell school restrictions (e.g., Orc can't learn Evocation above level 3)
+    max_spell_level_by_school: Dict[str, int] = field(default_factory=dict)
+    # {"evocation": 0, "restoration": 0} means no spells at all
+
+@dataclass
+class ClassDef:
+    key: str                          # "Warrior", "Mage", etc.
+    primary_stat: str                 # "str", "int", "wis", "dex"
+    hp_per_level: int                 # 15
+    mana_per_level: int               # 2
+    desc: str
+    # Which spell schools this class can access (empty = no spells)
+    allowed_schools: List[str] = field(default_factory=list)  # ["evocation", "abjuration"]
+    # Maximum spell level this class can reach per school
+    max_spell_level: Dict[str, int] = field(default_factory=dict)  # {"evocation": 80}
+    # Skills this class can learn (physical combat arts)
+    class_skills: List[str] = field(default_factory=list)  # ["kick", "bash", "disarm"]
+    # Equipment proficiencies
+    allowed_weapon_types: List[str] = field(default_factory=list)  # ["sword", "axe", "dagger"]
+    allowed_armor_types: List[str] = field(default_factory=list)   # ["light", "medium", "heavy"]
+    # Practice point costs per skill category
+    practice_costs: Dict[str, int] = field(default_factory=dict)   # {"spell": 2, "skill": 1}
+```
+
+### 1.2 RACE/CLASS COMPATIBILITY MATRIX (EmlenMUD-Style)
+
+```python
+# world/race_class_matrix.py (continued)
+
+RACE_CLASS_MATRIX: Dict[str, List[str]] = {
+    # GOOD RACES
+    "Human":        ["Warrior", "Paladin", "Cleric", "Mage", "Rogue", "Warlock", "Druid", "Ranger", "Monk", "Necromancer"],
+    "High Elf":     ["Paladin", "Cleric", "Mage", "Druid", "Ranger", "Monk"],
+    "Wood Elf":     ["Cleric", "Mage", "Rogue", "Druid", "Ranger", "Monk"],
+    "Mountain Dwarf": ["Warrior", "Paladin", "Cleric", "Rogue"],
+    "Stout Halfling": ["Warrior", "Rogue", "Ranger", "Monk"],
+    "Gnome":        ["Cleric", "Mage", "Rogue", "Warlock", "Druid"],
+    "Centaur":      ["Warrior", "Paladin", "Druid", "Ranger"],
+    "Pixie":        ["Mage", "Rogue", "Druid", "Monk"],
+    # EVIL RACES
+    "Orc":          ["Warrior", "Rogue", "Warlock", "Necromancer"],
+    "Dark Elf":     ["Warrior", "Mage", "Rogue", "Warlock", "Necromancer"],
+    "Undead":       ["Warrior", "Warlock", "Necromancer"],
+    "Goblin":       ["Warrior", "Rogue", "Warlock"],
+    "Minotaur":     ["Warrior", "Warlock"],
+    "Lizardfolk":   ["Warrior", "Rogue", "Druid"],
+    "Ogre":         ["Warrior"],
+    "Demonkin":     ["Warrior", "Mage", "Warlock", "Necromancer"],
+}
+
+# Class → allowed spell schools (empty list = pure martial, no spells)
+CLASS_SPELL_SCHOOLS: Dict[str, List[str]] = {
+    "Warrior":      [],                                          # No spells
+    "Paladin":      ["restoration", "abjuration"],               # Heals + shields only, max level 40
+    "Cleric":       ["restoration", "abjuration", "evocation"],  # Full divine caster
+    "Mage":         ["evocation", "abjuration", "enfeebling"],   # Full arcane caster
+    "Rogue":        [],                                          # No spells (uses poisons/skills)
+    "Warlock":      ["evocation", "enfeebling"],                 # Dark caster
+    "Druid":        ["restoration", "evocation", "enfeebling"],  # Nature caster
+    "Ranger":       ["restoration"],                             # Minor heals only, max level 20
+    "Monk":         [],                                          # No spells (ki abilities)
+    "Necromancer":  ["evocation", "enfeebling", "restoration"],  # Dark full caster
+}
+
+# Class → max spell level per school (overrides global max)
+CLASS_MAX_SPELL_LEVEL: Dict[str, Dict[str, int]] = {
+    "Paladin":      {"restoration": 40, "abjuration": 40},
+    "Ranger":       {"restoration": 20},
+    # All others use their full level cap (80)
+}
+```
+
+### 1.3 GATING ENGINE — The Central Permission Check
+
+```python
+# world/race_class_matrix.py (continued)
+
+def can_cast_spells(character) -> bool:
+    """Master gate: does this character's class allow ANY spellcasting?"""
+    char_class = character.attributes.get("class", default="Warrior")
+    schools = CLASS_SPELL_SCHOOLS.get(char_class, [])
+    return len(schools) > 0
+
+def can_learn_spell(character, spell_key: str) -> Tuple[bool, str]:
+    """
+    Check if a character's race/class combination permits learning a spell.
+    Returns (allowed, reason).
+    Called by: SpellHandler.can_cast(), _grant_spells_for_level(), guildmaster training.
+    """
+    char_class = character.attributes.get("class", default="Warrior")
+    char_race = character.attributes.get("race", default="Human")
+    char_level = character.attributes.get("level", default=1)
+
+    spell = get_spell(spell_key)
+    if not spell:
+        return False, "Unknown spell."
+
+    # 1. Class must allow this spell's school
+    allowed_schools = CLASS_SPELL_SCHOOLS.get(char_class, [])
+    if spell["school"] not in allowed_schools:
+        return False, f"{char_class}s cannot cast {spell['school']} spells."
+
+    # 2. Class must allow spells up to this spell's level
+    max_lvl_map = CLASS_MAX_SPELL_LEVEL.get(char_class, {})
+    max_for_school = max_lvl_map.get(spell["school"], 80)
+    if spell["level"] > max_for_school:
+        return False, f"{char_class}s can only learn {spell['school']} spells up to level {max_for_school}."
+
+    # 3. Race-level restrictions (e.g., Orc can't learn any spells)
+    race_data = RACES.get(char_race, {})
+    race_max = race_data.get("max_spell_level_by_school", {}).get(spell["school"], 80)
+    if spell["level"] > race_max:
+        return False, f"{char_race}s cannot learn {spell['school']} spells above level {race_max}."
+
+    # 4. Character level check
+    if spell["level"] > char_level:
+        return False, f"You must be level {spell['level']} to learn {spell['name']}."
+
+    return True, ""
+
+def can_use_skill(character, skill_key: str) -> Tuple[bool, str]:
+    """Check if a character's class permits using a physical combat skill."""
+    char_class = character.attributes.get("class", default="Warrior")
+    class_data = CLASSES.get(char_class, {})
+    class_skills = class_data.get("class_skills", [])
+    if skill_key not in class_skills:
+        return False, f"{char_class}s cannot use {skill_key}."
+    return True, ""
+
+def can_equip_slot(character, slot: str, item_type: str) -> Tuple[bool, str]:
+    """Check race/class equipment restrictions."""
+    char_race = character.attributes.get("race", default="Human")
+    char_class = character.attributes.get("class", default="Warrior")
+    race_data = RACES.get(char_race, {})
+    class_data = CLASSES.get(char_class, {})
+
+    # Race restrictions (e.g., Pixie can't wear heavy armor)
+    if slot in race_data.get("forbidden_slots", []):
+        return False, f"{char_race}s cannot equip items in the {slot} slot."
+
+    # Class armor proficiency
+    if item_type.startswith("armor_"):
+        armor_type = item_type.replace("armor_", "")
+        if armor_type not in class_data.get("allowed_armor_types", []):
+            return False, f"{char_class}s cannot wear {armor_type} armor."
+
+    # Class weapon proficiency
+    if item_type.startswith("weapon_"):
+        weapon_type = item_type.replace("weapon_", "")
+        if weapon_type not in class_data.get("allowed_weapon_types", []):
+            return False, f"{char_class}s cannot wield {weapon_type} weapons."
+
+    return True, ""
+```
+
+### 1.4 SPELL/SKILL COMMAND HOOK — The Exact Fix for Orc Warriors
+
+```python
+# In commands/spells.py — CmdCast.func() — ADD at line 56 (after spell lookup, before handler):
+
+def func(self):
+    caller = self.caller
+    # ... existing parse logic ...
+
+    spell = get_spell(spell_name)
+    if not spell:
+        caller.msg(f"|rUnknown spell: '{spell_name}'.|n")
+        return
+
+    # ===== CRITICAL GATE: Race/Class permission check =====
+    from world.race_class_matrix import can_learn_spell
+    allowed, reason = can_learn_spell(caller, spell_name)
+    if not allowed:
+        caller.msg(f"|r{reason}|n")
+        return
+    # ======================================================
+
+    handler = SpellHandler(caller)
+    # ... rest of existing logic ...
+
+
+# In world/spells.py — SpellHandler.can_cast() — ADD at line 425 (top of method):
+
+def can_cast(self, spell_name):
+    spell = get_spell(spell_name)
+    if not spell:
+        return False, "You don't know that spell."
+
+    # ===== CRITICAL GATE: Race/Class permission check =====
+    from world.race_class_matrix import can_learn_spell
+    allowed, reason = can_learn_spell(self.character, spell_name)
+    if not allowed:
+        return False, reason
+    # ======================================================
+
+    # ... existing level/mana/cooldown checks ...
+
+
+# In typeclasses/characters.py — _grant_spells_for_level() — REPLACE entire method:
+
+def _grant_spells_for_level(self, level):
+    """Grant spells available at this level, respecting race/class gating."""
+    from world.spells import SPELLS
+    from world.race_class_matrix import can_learn_spell
+
+    learned = self.attributes.get("learned_spells", default=[])
+    if not isinstance(learned, list):
+        learned = []
+
+    new_spells = []
+    for spell_key, spell_data in SPELLS.items():
+        if spell_data["level"] == level:
+            allowed, _ = can_learn_spell(self, spell_key)
+            if allowed and spell_data["name"] not in learned:
+                learned.append(spell_data["name"])
+                new_spells.append(spell_data["name"])
+
+    learned.sort()
+    self.attributes.add("learned_spells", learned)
+    return new_spells
+
+
+# In commands/default_cmdsets.py — at_cmdset_creation() — CONDITIONAL CmdSet registration:
+
+def at_cmdset_creation(self):
+    super().at_cmdset_creation()
+    # Magic commands — ONLY added if the character's class can cast spells
+    # This is checked dynamically via the 'cmd' lock string
+    self.add(CmdCast())
+    self.add(CmdSpells())
+    # ... rest of commands ...
+
+# In commands/spells.py — CmdCast and CmdSpells — ADD lock strings:
+
+class CmdCast(Command):
+    key = "cast"
+    aliases = ["c"]
+    locks = "cmd:can_cast_spells()"   # <-- ADD THIS
+    # ...
+
+class CmdSpells(Command):
+    key = "spells"
+    aliases = ["spellbook", "spell"]
+    locks = "cmd:can_cast_spells()"   # <-- ADD THIS
+    # ...
+
+# In typeclasses/characters.py — ADD lock function:
+
+def can_cast_spells(accessing_obj, accessed_obj, *args, **kwargs):
+    """Lock function: returns True if the character's class can cast spells."""
+    from world.race_class_matrix import can_cast_spells as _check
+    return _check(accessing_obj)
+```
+
+### 1.5 EmlenMUD GUILDMASTER & PRACTICE SYSTEM
+
+```python
+# world/guildmaster.py
+
+@dataclass
+class PracticeSession:
+    """Tracks a player's practice points and trained skills."""
+    practice_points: int = 0          # Earned on level-up, spent at guildmasters
+    trained_spells: Set[str] = field(default_factory=set)   # Spells unlocked via training
+    trained_skills: Set[str] = field(default_factory=set)   # Skills unlocked via training
+    skill_ranks: Dict[str, int] = field(default_factory=dict)  # skill_name → rank (1-10)
+
+def award_practice_points(character, level: int):
+    """Called on level-up. Awards practice points based on class."""
+    char_class = character.attributes.get("class", default="Warrior")
+    # Casters get more points (need them for spells), martials get fewer
+    pp_per_level = {
+        "Warrior": 3, "Paladin": 4, "Cleric": 5, "Mage": 6,
+        "Rogue": 3, "Warlock": 5, "Druid": 5, "Ranger": 4,
+        "Monk": 3, "Necromancer": 5,
+    }
+    points = pp_per_level.get(char_class, 3)
+    session = character.attributes.get("practice_session", default=None)
+    if session is None:
+        session = PracticeSession()
+    session.practice_points += points
+    character.attributes.add("practice_session", session)
+    character.msg(f"|gYou have earned {points} practice points! (Total: {session.practice_points})|n")
+
+
+# Guildmaster NPC typeclass — world/guildmaster_npc.py
+
+class GuildmasterNPC(DefaultCharacter):
+    """
+    NPC that allows players to spend practice points to learn spells/skills.
+    Only shows spells/skills valid for the player's race/class combination.
+    """
+    def at_object_creation(self):
+        super().at_object_creation()
+        self.db.guild_class = "Warrior"  # Which class this guildmaster serves
+
+    def get_trainable_spells(self, character) -> List[Dict]:
+        """Return spells this character can train, with practice point costs."""
+        from world.race_class_matrix import can_learn_spell
+        from world.spells import SPELLS
+        char_level = character.attributes.get("level", default=1)
+        learned = set(character.attributes.get("learned_spells", default=[]))
+        session = character.attributes.get("practice_session", PracticeSession())
+        trained = session.trained_spells
+
+        available = []
+        for key, spell in SPELLS.items():
+            if spell["name"] in learned or spell["name"] in trained:
+                continue
+            if spell["level"] > char_level:
+                continue
+            allowed, _ = can_learn_spell(character, key)
+            if not allowed:
+                continue
+            cost = 2  # Base practice point cost per spell
+            available.append({"name": spell["name"], "level": spell["level"],
+                              "school": spell["school"], "cost": cost})
+        return sorted(available, key=lambda s: s["level"])
+
+    def train_spell(self, character, spell_name: str) -> Tuple[bool, str]:
+        """Spend practice points to learn a spell."""
+        session = character.attributes.get("practice_session", PracticeSession())
+        trainable = {s["name"]: s for s in self.get_trainable_spells(character)}
+        if spell_name not in trainable:
+            return False, "You cannot train that spell here."
+        info = trainable[spell_name]
+        if session.practice_points < info["cost"]:
+            return False, f"You need {info['cost']} practice points (have {session.practice_points})."
+        session.practice_points -= info["cost"]
+        session.trained_spells.add(spell_name)
+        # Add to learned spells
+        learned = character.attributes.get("learned_spells", default=[])
+        learned.append(spell_name)
+        character.attributes.add("learned_spells", learned)
+        character.attributes.add("practice_session", session)
+        return True, f"You learn {spell_name}! ({session.practice_points} practice points remaining)"
+```
+
+---
+
+## SECTION 2: COMBAT ENGINE & MECHANICS (MajorMUD Core + Emlen Depth)
+
+### 2.1 ROUND TICKER & STATE MACHINE
+
+```python
+# world/combat_state.py — Full combat state machine
+
+from enum import Enum, auto
+
+class CombatState(Enum):
+    IDLE = auto()           # Not in combat
+    ENGAGING = auto()       # First round, initiating attack
+    FIGHTING = auto()       # Active auto-attack rounds
+    FLEEING = auto()        # Attempting to flee (one-round delay)
+    STUNNED = auto()        # Cannot act this round
+    UNCONSCIOUS = auto()    # HP = 0, pending death/rescue
+    DEAD = auto()           # Defeated, awaiting respawn/corpse
+
+class CombatStateMachine:
+    """Per-character combat state with transition validation."""
+
+    VALID_TRANSITIONS = {
+        CombatState.IDLE:         [CombatState.ENGAGING],
+        CombatState.ENGAGING:     [CombatState.FIGHTING, CombatState.FLEEING, CombatState.IDLE],
+        CombatState.FIGHTING:     [CombatState.FLEEING, CombatState.STUNNED, CombatState.UNCONSCIOUS, CombatState.IDLE],
+        CombatState.FLEEING:      [CombatState.IDLE, CombatState.FIGHTING],  # Success → IDLE, Fail → FIGHTING
+        CombatState.STUNNED:      [CombatState.FIGHTING, CombatState.UNCONSCIOUS],
+        CombatState.UNCONSCIOUS:  [CombatState.DEAD, CombatState.IDLE],  # IDLE = revived
+        CombatState.DEAD:         [CombatState.IDLE],  # After respawn
+    }
+
+    @staticmethod
+    def transition(character, new_state: CombatState) -> bool:
+        current = character.ndb.combat_state or CombatState.IDLE
+        if new_state not in CombatStateMachine.VALID_TRANSITIONS.get(current, []):
+            return False
+        character.ndb.combat_state = new_state
+        return True
+```
+
+### 2.2 DAMAGE FORMULAS (Full MajorMUD-Style)
+
+```python
+# world/damage_formulas.py
+
+import random
+from enum import Enum
+
+class DamageType(Enum):
+    SLASH = "slash"
+    PIERCE = "pierce"
+    BLUNT = "blunt"
+    MAGIC_FIRE = "magic_fire"
+    MAGIC_COLD = "magic_cold"
+    MAGIC_LIGHTNING = "magic_lightning"
+    MAGIC_SHADOW = "magic_shadow"
+    MAGIC_HOLY = "magic_holy"
+    POISON = "poison"
+    BLEED = "bleed"
+
+# Armor mitigation per damage type (percentage reduction)
+ARMOR_MITIGATION = {
+    DamageType.SLASH:   0.15,   # Chain/plate good vs slashing
+    DamageType.PIERCE:  0.10,   # Harder to mitigate piercing
+    DamageType.BLUNT:   0.05,   # Blunt crushes through armor
+    DamageType.MAGIC_FIRE: 0.0, # Armor doesn't help vs magic
+    DamageType.MAGIC_COLD: 0.0,
+    DamageType.MAGIC_LIGHTNING: 0.0,
+    DamageType.MAGIC_SHADOW: 0.0,
+    DamageType.MAGIC_HOLY: 0.0,
+    DamageType.POISON:  0.0,
+    DamageType.BLEED:   0.0,
+}
+
+def calculate_melee_damage(attacker, defender, weapon_damage: int, damage_type: DamageType) -> dict:
+    """
+    Full melee damage calculation incorporating:
+    - Base weapon damage
+    - STR bonus (+1 per 2 STR above 10)
+    - Critical hit chance (based on DEX, +5% per 5 DEX above 10)
+    - Armor mitigation (based on defender's equipped armor + CON)
+    - Damage type modifiers
+    - Random variance (±20%)
+
+    Returns: {"damage": int, "crit": bool, "absorbed": int, "type": DamageType}
+    """
+    stats_att = attacker.attributes.get("stats", {})
+    stats_def = defender.attributes.get("stats", {})
+
+    str_val = stats_att.get("str", 10)
+    dex_val = stats_att.get("dex", 10)
+    con_val = stats_def.get("con", 10)
+
+    # Base damage
+    str_bonus = max(0, (str_val - 10) // 2)
+    base = weapon_damage + str_bonus
+
+    # Critical hit check (DEX-based)
+    crit_chance = max(0.02, (dex_val - 10) * 0.01)  # 1% per DEX above 10, min 2%
+    is_crit = random.random() < crit_chance
+    if is_crit:
+        base = int(base * 1.5)  # 50% bonus on crit
+
+    # Armor mitigation
+    armor_value = _get_armor_value(defender)  # Sum of equipped armor pieces
+    armor_mitigation_pct = ARMOR_MITIGATION.get(damage_type, 0.10)
+    con_bonus = max(0, (con_val - 10) // 3)  # CON adds flat reduction
+    absorbed = int(base * armor_mitigation_pct) + con_bonus
+    absorbed = min(absorbed, base - 1)  # Always do at least 1 damage
+
+    # Variance
+    variance = random.uniform(0.80, 1.20)
+    final_damage = max(1, int((base - absorbed) * variance))
+
+    return {
+        "damage": final_damage,
+        "crit": is_crit,
+        "absorbed": absorbed,
+        "type": damage_type,
+    }
+
+def calculate_magic_damage(caster, target, spell_base: int, spell_per_level: int,
+                           damage_type: DamageType) -> dict:
+    """Magic damage: scales with INT/WIS, reduced by magic resistance."""
+    stats_caster = caster.attributes.get("stats", {})
+    stats_target = target.attributes.get("stats", {})
+
+    casting_stat = max(stats_caster.get("int", 10), stats_caster.get("wis", 10))
+    caster_level = caster.attributes.get("level", 1)
+
+    base = spell_base + (spell_per_level * caster_level) + int(casting_stat * 0.6)
+
+    # Magic resistance (based on target WIS + any resist gear)
+    wis_resist = max(0, (stats_target.get("wis", 10) - 10) * 0.02)  # 2% per WIS above 10
+    gear_resist = _get_magic_resist(target)  # From equipment
+    total_resist = min(0.75, wis_resist + gear_resist)  # Cap at 75%
+
+    final = max(1, int(base * (1.0 - total_resist)))
+    return {"damage": final, "type": damage_type, "resisted_pct": total_resist}
+
+def _get_armor_value(character) -> int:
+    """Sum armor values from all equipped gear."""
+    equipped = character.attributes.get("equipped", default={})
+    total = 0
+    for slot, item_name in equipped.items():
+        for obj in character.contents:
+            if obj.key == item_name:
+                total += obj.attributes.get("armor", default=0)
+    # Natural armor from race (e.g., Lizardfolk +4, Mountain Dwarf +5)
+    race_data = RACES.get(character.attributes.get("race", ""), {})
+    total += race_data.get("natural_armor", 0)
+    return total
+
+def _get_magic_resist(character) -> float:
+    """Sum magic resistance from gear and racial bonuses."""
+    equipped = character.attributes.get("equipped", default={})
+    total = 0.0
+    for slot, item_name in equipped.items():
+        for obj in character.contents:
+            if obj.key == item_name:
+                total += obj.attributes.get("magic_resist", default=0.0)
+    return total
+```
+
+### 2.3 SPECIAL ATTACKS & SPELLS IN COMBAT
+
+```python
+# world/combat_skills.py — Physical combat skills that hook into the ticker
+
+COMBAT_SKILLS = {
+    "kick": {
+        "name": "Kick",
+        "classes": ["Warrior", "Monk", "Rogue"],
+        "min_level": 1,
+        "cooldown": 8,           # Seconds between uses
+        "damage_mult": 1.3,      # 130% of normal attack damage
+        "damage_type": DamageType.BLUNT,
+        "stun_chance": 0.10,     # 10% chance to stun for 1 round
+        "mana_cost": 0,
+        "stamina_cost": 10,      # New resource: stamina (100 max, regens 5/tick)
+    },
+    "bash": {
+        "name": "Bash",
+        "classes": ["Warrior", "Paladin"],
+        "min_level": 5,
+        "cooldown": 12,
+        "damage_mult": 1.5,
+        "damage_type": DamageType.BLUNT,
+        "stun_chance": 0.25,
+        "mana_cost": 0,
+        "stamina_cost": 20,
+    },
+    "backstab": {
+        "name": "Backstab",
+        "classes": ["Rogue", "Dark Elf"],
+        "min_level": 3,
+        "cooldown": 15,
+        "damage_mult": 2.5,      # High burst damage
+        "damage_type": DamageType.PIERCE,
+        "requires_stealth": True, # Must be hidden/stealthed
+        "mana_cost": 0,
+        "stamina_cost": 25,
+    },
+    "disarm": {
+        "name": "Disarm",
+        "classes": ["Warrior", "Rogue", "Monk"],
+        "min_level": 8,
+        "cooldown": 20,
+        "damage_mult": 0.5,      # Reduced damage
+        "damage_type": DamageType.SLASH,
+        "disarm_chance": 0.30,   # 30% chance to unequip target's weapon
+        "mana_cost": 0,
+        "stamina_cost": 15,
+    },
+}
+
+# Integration into CombatScript.at_repeat() — world/tick_combat.py
+
+class CombatScript(DefaultScript):
+    def at_repeat(self):
+        character = self.obj
+        target = character.ndb.combat_target
+
+        if not _is_valid_target(character, target):
+            CombatHandler.stop_combat(character)
+            return
+
+        # Check if character has a queued special attack
+        queued_skill = character.ndb.queued_skill
+        if queued_skill:
+            skill_name = queued_skill
+            character.ndb.queued_skill = None
+            self._execute_skill_attack(character, target, skill_name)
+        else:
+            # Normal auto-attack
+            CombatHandler._execute_attack_round(character, target)
+
+        # Check if a combat spell is being cast (spells resolve instantly,
+        # but the ticker checks if the caster is stunned/silenced)
+        if character.ndb.casting_spell:
+            # Spell casting is handled by SpellHandler.cast() directly,
+            # but we validate the caster isn't stunned
+            if character.attributes.get("stunned", False):
+                character.msg("|rYou are stunned and cannot cast!|n")
+                character.ndb.casting_spell = None
+
+    def _execute_skill_attack(self, character, target, skill_name):
+        """Execute a special physical skill within the combat round."""
+        skill = COMBAT_SKILLS.get(skill_name)
+        if not skill:
+            return
+
+        # Check stamina
+        stamina = character.attributes.get("stamina", default=100)
+        if stamina < skill["stamina_cost"]:
+            character.msg(f"|yNot enough stamina for {skill['name']}.|n")
+            return
+
+        # Deduct stamina
+        character.attributes.add("stamina", stamina - skill["stamina_cost"])
+
+        # Hit roll (same as normal attack)
+        if not _roll_attack_hit(character, target):
+            character.msg(f"Your {skill['name']} misses {target.key}!")
+            return
+
+        # Damage calculation with skill multiplier
+        weapon_dmg = _get_weapon_damage(character)
+        result = calculate_melee_damage(character, target, weapon_dmg, skill["damage_type"])
+        result["damage"] = int(result["damage"] * skill["damage_mult"])
+
+        _apply_damage_to_target(character, target, result["damage"])
+
+        # Stun check
+        if random.random() < skill.get("stun_chance", 0):
+            target.attributes.add("stunned", True)
+            target.msg("|mYou have been stunned!|n")
+            from evennia.utils import delay
+            delay(3.0, lambda t=target: t.attributes.add("stunned", False))
+
+        # Set cooldown
+        cooldowns = character.attributes.get("skill_cooldowns", {})
+        cooldowns[skill_name] = time.time() + skill["cooldown"]
+        character.attributes.add("skill_cooldowns", cooldowns)
+```
+
+### 2.4 MOB HOSTILITY & AGGRO SYSTEM
+
+```python
+# world/mob_ai.py — Mob hostility, aggro radius, social aggro
+
+from enum import Enum
+
+class MobDisposition(Enum):
+    PASSIVE = "passive"       # Never attacks first
+    NEUTRAL = "neutral"       # Attacks if provoked (attacked first)
+    AGGRESSIVE = "aggressive" # Attacks on sight within aggro radius
+    GUARDIAN = "guardian"     # Aggressive + calls nearby allies
+
+@dataclass
+class MobAIData:
+    disposition: MobDisposition = MobDisposition.NEUTRAL
+    aggro_radius: int = 0           # 0 = same room only, 1+ = adjacent rooms
+    assist_radius: int = 0          # 0 = no social aggro, 1+ = help allies in N rooms
+    assist_faction: str = ""        # Only assist mobs with matching faction tag
+    leash_room: Optional[Any] = None  # Won't chase beyond this room
+    max_chase_rooms: int = 3        # Max rooms to chase a fleeing player
+    level_threshold: int = 5        # Won't aggro players more than N levels below
+
+# Attach to mob via attributes:
+#   mob.attributes.add("mob_ai", MobAIData(disposition=MobDisposition.AGGRESSIVE, aggro_radius=0))
+
+def check_mob_aggro(mob, player) -> bool:
+    """Called when a player enters a room. Returns True if mob should attack."""
+    ai = mob.attributes.get("mob_ai")
+    if not ai:
+        return False
+
+    if ai.disposition == MobDisposition.PASSIVE:
+        return False
+
+    if ai.disposition == MobDisposition.NEUTRAL:
+        return False  # Only attacks when attacked first
+
+    # Aggressive/Guardian: check level threshold
+    player_level = player.attributes.get("level", 1)
+    mob_level = mob.attributes.get("level", 1)
+    if mob_level - player_level > ai.level_threshold:
+        return False  # Player too low level, not worth aggro
+
+    # Check alignment hostility
+    player_align = player.attributes.get("alignment", "")
+    mob_align = mob.attributes.get("alignment", "")
+    if player_align == mob_align and mob_align:
+        return False  # Same faction, no aggro
+
+    return True
+
+def trigger_social_aggro(attacked_mob, attacker):
+    """When a mob is attacked, nearby allied mobs may join the fight."""
+    ai = attacked_mob.attributes.get("mob_ai")
+    if not ai or ai.assist_radius <= 0:
+        return
+
+    location = attacked_mob.location
+    if not location:
+        return
+
+    assist_faction = ai.assist_faction or attacked_mob.attributes.get("faction", "")
+    for obj in location.contents:
+        if obj == attacked_mob or obj == attacker:
+            continue
+        obj_ai = obj.attributes.get("mob_ai")
+        if not obj_ai:
+            continue
+        obj_faction = obj.attributes.get("faction", "")
+        if assist_faction and obj_faction == assist_faction:
+            # This mob assists!
+            if not CombatHandler.is_in_combat(obj):
+                CombatHandler.start_combat(obj, attacker)
+                location.msg_contents(f"|R{obj.key} rushes to aid {attacked_mob.key}!|n")
+
+# Hook into CombatHandler.start_combat() — ADD after line 384:
+#   # Trigger social aggro if target is a mob
+#   if not _is_player(target):
+#       trigger_social_aggro(target, character)
+
+# Hook into room entry — in typeclasses/rooms.py or movement commands:
+#   def at_object_receive(self, obj, source_location, **kwargs):
+#       for mob in self.contents:
+#           if hasattr(mob, 'attributes') and mob.attributes.get("mob_ai"):
+#               if check_mob_aggro(mob, obj):
+#                   CombatHandler.start_combat(mob, obj)
+```
+
+---
+
+## SECTION 3: RECOVERY, UTILITY & WORLD MECHANICS
+
+### 3.1 POSITIONAL STATES (Rest / Meditate / Sleep)
+
+```python
+# world/recovery.py — Positional state machine with scaled regeneration
+
+from enum import Enum
+
+class Position(Enum):
+    STANDING = "standing"     # Normal regen: 5% HP, 5% Mana, 10% MV per tick
+    RESTING = "resting"       # 15% HP, 10% Mana, 20% MV per tick (can be interrupted)
+    MEDITATING = "meditating" # 5% HP, 25% Mana, 10% MV per tick (requires mana class)
+    SLEEPING = "sleeping"     # 30% HP, 30% Mana, 50% MV per tick (can't act, vulnerable)
+
+RECOVERY_TICK_INTERVAL = 15.0  # Seconds between regen ticks
+
+POSITION_REGEN_RATES = {
+    Position.STANDING:   {"hp_pct": 0.05, "mana_pct": 0.05, "mv_pct": 0.10, "stamina_pct": 0.05},
+    Position.RESTING:    {"hp_pct": 0.15, "mana_pct": 0.10, "mv_pct": 0.20, "stamina_pct": 0.10},
+    Position.MEDITATING: {"hp_pct": 0.05, "mana_pct": 0.25, "mv_pct": 0.10, "stamina_pct": 0.05},
+    Position.SLEEPING:   {"hp_pct": 0.30, "mana_pct": 0.30, "mv_pct": 0.50, "stamina_pct": 0.20},
+}
+
+class RecoveryScript(DefaultScript):
+    """Global script that ticks every 15s to regen HP/Mana/MV for all players."""
+
+    def at_script_creation(self):
+        self.key = "global_recovery"
+        self.interval = RECOVERY_TICK_INTERVAL
+        self.persistent = True
+
+    def at_repeat(self):
+        from typeclasses.characters import Character
+        for char in ObjectDB.objects.all():
+            if not isinstance(char, Character):
+                continue
+            if not char.has_account:
+                continue
+            if CombatHandler.is_in_combat(char):
+                continue  # No regen during combat
+
+            position = char.attributes.get("position", default="standing")
+            pos_enum = Position(position) if position in [p.value for p in Position] else Position.STANDING
+            rates = POSITION_REGEN_RATES[pos_enum]
+
+            # HP regen
+            max_hp = char.attributes.get("max_hp", 100)
+            hp = char.attributes.get("hp", 0)
+            hp_regen = max(1, int(max_hp * rates["hp_pct"]))
+            char.attributes.add("hp", min(max_hp, hp + hp_regen))
+
+            # Mana regen (only for mana-using classes)
+            from world.race_class_matrix import can_cast_spells
+            if can_cast_spells(char):
+                max_mana = char.attributes.get("max_mana", 50)
+                mana = char.attributes.get("mana", 0)
+                mana_regen = max(1, int(max_mana * rates["mana_pct"]))
+                char.attributes.add("mana", min(max_mana, mana + mana_regen))
+
+            # MV regen
+            max_mv = char.attributes.get("max_mv", 100)
+            mv = char.attributes.get("mv", 0)
+            mv_regen = max(1, int(max_mv * rates["mv_pct"]))
+            char.attributes.add("mv", min(max_mv, mv + mv_regen))
+
+            # Stamina regen
+            max_stamina = 100
+            stamina = char.attributes.get("stamina", max_stamina)
+            stamina_regen = max(1, int(max_stamina * rates["stamina_pct"]))
+            char.attributes.add("stamina", min(max_stamina, stamina + stamina_regen))
+
+# Commands — commands/general.py (extend existing CmdRest, add CmdMeditate, CmdSleep)
+
+class CmdRest(Command):
+    """Rest to recover HP/Mana/MV faster. Interrupted by combat."""
+    key = "rest"
+    def func(self):
+        if CombatHandler.is_in_combat(self.caller):
+            self.caller.msg("|rYou cannot rest while in combat!|n")
+            return
+        self.caller.attributes.add("position", "resting")
+        self.caller.msg("|gYou sit down and rest.|n")
+        self.caller.location.msg_contents(
+            f"{self.caller.key} sits down to rest.", exclude=[self.caller])
+
+class CmdMeditate(Command):
+    """Meditate to recover Mana rapidly. Requires a mana-using class."""
+    key = "meditate"
+    def func(self):
+        from world.race_class_matrix import can_cast_spells
+        if not can_cast_spells(self.caller):
+            self.caller.msg("|rOnly spellcasting classes can meditate.|n")
+            return
+        if CombatHandler.is_in_combat(self.caller):
+            self.caller.msg("|rYou cannot meditate while in combat!|n")
+            return
+        self.caller.attributes.add("position", "meditating")
+        self.caller.msg("|bYou enter a deep meditative trance.|n")
+
+class CmdSleep(Command):
+    """Sleep to recover rapidly. You are helpless while sleeping."""
+    key = "sleep"
+    def func(self):
+        if CombatHandler.is_in_combat(self.caller):
+            self.caller.msg("|rYou cannot sleep while in combat!|n")
+            return
+        self.caller.attributes.add("position", "sleeping")
+        self.caller.msg("|cYou lie down and fall asleep.|n")
+
+class CmdWake(Command):
+    """Wake up and stand up."""
+    key = "wake"
+    aliases = ["stand"]
+    def func(self):
+        self.caller.attributes.add("position", "standing")
+        self.caller.msg("|gYou stand up.|n")
+```
+
+### 3.2 ENCUMBRANCE & EQUIPMENT SYSTEM
+
+```python
+# world/encumbrance.py
+
+def get_carry_capacity(character) -> float:
+    """Max weight in kg based on STR."""
+    stats = character.attributes.get("stats", {})
+    str_val = stats.get("str", 10)
+    return 20.0 + (str_val * 5.0)  # 20kg base + 5kg per STR
+
+def get_current_encumbrance(character) -> float:
+    """Sum weight of all items in inventory + equipped."""
+    total = 0.0
+    for obj in character.contents:
+        if obj.destination:
+            continue  # Skip exits
+        total += obj.attributes.get("weight", default=0.0)
+    return total
+
+def get_encumbrance_penalty(character) -> float:
+    """Returns a movement/combat penalty multiplier (0.0 to 1.0)."""
+    capacity = get_carry_capacity(character)
+    current = get_current_encumbrance(character)
+    if current <= capacity:
+        return 0.0
+    overload_pct = (current - capacity) / capacity
+    return min(0.75, overload_pct * 0.5)  # Max 75% penalty
+
+# Equipment slots definition
+EQUIPMENT_SLOTS = [
+    "head",          # Helms, crowns, hoods
+    "neck",          # Amulets, necklaces
+    "shoulders",     # Pauldrons, mantles
+    "chest",         # Chest armor, robes
+    "arms",          # Bracers, vambraces
+    "hands",         # Gloves, gauntlets
+    "waist",         # Belts, girdles
+    "legs",          # Leggings, greaves
+    "feet",          # Boots, sabatons
+    "ring_left",     # Left ring
+    "ring_right",    # Right ring
+    "main_hand",     # Primary weapon
+    "off_hand",      # Shield or off-hand weapon
+    "two_handed",    # Two-handed weapon (occupies main_hand + off_hand)
+    "ranged",        # Bow, crossbow
+]
+
+# Equipment stat bonuses — applied via property on Character
+# In typeclasses/characters.py:
+
+def get_effective_stats(self) -> Dict[str, int]:
+    """Return base stats + equipment bonuses."""
+    base = dict(self.attributes.get("stats", default={}))
+    equipped = self.attributes.get("equipped", default={})
+    for slot, item_name in equipped.items():
+        for obj in self.contents:
+            if obj.key == item_name:
+                bonuses = obj.attributes.get("stat_bonuses", default={})
+                for stat, bonus in bonuses.items():
+                    base[stat] = base.get(stat, 10) + bonus
+    return base
+```
+
+### 3.3 ECONOMY & VENDORS
+
+```python
+# world/shopkeeper.py — Shopkeeper NPC typeclass
+
+class ShopkeeperNPC(DefaultCharacter):
+    """NPC that buys/sells items. Inventory is stored as attributes."""
+
+    def at_object_creation(self):
+        super().at_object_creation()
+        self.db.shop_inventory = []     # List of {"item_key": str, "price": int, "quantity": int}
+        self.db.shop_buy_mult = 0.50    # Buys at 50% of item value
+        self.db.shop_sell_mult = 1.20   # Sells at 120% of item value
+        self.db.shop_type = "general"   # "general", "weapons", "armor", "magic", "potions"
+
+    def get_buy_price(self, item) -> int:
+        """Price the shop pays to buy an item from a player."""
+        base_value = item.attributes.get("value", default=1)
+        return max(1, int(base_value * self.db.shop_buy_mult))
+
+    def get_sell_price(self, item_key: str) -> int:
+        """Price the shop charges to sell an item to a player."""
+        for entry in self.db.shop_inventory:
+            if entry["item_key"] == item_key:
+                return entry["price"]
+        return 0
+
+# Bank system — commands/bank.py (already exists, needs expansion)
+
+# Bank storage: character.attributes.get("bank_gold", default=0)
+# Commands: deposit <amount>, withdraw <amount>, balance
+# Conversion: 100 copper = 10 silver = 1 gold
+
+# Equipment repair NPC — world/repair_npc.py
+
+class RepairNPC(DefaultCharacter):
+    """NPC that repairs damaged equipment for gold."""
+    def at_object_creation(self):
+        super().at_object_creation()
+        self.db.repair_cost_per_point = 2  # Gold per durability point restored
+
+    def repair_item(self, character, item_name: str) -> Tuple[bool, str]:
+        """Repair an item, restoring durability to max."""
+        for obj in character.contents:
+            if obj.key.lower() == item_name.lower():
+                max_dur = obj.attributes.get("max_durability", default=100)
+                current_dur = obj.attributes.get("durability", default=max_dur)
+                if current_dur >= max_dur:
+                    return False, "That item is already at full durability."
+                damage = max_dur - current_dur
+                cost = damage * self.db.repair_cost_per_point
+                gold = character.attributes.get("money", default=0)
+                if gold < cost:
+                    return False, f"You need {cost} gold (have {gold})."
+                character.attributes.add("money", gold - cost)
+                obj.attributes.add("durability", max_dur)
+                return True, f"Repaired {obj.key} for {cost} gold."
+        return False, "You don't have that item."
+```
+
+### 3.4 PVP & ALIGNMENT SYSTEM
+
+```python
+# world/alignment_system.py — MajorMUD-style Good/Neutral/Evil tracking
+
+class AlignmentSystem:
+    """Tracks alignment points, outlaw status, and bounty flags."""
+
+    ALIGNMENT_THRESHOLDS = {
+        "Good":     (750, 1000),   # 750-1000 alignment points
+        "Neutral":  (-749, 749),
+        "Evil":     (-1000, -750),
+    }
+
+    @staticmethod
+    def get_alignment(character) -> str:
+        points = character.attributes.get("alignment_points", default=0)
+        if points >= 750:
+            return "Good"
+        elif points <= -750:
+            return "Evil"
+        return "Neutral"
+
+    @staticmethod
+    def adjust_alignment(character, delta: int):
+        """Modify alignment points. Clamped to [-1000, 1000]."""
+        current = character.attributes.get("alignment_points", default=0)
+        new_val = max(-1000, min(1000, current + delta))
+        character.attributes.add("alignment_points", new_val)
+        new_align = AlignmentSystem.get_alignment(character)
+        character.attributes.add("alignment", new_align)
+
+    @staticmethod
+    def is_outlaw(character) -> bool:
+        """Outlaw flag: player can be attacked freely by anyone."""
+        return character.attributes.get("outlaw", default=False)
+
+    @staticmethod
+    def set_outlaw(character, duration_seconds: int = 300):
+        """Mark a player as outlaw for N seconds (default 5 min)."""
+        character.attributes.add("outlaw", True)
+        character.msg("|RYou are now an OUTLAW! Other players may attack you freely.|n")
+        from evennia.utils import delay
+        delay(duration_seconds, AlignmentSystem.clear_outlaw, character)
+
+    @staticmethod
+    def clear_outlaw(character):
+        character.attributes.add("outlaw", False)
+        character.msg("|gYour outlaw status has expired.|n")
+
+    @staticmethod
+    def add_bounty(character, amount: int):
+        """Place a bounty on a player's head (earned by killer)."""
+        current = character.attributes.get("bounty", default=0)
+        character.attributes.add("bounty", current + amount)
+
+# PvP rules integration — modify _is_pvp_allowed in world/combat.py:
+
+def _is_pvp_allowed(attacker, target):
+    # 1. Safe zone check
+    location = attacker.location
+    if location and location.attributes.get("safe_zone", False):
+        return False, "You cannot fight in a safe zone."
+
+    # 2. NPCs always valid
+    target_align = target.attributes.get("alignment", "")
+    if not target_align:
+        return True, ""
+
+    # 3. Outlaw targets can always be attacked
+    if AlignmentSystem.is_outlaw(target):
+        return True, ""
+
+    # 4. Open PvP zones (arenas, battlegrounds) — always allow
+    if location and location.attributes.get("pvp_zone", False):
+        return True, ""
+
+    # 5. Same-faction: both must have pvp enabled
+    attacker_align = attacker.attributes.get("alignment", "")
+    if attacker_align and attacker_align == target_align:
+        if not attacker.db.pvp_enabled:
+            return False, "You have PvP disabled."
+        if not target.db.pvp_enabled:
+            return False, f"{target.key} has PvP disabled."
+
+    return True, ""
+```
+
+---
+
+## SECTION 4: EVENNIA ENGINE STABILITY & PERFORMANCE
+
+### 4.1 MEMORY & GARBAGE COLLECTION
+
+```python
+# world/garbage_collection.py — Cleanup ticker for corpses, orphaned mobs, expired effects
+
+class GarbageCollectionScript(DefaultScript):
+    """
+    Global cleanup script. Runs every 60 seconds.
+    Handles:
+      - Corpse decay (delete corpses older than CORPSE_DECAY_SECONDS)
+      - Orphaned mob cleanup (mobs with no players in zone for > 30 min)
+      - Expired buff/debuff removal
+      - Stale combat state cleanup
+    """
+
+    CORPSE_DECAY_SECONDS = 600      # 10 minutes
+    ORPHANED_MOB_TIMEOUT = 1800     # 30 minutes
+    STALE_COMBAT_TIMEOUT = 300      # 5 minutes
+
+    def at_script_creation(self):
+        self.key = "garbage_collector"
+        self.interval = 60
+        self.persistent = True
+
+    def at_repeat(self):
+        now = time.time()
+
+        # 1. Decay expired corpses
+        for obj in ObjectDB.objects.all():
+            if obj.attributes.get("is_corpse", False):
+                created = obj.attributes.get("corpse_created_at", now)
+                if now - created > self.CORPSE_DECAY_SECONDS:
+                    # Move any remaining items to the room before deleting
+                    location = obj.location
+                    for item in obj.contents:
+                        if not item.destination:
+                            item.move_to(location, quiet=True)
+                    if location:
+                        location.msg_contents(f"|y{obj.key} crumbles to dust.|n")
+                    obj.delete()
+
+        # 2. Despawn orphaned mobs (no players in zone)
+        #    Track last_player_seen timestamp on rooms
+        for obj in ObjectDB.objects.all():
+            if obj.attributes.get("is_mob", False) and not obj.has_account:
+                location = obj.location
+                if location:
+                    last_seen = location.attributes.get("last_player_seen", now)
+                    if now - last_seen > self.ORPHANED_MOB_TIMEOUT:
+                        # Despawn this mob (it'll respawn via spawner)
+                        obj.delete()
+
+        # 3. Clean up stale combat ndb references
+        for char in ObjectDB.objects.all():
+            if not hasattr(char, "ndb"):
+                continue
+            if char.ndb.in_combat:
+                target = char.ndb.combat_target
+                if target and not _is_valid_target(char, target):
+                    CombatHandler.stop_combat(char)
+
+        # 4. Remove expired buffs/debuffs
+        for char in ObjectDB.objects.all():
+            if not hasattr(char, "attributes"):
+                continue
+            # Check stunned flag — if set but no delay pending, clear it
+            # (handled by delay() callbacks, but this is a safety net)
+            buffs = char.attributes.get("active_buffs", default=[])
+            active = []
+            for buff in buffs:
+                if buff.get("expires_at", now + 1) > now:
+                    active.append(buff)
+                else:
+                    # Buff expired — revert its effects
+                    self._revert_buff(char, buff)
+            char.attributes.add("active_buffs", active)
+
+    def _revert_buff(self, char, buff):
+        """Revert stat changes from an expired buff."""
+        if buff["type"] == "stat_boost":
+            stats = char.attributes.get("stats", {})
+            stat = buff["stat"]
+            stats[stat] = max(1, stats.get(stat, 10) - buff["amount"])
+            char.attributes.add("stats", stats)
+```
+
+### 4.2 DATABASE & CACHING STRATEGY
+
+```python
+# Performance guidelines for attribute access:
+
+# USE ndb (non-persistent, in-memory) for:
+#   - combat_target, in_combat, combat_script, combat_state
+#   - queued_skill, casting_spell
+#   - Temporary position/status flags that don't need to survive reboot
+#   - Cached lookups that can be rebuilt on server start
+
+# USE db/attributes (persistent, DB-backed) for:
+#   - hp, max_hp, mana, max_mana, mv, max_mv, xp, level
+#   - stats, race, class, alignment, money, bank_gold
+#   - equipped, learned_spells, practice_session
+#   - quest progress, clan membership, warpoints
+
+# CRITICAL: In CombatScript.at_repeat() (called every 2.5s per combatant),
+# minimize attribute reads. Cache values in ndb at combat start:
+
+def start_combat(character, target):
+    # Cache frequently-accessed values in ndb for the duration of combat
+    character.ndb.cached_stats = dict(character.attributes.get("stats", {}))
+    character.ndb.cached_weapon_dmg = _get_weapon_damage(character)
+    character.ndb.cached_level = character.attributes.get("level", 1)
+    # ... rest of start_combat ...
+
+def stop_combat(character):
+    # Clear cached ndb values
+    for key in ("cached_stats", "cached_weapon_dmg", "cached_level"):
+        if hasattr(character.ndb, key):
+            delattr(character.ndb, key)
+    # ... rest of stop_combat ...
+
+# In _calculate_damage, use cached values:
+def _calculate_damage(attacker, defender):
+    base_damage = getattr(attacker.ndb, "cached_weapon_dmg", _get_weapon_damage(attacker))
+    attacker_str = attacker.ndb.cached_stats.get("str", 10)
+    # ... etc.
+```
+
+---
+
+## SECTION 5: CONTENT PIPELINE (Rapid Batch Building)
+
+### 5.1 BATCH-CODE `.ev` FILE STRUCTURE
+
+```python
+# world/batch_zones/example_zone.ev — Template for rapid zone construction
+
+# =============================================================================
+# ZONE: Darkwood Forest (Levels 5-15)
+# =============================================================================
+# Usage: @batchcode world.batch_zones.example_zone
+# =============================================================================
+
+from evennia import create_object, search_object
+from evennia.utils import evmore
+
+# ---------------------------------------------------------------------------
+# HEADER: Zone metadata
+# ---------------------------------------------------------------------------
+HEADER = {
+    "zone_name": "Darkwood Forest",
+    "level_range": (5, 15),
+    "author": "BuilderName",
+    "version": "1.0",
+}
+
+# ---------------------------------------------------------------------------
+# ROOMS
+# ---------------------------------------------------------------------------
+ROOMS = {
+    "darkwood_entrance": {
+        "key": "Darkwood Forest - Edge",
+        "desc": "The trees thin out here at the edge of the Darkwood. Sunlight "
+                "struggles through the canopy. The path leads east into deeper woods "
+                "and west back toward the main road.",
+        "attributes": [
+            ("zone", "darkwood"),
+            ("level_range", (5, 8)),
+            ("terrain", "forest"),
+            ("is_outdoor", True),
+        ],
+        "tags": [("darkwood", "zone"), ("forest", "terrain")],
+    },
+    "darkwood_deep": {
+        "key": "Darkwood Forest - Deep Woods",
+        "desc": "Ancient oaks press in on all sides. The air is thick with the "
+                "scent of moss and decay. Strange sounds echo from the darkness "
+                "to the north.",
+        "attributes": [
+            ("zone", "darkwood"),
+            ("level_range", (8, 12)),
+            ("terrain", "forest"),
+            ("is_outdoor", True),
+        ],
+        "tags": [("darkwood", "zone"), ("forest", "terrain")],
+    },
+    "darkwood_ruins": {
+        "key": "Darkwood Forest - Crumbling Ruins",
+        "desc": "Weathered stone blocks jut from the earth like broken teeth. "
+                "Faint magical energy still crackles around a shattered obelisk "
+                "in the center of the clearing.",
+        "attributes": [
+            ("zone", "darkwood"),
+            ("level_range", (12, 15)),
+            ("terrain", "ruins"),
+            ("is_outdoor", True),
+            ("magic_surge", True),  # Periodic magic damage to players here
+        ],
+        "tags": [("darkwood", "zone"), ("ruins", "terrain"), ("dungeon", "type")],
+    },
+}
+
+# ---------------------------------------------------------------------------
+# EXITS
+# ---------------------------------------------------------------------------
+EXITS = {
+    # (source_room_key, exit_key, destination_room_key, exit_aliases)
+    ("darkwood_entrance", "east", "darkwood_deep", ["e"]),
+    ("darkwood_deep", "west", "darkwood_entrance", ["w"]),
+    ("darkwood_deep", "north", "darkwood_ruins", ["n"]),
+    ("darkwood_ruins", "south", "darkwood_deep", ["s"]),
+}
+
+# ---------------------------------------------------------------------------
+# MOB SPAWNERS
+# ---------------------------------------------------------------------------
+MOB_SPAWNERS = {
+    "darkwood_wolf_spawner": {
+        "room_key": "darkwood_entrance",
+        "mob_prototype": "forest_wolf",
+        "max_spawned": 3,
+        "respawn_delay": 120,       # Seconds after death before respawn
+        "spawn_message": "A wolf pads silently out of the undergrowth.",
+    },
+    "darkwood_spider_spawner": {
+        "room_key": "darkwood_deep",
+        "mob_prototype": "giant_spider",
+        "max_spawned": 2,
+        "respawn_delay": 180,
+        "spawn_message": "A giant spider descends from the canopy on a silken thread.",
+    },
+    "darkwood_wraith_spawner": {
+        "room_key": "darkwood_ruins",
+        "mob_prototype": "shadow_wraith",
+        "max_spawned": 1,
+        "respawn_delay": 300,
+        "spawn_message": "A shadowy form coalesces near the obelisk.",
+    },
+}
+
+# ---------------------------------------------------------------------------
+# MOB PROTOTYPES
+# ---------------------------------------------------------------------------
+MOB_PROTOTYPES = {
+    "forest_wolf": {
+        "typeclass": "typeclasses.characters.Character",
+        "key": "forest wolf",
+        "attributes": [
+            ("level", 6),
+            ("hp", 45), ("max_hp", 45),
+            ("stats", {"str": 12, "dex": 14, "con": 10, "int": 3, "wis": 8, "cha": 2}),
+            ("is_mob", True),
+            ("mob_ai", {"disposition": "aggressive", "aggro_radius": 0, "assist_radius": 1,
+                        "assist_faction": "darkwood_beasts"}),
+            ("faction", "darkwood_beasts"),
+            ("xp_value", 75),
+            ("gold_min", 2), ("gold_max", 8),
+        ],
+        "loot_table": [
+            {"item_key": "wolf_pelt", "chance": 0.60, "quantity": (1, 2)},
+            {"item_key": "wolf_fang", "chance": 0.30, "quantity": (1, 1)},
+            {"item_key": "minor_healing_potion", "chance": 0.05, "quantity": (1, 1)},
+        ],
+    },
+    "giant_spider": {
+        "typeclass": "typeclasses.characters.Character",
+        "key": "giant spider",
+        "attributes": [
+            ("level", 10),
+            ("hp", 70), ("max_hp", 70),
+            ("stats", {"str": 10, "dex": 16, "con": 12, "int": 2, "wis": 6, "cha": 1}),
+            ("is_mob", True),
+            ("mob_ai", {"disposition": "aggressive", "aggro_radius": 0, "assist_radius": 0}),
+            ("faction", "darkwood_beasts"),
+            ("xp_value", 120),
+            ("gold_min", 5), ("gold_max", 15),
+            ("poison_on_hit", {"damage": 5, "duration": 10, "chance": 0.30}),
+        ],
+        "loot_table": [
+            {"item_key": "spider_silk", "chance": 0.70, "quantity": (1, 3)},
+            {"item_key": "venom_sac", "chance": 0.25, "quantity": (1, 1)},
+        ],
+    },
+    "shadow_wraith": {
+        "typeclass": "typeclasses.characters.Character",
+        "key": "shadow wraith",
+        "attributes": [
+            ("level", 14),
+            ("hp", 110), ("max_hp", 110),
+            ("mana", 40), ("max_mana", 40),
+            ("stats", {"str": 6, "dex": 12, "con": 8, "int": 15, "wis": 13, "cha": 4}),
+            ("is_mob", True),
+            ("is_boss", False),
+            ("mob_ai", {"disposition": "aggressive", "aggro_radius": 0, "assist_radius": 0}),
+            ("faction", "darkwood_undead"),
+            ("xp_value", 200),
+            ("gold_min", 10), ("gold_max", 30),
+            ("spells", ["shadow_bolt", "frost_snap"]),  # Mob can cast spells!
+        ],
+        "loot_table": [
+            {"item_key": "ectoplasm", "chance": 0.50, "quantity": (1, 2)},
+            {"item_key": "shadow_essence", "chance": 0.15, "quantity": (1, 1)},
+            {"item_key": "ring_of_shadows", "chance": 0.03, "quantity": (1, 1)},  # Rare drop
+        ],
+    },
+}
+
+# ---------------------------------------------------------------------------
+# SHOPKEEPERS
+# ---------------------------------------------------------------------------
+SHOPKEEPERS = {
+    "darkwood_hermit": {
+        "room_key": "darkwood_entrance",
+        "key": "Old Hermit",
+        "typeclass": "typeclasses.characters.ShopkeeperNPC",
+        "attributes": [
+            ("shop_type", "potions"),
+            ("shop_buy_mult", 0.40),
+            ("shop_sell_mult", 1.30),
+            ("shop_inventory", [
+                {"item_key": "minor_healing_potion", "price": 25, "quantity": -1},  # -1 = unlimited
+                {"item_key": "antidote", "price": 15, "quantity": -1},
+                {"item_key": "torch", "price": 5, "quantity": -1},
+            ]),
+        ],
+        "desc": "A wizened old man huddles near a small campfire, his cloak "
+                "drawn tight. He sells potions and supplies to travelers brave "
+                "enough to enter the Darkwood.",
+    },
+}
+
+# ---------------------------------------------------------------------------
+# GUILDMASTERS
+# ---------------------------------------------------------------------------
+GUILDMASTERS = {
+    "darkwood_rogue_trainer": {
+        "room_key": "darkwood_deep",
+        "key": "Shadowy Figure",
+        "typeclass": "typeclasses.characters.GuildmasterNPC",
+        "attributes": [
+            ("guild_class", "Rogue"),
+            ("trainable_skills", ["backstab", "pick_lock", "sneak", "poison_weapon"]),
+        ],
+        "desc": "A hooded figure leans against a tree, barely visible in the "
+                "shadows. They train those who walk the path of the rogue.",
+    },
+}
+
+# ---------------------------------------------------------------------------
+# BUILD FUNCTION (called by @batchcode)
+# ---------------------------------------------------------------------------
+def build():
+    """Execute the full zone build."""
+    created_rooms = {}
+
+    # 1. Create rooms
+    for room_key, room_data in ROOMS.items():
+        room = create_object("typeclasses.rooms.Room", key=room_data["key"])
+        room.db.desc = room_data["desc"]
+        for attr_key, attr_val in room_data.get("attributes", []):
+            room.attributes.add(attr_key, attr_val)
+        for tag_name, tag_category in room_data.get("tags", []):
+            room.tags.add(tag_name, category=tag_category)
+        created_rooms[room_key] = room
+        print(f"  Created room: {room.key}")
+
+    # 2. Create exits
+    for src_key, exit_name, dst_key, aliases in EXITS:
+        src_room = created_rooms[src_key]
+        dst_room = created_rooms[dst_key]
+        exit_obj = create_object(
+            "typeclasses.exits.Exit",
+            key=exit_name,
+            location=src_room,
+            destination=dst_room,
+        )
+        exit_obj.aliases.add(aliases)
+        print(f"  Created exit: {src_room.key} -> {exit_name} -> {dst_room.key}")
+
+    # 3. Create mob spawners
+    for spawner_key, spawner_data in MOB_SPAWNERS.items():
+        room = created_rooms[spawner_data["room_key"]]
+        spawner = create_object("typeclasses.objects.MobSpawner", key=spawner_key, location=room)
+        spawner.attributes.add("mob_prototype", spawner_data["mob_prototype"])
+        spawner.attributes.add("max_spawned", spawner_data["max_spawned"])
+        spawner.attributes.add("respawn_delay", spawner_data["respawn_delay"])
+        spawner.attributes.add("spawn_message", spawner_data["spawn_message"])
+        print(f"  Created spawner: {spawner_key} in {room.key}")
+
+    # 4. Create shopkeepers
+    for shop_key, shop_data in SHOPKEEPERS.items():
+        room = created_rooms[shop_data["room_key"]]
+        shopkeeper = create_object(shop_data["typeclass"], key=shop_data["key"], location=room)
+        shopkeeper.db.desc = shop_data["desc"]
+        for attr_key, attr_val in shop_data.get("attributes", []):
+            shopkeeper.attributes.add(attr_key, attr_val)
+        print(f"  Created shopkeeper: {shopkeeper.key} in {room.key}")
+
+    # 5. Create guildmasters
+    for gm_key, gm_data in GUILDMASTERS.items():
+        room = created_rooms[gm_data["room_key"]]
+        gm = create_object(gm_data["typeclass"], key=gm_data["key"], location=room)
+        gm.db.desc = gm_data["desc"]
+        for attr_key, attr_val in gm_data.get("attributes", []):
+            gm.attributes.add(attr_key, attr_val)
+        print(f"  Created guildmaster: {gm.key} in {room.key}")
+
+    print(f"\n|gZone '{HEADER['zone_name']}' built successfully!|n")
+    print(f"  Rooms: {len(created_rooms)}")
+    print(f"  Exits: {len(EXITS)}")
+    print(f"  Spawners: {len(MOB_SPAWNERS)}")
+    print(f"  Shopkeepers: {len(SHOPKEEPERS)}")
+    print(f"  Guildmasters: {len(GUILDMASTERS)}")
+```
+
+### 5.2 MOB SPAWNER TYPECLASS
+
+```python
+# typeclasses/objects.py — MobSpawner object
+
+class MobSpawner(DefaultObject):
+    """
+    Room-level spawner that creates and manages mob instances.
+    Attached to a room. Periodically checks if mobs need respawning.
+    """
+
+    def at_object_creation(self):
+        super().at_object_creation()
+        self.db.mob_prototype = ""       # Key in MOB_PROTOTYPES
+        self.db.max_spawned = 1
+        self.db.respawn_delay = 120      # Seconds
+        self.db.spawn_message = "A creature appears."
+        self.db.current_spawned = []     # List of spawned mob dbrefs
+
+    def at_init(self):
+        """Start the spawn check loop."""
+        self._start_spawn_ticker()
+
+    def _start_spawn_ticker(self):
+        """Check every 30 seconds if we need to spawn."""
+        from evennia.scripts.scripts import DefaultScript
+
+        class SpawnCheckScript(DefaultScript):
+            def at_script_creation(self):
+                self.key = f"spawn_check_{self.obj.id}"
+                self.interval = 30
+                self.persistent = False
+
+            def at_repeat(self):
+                spawner = self.obj
+                # Clean up dead mobs from tracking list
+                alive = []
+                for mob_dbref in spawner.db.current_spawned:
+                    mob = ObjectDB.objects.filter(id=mob_dbref).first()
+                    if mob and mob.attributes.get("hp", 0) > 0:
+                        alive.append(mob_dbref)
+                spawner.db.current_spawned = alive
+
+                # Spawn if below max
+                if len(alive) < spawner.db.max_spawned:
+                    spawner._spawn_mob()
+
+        self.scripts.add(SpawnCheckScript)
+
+    def _spawn_mob(self):
+        """Create one mob from the prototype definition."""
+        from world.batch_zones.example_zone import MOB_PROTOTYPES
+        proto = MOB_PROTOTYPES.get(self.db.mob_prototype)
+        if not proto:
+            return
+
+        mob = create_object(proto["typeclass"], key=proto["key"], location=self.location)
+        for attr_key, attr_val in proto.get("attributes", []):
+            mob.attributes.add(attr_key, attr_val)
+
+        # Store loot table on mob for corpse creation
+        mob.attributes.add("loot_table", proto.get("loot_table", []))
+
+        self.db.current_spawned.append(mob.id)
+
+        if self.db.spawn_message:
+            self.location.msg_contents(f"|g{self.db.spawn_message}|n")
+```
+
+---
+
+## APPENDIX A: IMPLEMENTATION PRIORITY ROADMAP
+
+| Priority | System                          | Effort | Dependencies                        |
+|----------|----------------------------------|--------|-------------------------------------|
+| **P0**   | Race/Class gating engine         | 2 days | None (critical bug fix)             |
+| **P0**   | Spell command locks              | 1 day  | Race/Class gating engine            |
+| **P1**   | Damage types & formulas          | 2 days | None                                |
+| **P1**   | Mob AI (aggro, social, radius)   | 2 days | Combat ticker                       |
+| **P1**   | Corpse decay & GC script         | 1 day  | None                                |
+| **P2**   | Positional states (rest/med/sleep)| 2 days | Recovery ticker                     |
+| **P2**   | Combat skills (kick/bash/etc.)   | 3 days | Damage formulas, stamina            |
+| **P2**   | Encumbrance & equipment slots    | 2 days | Item weight attributes              |
+| **P3**   | Guildmaster & practice points    | 3 days | Race/Class gating, spell system     |
+| **P3**   | Shopkeeper buy/sell/appraise     | 2 days | Item value attributes               |
+| **P3**   | Bank system (expand existing)    | 1 day  | None (partial exists)               |
+| **P3**   | Equipment repair NPC             | 1 day  | Durability system                   |
+| **P3**   | Alignment & outlaw/bounty system | 2 days | PvP rules                           |
+| **P4**   | Batch building `.ev` templates   | 2 days | All typeclasses stable              |
+| **P4**   | Mob spawner typeclass            | 2 days | Mob prototypes, loot tables         |
+
+---
+
+## APPENDIX B: FILE ORGANIZATION (Recommended)
+
+```
+world/
+├── race_class_matrix.py      # NEW — All gating logic, compatibility matrices
+├── rules.py                  # EXISTING — RACES, CLASSES, XP formulas
+├── chargen.py                # EXISTING — Add race/class validation
+├── combat.py                 # EXISTING — PvP, death, corpses
+├── tick_combat.py            # EXISTING — CombatScript, CombatHandler
+├── combat_state.py           # NEW — CombatState enum, state machine
+├── combat_skills.py          # NEW — Physical skill definitions + execution
+├── damage_formulas.py        # NEW — DamageType enum, calc functions
+├── mob_ai.py                 # NEW — MobDisposition, aggro, social aggro
+├── spells.py                 # EXISTING — Add gating checks
+├── recovery.py               # NEW — Position enum, RecoveryScript
+├── encumbrance.py            # NEW — Weight, capacity, penalties
+├── alignment_system.py       # NEW — Alignment points, outlaw, bounty
+├── guildmaster.py            # NEW — PracticeSession, training logic
+├── shopkeeper.py             # NEW — ShopkeeperNPC typeclass
+├── repair_npc.py             # NEW — RepairNPC typeclass
+├── garbage_collection.py     # NEW — GarbageCollectionScript
+├── batch_zones/              # NEW — Directory for .ev batch files
+│   └── example_zone.ev
+commands/
+├── default_cmdsets.py        # EXISTING — Add lock strings to spell commands
+├── spells.py                 # EXISTING — Add gating check in func()
+├── combat_commands.py        # EXISTING — Add skill commands (kick, bash, etc.)
+├── general.py                # EXISTING — Extend rest, add meditate/sleep/wake
+typeclasses/
+├── characters.py             # EXISTING — Add get_effective_stats(), lock funcs
+├── objects.py                # EXISTING — Add MobSpawner typeclass
+├── rooms.py                  # EXISTING — Add at_object_receive for mob aggro
+```
+
+---
+
+## APPENDIX C: CRITICAL BUG FIX — ORC WARRIOR SPELL ACCESS
+
+**Root Cause:** Three missing gates:
+1. `CmdCast` and `CmdSpells` are added to ALL CharacterCmdSets unconditionally
+2. `SpellHandler.can_cast()` only checks level/mana/cooldown, not race/class
+3. `_grant_spells_for_level()` grants all level-appropriate spells to all characters
+
+**Fix (3-line summary):**
+1. Add `locks = "cmd:can_cast_spells()"` to CmdCast and CmdSpells
+2. Add `can_learn_spell()` check at the top of `SpellHandler.can_cast()`
+3. Add `can_learn_spell()` filter in `_grant_spells_for_level()`
+
+**Verification:** Create an Orc Warrior, type `spells` → should show "You have not learned any spells yet." Type `cast sparks` → should show "Warriors cannot cast evocation spells."
+
+---
+
+*End of Master Architecture Blueprint — Rites of Passage MUD*

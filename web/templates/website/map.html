@@ -1,0 +1,63 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}World Map — Rites of Passage{% endblock %}
+
+{% block content %}
+
+<div class="content-card ornate" style="text-align: center;">
+  <h1>The Realm of Rites of Passage</h1>
+  <p style="color: var(--text-dim); max-width: 640px; margin: 0 auto var(--space-lg) auto;">
+    From the hallowed halls of Aethelgard to the volcanic depths of Gorgoroth —
+    every corner holds danger, treasure, and destiny.
+  </p>
+
+  <div class="map-container">
+    <img
+      src="{% static 'website/images/rop-map.png' %}"
+      alt="World Map of Rites of Passage"
+      class="map-image"
+      loading="lazy"
+    >
+  </div>
+
+  <div style="margin-top: var(--space-lg); font-size: 0.85rem; color: var(--text-muted);">
+    <p>Click image to view full size &bull; Use scroll wheel to zoom</p>
+  </div>
+</div>
+
+<div class="content-card">
+  <h2>Key Locations</h2>
+
+  <div class="feature-grid" style="margin-top: var(--space-lg);">
+    <div class="feature-card">
+      <div class="feature-icon">☀️</div>
+      <h3>Aethelgard</h3>
+      <p>The Grand Sanctum — starting city for all Good-aligned characters. High walls, holy light, and ancient wisdom protect this bastion of hope.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💀</div>
+      <h3>Gorgoroth</h3>
+      <p>The Blood Forge — starting citadel for Evil-aligned characters. Molten rivers, obsidian spires, and the endless drums of war echo through these halls.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌲</div>
+      <h3>The Wilds</h3>
+      <p>Between the faction cities lies untamed wilderness — dark forests, crumbling ruins, monster lairs, and ancient dungeons filled with peril and plunder.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏰</div>
+      <h3>Dungeons</h3>
+      <p>Scattered across the realm are instanced dungeons for parties of all levels. Brave the depths to earn legendary loot and eternal glory.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-banner">
+  <p style="font-size: 1.1rem;">
+    Ready to explore?
+    <a href="/webclient/" class="btn" style="margin-left: var(--space-md);">Enter the Realm</a>
+  </p>
+</div>
+
+{% endblock %}

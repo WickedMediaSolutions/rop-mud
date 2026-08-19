@@ -1,0 +1,338 @@
+# Sunken Temple of the Ancients — Level 26-38
+# Auto-generated zone: Partially submerged temple ruins with waterlogged chambers
+# Faction: Neutral
+# Rooms: 30
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.sunken_temple")
+
+# --- Room 1/30 ---
+dig Sunken Temple of the Ancients - Entrance
+@desc The pristine chamber you have entered must once have been important. You notice ancient runes dominating the center, with moonlight pooling around it like a corrupted blessing.
+@tags/set room-zone:sunken_temple
+@open south=south to Sunken Temple of the Ancients - Hollow
+@open east=east to Sunken Temple of the Ancients - Crossroads
+
+# --- Room 2/30 ---
+dig Sunken Temple of the Ancients - Crossroads
+@desc A majestic archway still stands defiantly amid the ancient ruins. You notice a dark bloodstain marking the keystone, and dripping echoes seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_tank_lvl28
+@tel here
+@open west=west to Sunken Temple of the Ancients - Entrance
+@open south=south to Sunken Temple of the Ancients - Bend 2
+@open east=east to Sunken Temple of the Ancients - Thicket
+
+# --- Room 3/30 ---
+dig Sunken Temple of the Ancients - Thicket
+@desc A ethereal archway still stands defiantly amid the ethereal ruins. You notice a discarded weapon marking the keystone, and dripping echoes seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_tank_lvl35
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open west=west to Sunken Temple of the Ancients - Crossroads
+@open south=south to Sunken Temple of the Ancients - Overlook 2
+@open east=east to Sunken Temple of the Ancients - Chamber
+
+# --- Room 4/30 ---
+dig Sunken Temple of the Ancients - Chamber
+@desc A ethereal archway still stands defiantly amid the pristine ruins. You notice a discarded weapon marking the keystone, and faint chants seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_brute_lvl38
+@tel here
+@open west=west to Sunken Temple of the Ancients - Thicket
+@open south=south to Sunken Temple of the Ancients - Grove
+@open east=east to Sunken Temple of the Ancients - Path
+
+# --- Room 5/30 ---
+dig Sunken Temple of the Ancients - Path
+@desc You pick your way through crumbling rubble that was once a ancient structure. dim luminescence streams through gaps in the ceiling, illuminating a dark bloodstain on the floor.
+@tags/set room-zone:sunken_temple
+@spawn gen_skirmisher_lvl30
+@tel here
+@open west=west to Sunken Temple of the Ancients - Chamber
+@open south=south to Sunken Temple of the Ancients - Expanse
+@open east=east to Sunken Temple of the Ancients - Clearing
+
+# --- Room 6/30 ---
+dig Sunken Temple of the Ancients - Clearing
+@desc A ethereal archway still stands defiantly amid the darkened ruins. You notice ancient runes marking the keystone, and faint chants seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_balanced_lvl33
+@tel here
+@spawn gen_caster_lvl35
+@tel here
+@open west=west to Sunken Temple of the Ancients - Path
+@open south=south to Sunken Temple of the Ancients - Bend
+
+# --- Room 7/30 ---
+dig Sunken Temple of the Ancients - Hollow
+@desc The ancient chamber you have entered must once have been important. You notice scattered offerings dominating the center, with filtered light pooling around it like a ethereal blessing.
+@tags/set room-zone:sunken_temple
+@spawn gen_balanced_lvl38
+@tel here
+@spawn gen_tank_lvl30
+@tel here
+@open north=north to Sunken Temple of the Ancients - Entrance
+@open south=south to Sunken Temple of the Ancients - Bend 3
+@open east=east to Sunken Temple of the Ancients - Bend 2
+
+# --- Room 8/30 ---
+dig Sunken Temple of the Ancients - Bend 2
+@desc Crumbling corrupted walls rise from the soft loam, remnants of a majestic civilization. You see a dark bloodstain carved into the weathered stone, and low rumbling tremors drift through the shimmering halls.
+@tags/set room-zone:sunken_temple
+@spawn gen_caster_lvl30
+@tel here
+@spawn gen_skirmisher_lvl35
+@tel here
+@open north=north to Sunken Temple of the Ancients - Crossroads
+@open west=west to Sunken Temple of the Ancients - Hollow
+@open south=south to Sunken Temple of the Ancients - Nook 2
+@open east=east to Sunken Temple of the Ancients - Overlook 2
+
+# --- Room 9/30 ---
+dig Sunken Temple of the Ancients - Overlook 2
+@desc A darkened archway still stands defiantly amid the corrupted ruins. You notice a dark bloodstain marking the keystone, and muffled voices seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_skirmisher_lvl38
+@tel here
+@spawn gen_brute_lvl30
+@tel here
+@open north=north to Sunken Temple of the Ancients - Thicket
+@open west=west to Sunken Temple of the Ancients - Bend 2
+@open south=south to Sunken Temple of the Ancients - Descent 2
+@open east=east to Sunken Temple of the Ancients - Grove
+
+# --- Room 10/30 ---
+dig Sunken Temple of the Ancients - Grove
+@desc A ethereal archway still stands defiantly amid the corrupted ruins. You notice ancient runes marking the keystone, and strange whispers seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@open north=north to Sunken Temple of the Ancients - Chamber
+@open west=west to Sunken Temple of the Ancients - Overlook 2
+@open south=south to Sunken Temple of the Ancients - Descent
+@open east=east to Sunken Temple of the Ancients - Expanse
+
+# --- Room 11/30 ---
+dig Sunken Temple of the Ancients - Expanse
+@desc The darkened chamber you have entered must once have been important. You notice a weathered statue dominating the center, with moonlight pooling around it like a foreboding blessing.
+@tags/set room-zone:sunken_temple
+@open north=north to Sunken Temple of the Ancients - Path
+@open west=west to Sunken Temple of the Ancients - Grove
+@open south=south to Sunken Temple of the Ancients - Depths
+@open east=east to Sunken Temple of the Ancients - Bend
+
+# --- Room 12/30 ---
+dig Sunken Temple of the Ancients - Bend
+@desc You pick your way through crumbling rubble that was once a ancient structure. moonlight streams through gaps in the ceiling, illuminating a weathered statue on the floor.
+@tags/set room-zone:sunken_temple
+@spawn gen_assassin_lvl33
+@tel here
+@spawn gen_caster_lvl35
+@tel here
+@open north=north to Sunken Temple of the Ancients - Clearing
+@open west=west to Sunken Temple of the Ancients - Expanse
+@open south=south to Sunken Temple of the Ancients - Overlook
+
+# --- Room 13/30 ---
+dig Sunken Temple of the Ancients - Bend 3
+@desc The shimmering chamber you have entered must once have been important. You notice a weathered statue dominating the center, with faint luminescence pooling around it like a majestic blessing.
+@tags/set room-zone:sunken_temple
+@spawn gen_skirmisher_lvl35
+@tel here
+@open north=north to Sunken Temple of the Ancients - Hollow
+@open south=south to Sunken Temple of the Ancients - Gallery 2
+@open east=east to Sunken Temple of the Ancients - Nook 2
+
+# --- Room 14/30 ---
+dig Sunken Temple of the Ancients - Nook 2
+@desc You pick your way through ancient rubble that was once a corrupted structure. moonlight streams through gaps in the ceiling, illuminating scattered offerings on the floor.
+@tags/set room-zone:sunken_temple
+@spawn gen_balanced_lvl35
+@tel here
+@spawn gen_skirmisher_lvl33
+@tel here
+@open north=north to Sunken Temple of the Ancients - Bend 2
+@open west=west to Sunken Temple of the Ancients - Bend 3
+@open south=south to Sunken Temple of the Ancients - Hollow 2
+@open east=east to Sunken Temple of the Ancients - Descent 2
+
+# --- Room 15/30 ---
+dig Sunken Temple of the Ancients - Descent 2
+@desc A pristine archway still stands defiantly amid the pristine ruins. You notice flickering torchlight marking the keystone, and faint chants seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@open north=north to Sunken Temple of the Ancients - Overlook 2
+@open west=west to Sunken Temple of the Ancients - Nook 2
+@open south=south to Sunken Temple of the Ancients - Stretch
+@open east=east to Sunken Temple of the Ancients - Descent
+
+# --- Room 16/30 ---
+dig Sunken Temple of the Ancients - Descent
+@desc The foreboding chamber you have entered must once have been important. You notice a dark bloodstain dominating the center, with moonlight pooling around it like a pristine blessing.
+@tags/set room-zone:sunken_temple
+@open north=north to Sunken Temple of the Ancients - Grove
+@open west=west to Sunken Temple of the Ancients - Descent 2
+@open south=south to Sunken Temple of the Ancients - Ridge
+@open east=east to Sunken Temple of the Ancients - Depths
+
+# --- Room 17/30 ---
+dig Sunken Temple of the Ancients - Depths
+@desc A majestic archway still stands defiantly amid the crumbling ruins. You notice a dark bloodstain marking the keystone, and distant howls seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_balanced_lvl35
+@tel here
+@spawn gen_assassin_lvl35
+@tel here
+@open north=north to Sunken Temple of the Ancients - Expanse
+@open west=west to Sunken Temple of the Ancients - Descent
+@open south=south to Sunken Temple of the Ancients - Crossroads 2
+@open east=east to Sunken Temple of the Ancients - Overlook
+
+# --- Room 18/30 ---
+dig Sunken Temple of the Ancients - Overlook
+@desc Crumbling crumbling walls rise from the exposed roots, remnants of a majestic civilization. You see ancient runes carved into the weathered stone, and dripping echoes drift through the shimmering halls.
+@tags/set room-zone:sunken_temple
+@spawn gen_balanced_lvl30
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Sunken Temple of the Ancients - Bend
+@open west=west to Sunken Temple of the Ancients - Depths
+@open south=south to Sunken Temple of the Ancients - Depths 2
+
+# --- Room 19/30 ---
+dig Sunken Temple of the Ancients - Gallery 2
+@desc You pick your way through shimmering rubble that was once a foreboding structure. sunlight streams through gaps in the ceiling, illuminating a dark bloodstain on the floor.
+@tags/set room-zone:sunken_temple
+@spawn gen_caster_lvl38
+@tel here
+@open north=north to Sunken Temple of the Ancients - Bend 3
+@open south=south to Sunken Temple of the Ancients - Path 2
+@open east=east to Sunken Temple of the Ancients - Hollow 2
+
+# --- Room 20/30 ---
+dig Sunken Temple of the Ancients - Hollow 2
+@desc You pick your way through corrupted rubble that was once a crumbling structure. dim luminescence streams through gaps in the ceiling, illuminating flickering torchlight on the floor.
+@tags/set room-zone:sunken_temple
+@spawn gen_balanced_lvl35
+@tel here
+@spawn gen_assassin_lvl28
+@tel here
+@open north=north to Sunken Temple of the Ancients - Nook 2
+@open west=west to Sunken Temple of the Ancients - Gallery 2
+@open south=south to Sunken Temple of the Ancients - Ledge
+@open east=east to Sunken Temple of the Ancients - Stretch
+
+# --- Room 21/30 ---
+dig Sunken Temple of the Ancients - Stretch
+@desc A corrupted archway still stands defiantly amid the darkened ruins. You notice ancient runes marking the keystone, and distant howls seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_caster_lvl35
+@tel here
+@spawn gen_brute_lvl30
+@tel here
+@open north=north to Sunken Temple of the Ancients - Descent 2
+@open west=west to Sunken Temple of the Ancients - Hollow 2
+@open south=south to Sunken Temple of the Ancients - Ascent 3
+@open east=east to Sunken Temple of the Ancients - Ridge
+
+# --- Room 22/30 ---
+dig Sunken Temple of the Ancients - Ridge
+@desc A corrupted archway still stands defiantly amid the corrupted ruins. You notice a weathered statue marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_caster_lvl38
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Sunken Temple of the Ancients - Descent
+@open west=west to Sunken Temple of the Ancients - Stretch
+@open south=south to Sunken Temple of the Ancients - Stretch 2
+@open east=east to Sunken Temple of the Ancients - Crossroads 2
+
+# --- Room 23/30 ---
+dig Sunken Temple of the Ancients - Crossroads 2
+@desc A crumbling archway still stands defiantly amid the majestic ruins. You notice a dark bloodstain marking the keystone, and skittering claws seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_tank_lvl30
+@tel here
+@open north=north to Sunken Temple of the Ancients - Depths
+@open west=west to Sunken Temple of the Ancients - Ridge
+@open south=south to Sunken Temple of the Ancients - Grotto
+@open east=east to Sunken Temple of the Ancients - Depths 2
+
+# --- Room 24/30 ---
+dig Sunken Temple of the Ancients - Depths 2
+@desc You pick your way through ancient rubble that was once a crumbling structure. moonlight streams through gaps in the ceiling, illuminating a discarded weapon on the floor.
+@tags/set room-zone:sunken_temple
+@spawn gen_tank_lvl38
+@tel here
+@open north=north to Sunken Temple of the Ancients - Overlook
+@open west=west to Sunken Temple of the Ancients - Crossroads 2
+@open south=south to Sunken Temple of the Ancients - Heart
+
+# --- Room 25/30 ---
+dig Sunken Temple of the Ancients - Path 2
+@desc Crumbling ethereal walls rise from the thick moss, remnants of a majestic civilization. You see a weathered statue carved into the weathered stone, and muffled voices drift through the pristine halls.
+@tags/set room-zone:sunken_temple
+@spawn gen_brute_lvl35
+@tel here
+@open north=north to Sunken Temple of the Ancients - Gallery 2
+@open east=east to Sunken Temple of the Ancients - Ledge
+
+# --- Room 26/30 ---
+dig Sunken Temple of the Ancients - Ledge
+@desc A majestic archway still stands defiantly amid the ethereal ruins. You notice a broken altar marking the keystone, and muffled voices seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@open north=north to Sunken Temple of the Ancients - Hollow 2
+@open west=west to Sunken Temple of the Ancients - Path 2
+@open east=east to Sunken Temple of the Ancients - Ascent 3
+
+# --- Room 27/30 ---
+dig Sunken Temple of the Ancients - Ascent 3
+@desc Crumbling pristine walls rise from the exposed roots, remnants of a ethereal civilization. You see ancient runes carved into the weathered stone, and muffled voices drift through the ethereal halls.
+@tags/set room-zone:sunken_temple
+@spawn gen_tank_lvl30
+@tel here
+@spawn gen_tank_lvl33
+@tel here
+@open north=north to Sunken Temple of the Ancients - Stretch
+@open west=west to Sunken Temple of the Ancients - Ledge
+@open east=east to Sunken Temple of the Ancients - Stretch 2
+
+# --- Room 28/30 ---
+dig Sunken Temple of the Ancients - Stretch 2
+@desc Crumbling desolate walls rise from the scattered bones, remnants of a darkened civilization. You see flickering torchlight carved into the weathered stone, and dripping echoes drift through the corrupted halls.
+@tags/set room-zone:sunken_temple
+@spawn gen_brute_lvl38
+@tel here
+@spawn gen_assassin_lvl35
+@tel here
+@open north=north to Sunken Temple of the Ancients - Ridge
+@open west=west to Sunken Temple of the Ancients - Ascent 3
+@open east=east to Sunken Temple of the Ancients - Grotto
+
+# --- Room 29/30 ---
+dig Sunken Temple of the Ancients - Grotto
+@desc Crumbling ethereal walls rise from the thick moss, remnants of a crumbling civilization. You see a discarded weapon carved into the weathered stone, and faint chants drift through the darkened halls.
+@tags/set room-zone:sunken_temple
+@spawn gen_brute_lvl30
+@tel here
+@spawn gen_skirmisher_lvl28
+@tel here
+@open north=north to Sunken Temple of the Ancients - Crossroads 2
+@open west=west to Sunken Temple of the Ancients - Stretch 2
+@open east=east to Sunken Temple of the Ancients - Heart
+
+# --- Room 30/30 ---
+dig Sunken Temple of the Ancients - Heart
+@desc A desolate archway still stands defiantly amid the desolate ruins. You notice a weathered statue marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:sunken_temple
+@spawn gen_brute_lvl30
+@tel here
+@spawn gen_assassin_lvl35
+@tel here
+@open north=north to Sunken Temple of the Ancients - Depths 2
+@open west=west to Sunken Temple of the Ancients - Grotto
+
+# Zone 'Sunken Temple of the Ancients' complete — 30 rooms, 98 directed exits.

@@ -1,0 +1,189 @@
+# Copper Vein Depths — Level 11-20
+# Auto-generated zone: Abandoned copper mine now inhabited by subterranean creatures
+# Faction: Neutral
+# Rooms: 18
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.copper_vein_depths")
+
+# --- Room 1/18 ---
+dig Copper Vein Depths - Entrance
+@desc Stalactites hang like darkened teeth from the ceiling of this cramped cavern. quartz deposits glitter in the ethereal radiance, and you hear muffled voices reverberating through the stone.
+@tags/set room-zone:copper_vein_depths
+@open south=south to Copper Vein Depths - Expanse
+@open east=east to Copper Vein Depths - Chamber
+
+# --- Room 2/18 ---
+dig Copper Vein Depths - Chamber
+@desc Stalactites hang like desolate teeth from the ceiling of this immense cavern. iron deposits glitter in the filtered light, and you hear distant howls reverberating through the stone.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_tank_lvl12
+@tel here
+@spawn gen_assassin_lvl12
+@tel here
+@open west=west to Copper Vein Depths - Entrance
+@open south=south to Copper Vein Depths - Grotto
+@open east=east to Copper Vein Depths - Depths
+
+# --- Room 3/18 ---
+dig Copper Vein Depths - Depths
+@desc Stalactites hang like majestic teeth from the ceiling of this cramped cavern. iron deposits glitter in the filtered light, and you hear strange whispers reverberating through the stone.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_brute_lvl18
+@tel here
+@open west=west to Copper Vein Depths - Chamber
+@open south=south to Copper Vein Depths - Descent 2
+@open east=east to Copper Vein Depths - Clearing
+
+# --- Room 4/18 ---
+dig Copper Vein Depths - Clearing
+@desc A sprawling tunnel narrows ahead, its walls slick with crystalline deposits. The faint luminescence here is crumbling, and you hear muffled voices that seem to come from everywhere at once.
+@tags/set room-zone:copper_vein_depths
+@open west=west to Copper Vein Depths - Depths
+@open south=south to Copper Vein Depths - Gallery
+@open east=east to Copper Vein Depths - Thicket
+
+# --- Room 5/18 ---
+dig Copper Vein Depths - Thicket
+@desc A immense tunnel narrows ahead, its walls slick with crystalline deposits. The filtered light here is corrupted, and you hear strange whispers that seem to come from everywhere at once.
+@tags/set room-zone:copper_vein_depths
+@open west=west to Copper Vein Depths - Clearing
+@open south=south to Copper Vein Depths - Path
+
+# --- Room 6/18 ---
+dig Copper Vein Depths - Expanse
+@desc The cave opens into a cramped chamber where moonlight reflects off quartz formations on the walls. You hear distant howls echoing from deeper within, and the air is sweltering and ancient.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_caster_lvl18
+@tel here
+@spawn gen_skirmisher_lvl15
+@tel here
+@open north=north to Copper Vein Depths - Entrance
+@open south=south to Copper Vein Depths - Grove
+@open east=east to Copper Vein Depths - Grotto
+
+# --- Room 7/18 ---
+dig Copper Vein Depths - Grotto
+@desc You enter a corrupted grotto where iron crystals pulse with a faint inner faint luminescence. You notice flickering torchlight carved into the stone floor, and the air hums with majestic energy.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_skirmisher_lvl18
+@tel here
+@spawn gen_skirmisher_lvl18
+@tel here
+@open north=north to Copper Vein Depths - Chamber
+@open west=west to Copper Vein Depths - Expanse
+@open south=south to Copper Vein Depths - Passage
+@open east=east to Copper Vein Depths - Descent 2
+
+# --- Room 8/18 ---
+dig Copper Vein Depths - Descent 2
+@desc The cave opens into a cramped chamber where faint luminescence reflects off obsidian formations on the walls. You hear strange whispers echoing from deeper within, and the air is pleasantly cool and shimmering.
+@tags/set room-zone:copper_vein_depths
+@open north=north to Copper Vein Depths - Depths
+@open west=west to Copper Vein Depths - Grotto
+@open south=south to Copper Vein Depths - Ascent
+@open east=east to Copper Vein Depths - Gallery
+
+# --- Room 9/18 ---
+dig Copper Vein Depths - Gallery
+@desc You enter a ancient grotto where silver crystals pulse with a faint inner filtered light. You notice scattered offerings carved into the stone floor, and the air hums with foreboding energy.
+@tags/set room-zone:copper_vein_depths
+@open north=north to Copper Vein Depths - Clearing
+@open west=west to Copper Vein Depths - Descent 2
+@open south=south to Copper Vein Depths - Stretch
+@open east=east to Copper Vein Depths - Path
+
+# --- Room 10/18 ---
+dig Copper Vein Depths - Path
+@desc The cave opens into a sprawling chamber where sunlight reflects off iron formations on the walls. You hear faint chants echoing from deeper within, and the air is deathly cold and darkened.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_skirmisher_lvl15
+@tel here
+@open north=north to Copper Vein Depths - Thicket
+@open west=west to Copper Vein Depths - Gallery
+@open south=south to Copper Vein Depths - Bend 2
+
+# --- Room 11/18 ---
+dig Copper Vein Depths - Grove
+@desc Stalactites hang like pristine teeth from the ceiling of this cramped cavern. iron deposits glitter in the filtered light, and you hear low rumbling tremors reverberating through the stone.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_assassin_lvl15
+@tel here
+@open north=north to Copper Vein Depths - Expanse
+@open south=south to Copper Vein Depths - Hollow 2
+@open east=east to Copper Vein Depths - Passage
+
+# --- Room 12/18 ---
+dig Copper Vein Depths - Passage
+@desc A cavernous tunnel narrows ahead, its walls slick with ancient blood. The moonlight here is ethereal, and you hear distant howls that seem to come from everywhere at once.
+@tags/set room-zone:copper_vein_depths
+@open north=north to Copper Vein Depths - Grotto
+@open west=west to Copper Vein Depths - Grove
+@open south=south to Copper Vein Depths - Clearing 2
+@open east=east to Copper Vein Depths - Ascent
+
+# --- Room 13/18 ---
+dig Copper Vein Depths - Ascent
+@desc The cave opens into a cramped chamber where filtered light reflects off amethyst formations on the walls. You hear dripping echoes echoing from deeper within, and the air is deathly cold and crumbling.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_tank_lvl18
+@tel here
+@spawn gen_tank_lvl20
+@tel here
+@open north=north to Copper Vein Depths - Descent 2
+@open west=west to Copper Vein Depths - Passage
+@open south=south to Copper Vein Depths - Heart
+@open east=east to Copper Vein Depths - Stretch
+
+# --- Room 14/18 ---
+dig Copper Vein Depths - Stretch
+@desc The cave opens into a sprawling chamber where moonlight reflects off iron formations on the walls. You hear low rumbling tremors echoing from deeper within, and the air is deathly cold and crumbling.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_skirmisher_lvl20
+@tel here
+@spawn gen_brute_lvl20
+@tel here
+@open north=north to Copper Vein Depths - Gallery
+@open west=west to Copper Vein Depths - Ascent
+@open east=east to Copper Vein Depths - Bend 2
+
+# --- Room 15/18 ---
+dig Copper Vein Depths - Bend 2
+@desc Stalactites hang like shimmering teeth from the ceiling of this cavernous cavern. amethyst deposits glitter in the dim luminescence, and you hear distant howls reverberating through the stone.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_caster_lvl15
+@tel here
+@open north=north to Copper Vein Depths - Path
+@open west=west to Copper Vein Depths - Stretch
+
+# --- Room 16/18 ---
+dig Copper Vein Depths - Hollow 2
+@desc Stalactites hang like majestic teeth from the ceiling of this immense cavern. obsidian deposits glitter in the moonlight, and you hear strange whispers reverberating through the stone.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_assassin_lvl20
+@tel here
+@open north=north to Copper Vein Depths - Grove
+@open east=east to Copper Vein Depths - Clearing 2
+
+# --- Room 17/18 ---
+dig Copper Vein Depths - Clearing 2
+@desc Stalactites hang like majestic teeth from the ceiling of this narrow cavern. glowing crystal deposits glitter in the ethereal radiance, and you hear low rumbling tremors reverberating through the stone.
+@tags/set room-zone:copper_vein_depths
+@spawn gen_tank_lvl20
+@tel here
+@spawn gen_tank_lvl12
+@tel here
+@open north=north to Copper Vein Depths - Passage
+@open west=west to Copper Vein Depths - Hollow 2
+@open east=east to Copper Vein Depths - Heart
+
+# --- Room 18/18 ---
+dig Copper Vein Depths - Heart
+@desc You enter a desolate grotto where quartz crystals pulse with a faint inner dim luminescence. You notice ancient runes carved into the stone floor, and the air hums with ancient energy.
+@tags/set room-zone:copper_vein_depths
+@open north=north to Copper Vein Depths - Ascent
+@open west=west to Copper Vein Depths - Clearing 2
+@open east=east to Copper Vein Depths - Bend 2
+
+# Zone 'Copper Vein Depths' complete — 18 rooms, 55 directed exits.

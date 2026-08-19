@@ -1,0 +1,187 @@
+# Brimstone Foothills — Level 1-8
+# Auto-generated zone: Volcanic foothills with bubbling mud pits and hardy scrub
+# Faction: Gorgoroth Horde
+# Rooms: 18
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.brimstone_foothills")
+
+# --- Room 1/18 ---
+dig Brimstone Foothills - Entrance
+@desc A ethereal chamber opens before you, dominated by a corrupted magma vent. You hear distant howls of majestic power reverberating through the rock, and see a dark bloodstain glowing with inner fire.
+@tags/set room-zone:brimstone_foothills
+@open south=south to Brimstone Foothills - Hollow
+@open east=east to Brimstone Foothills - Overlook
+
+# --- Room 2/18 ---
+dig Brimstone Foothills - Overlook
+@desc You navigate a desolate ledge above a pristine pool of molten rock. moonlight from the lava paints the cavern in pristine hues, and you hear low rumbling tremors rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@open west=west to Brimstone Foothills - Entrance
+@open south=south to Brimstone Foothills - Stretch
+@open east=east to Brimstone Foothills - Grove
+
+# --- Room 3/18 ---
+dig Brimstone Foothills - Grove
+@desc The ground trembles beneath your feet as ethereal vents hiss corrupted steam nearby. Rivers of ancient lava flow through channels in the shimmering rock, and the air burns with each breath.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_caster_lvl8
+@tel here
+@spawn gen_assassin_lvl3
+@tel here
+@open west=west to Brimstone Foothills - Overlook
+@open south=south to Brimstone Foothills - Expanse 2
+@open east=east to Brimstone Foothills - Expanse
+
+# --- Room 4/18 ---
+dig Brimstone Foothills - Expanse
+@desc Obsidian formations jut from the desolate floor like corrupted blades. The heat is darkened, and you see a broken altar scorched into the stone.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_skirmisher_lvl3
+@tel here
+@spawn gen_tank_lvl3
+@tel here
+@open west=west to Brimstone Foothills - Grove
+@open south=south to Brimstone Foothills - Ascent 2
+@open east=east to Brimstone Foothills - Descent
+
+# --- Room 5/18 ---
+dig Brimstone Foothills - Descent
+@desc You navigate a corrupted ledge above a majestic pool of molten rock. dim luminescence from the lava paints the cavern in majestic hues, and you hear distant howls rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@open west=west to Brimstone Foothills - Expanse
+@open south=south to Brimstone Foothills - Passage
+
+# --- Room 6/18 ---
+dig Brimstone Foothills - Hollow
+@desc You navigate a desolate ledge above a ancient pool of molten rock. moonlight from the lava paints the cavern in ancient hues, and you hear skittering claws rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@open north=north to Brimstone Foothills - Entrance
+@open south=south to Brimstone Foothills - Ledge 2
+@open east=east to Brimstone Foothills - Stretch
+
+# --- Room 7/18 ---
+dig Brimstone Foothills - Stretch
+@desc The ground trembles beneath your feet as pristine vents hiss majestic steam nearby. Rivers of majestic lava flow through channels in the ancient rock, and the air burns with each breath.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_balanced_lvl3
+@tel here
+@open north=north to Brimstone Foothills - Overlook
+@open west=west to Brimstone Foothills - Hollow
+@open south=south to Brimstone Foothills - Gallery
+@open east=east to Brimstone Foothills - Expanse 2
+
+# --- Room 8/18 ---
+dig Brimstone Foothills - Expanse 2
+@desc You navigate a desolate ledge above a majestic pool of molten rock. ethereal radiance from the lava paints the cavern in foreboding hues, and you hear faint chants rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_tank_lvl5
+@tel here
+@open north=north to Brimstone Foothills - Grove
+@open west=west to Brimstone Foothills - Stretch
+@open south=south to Brimstone Foothills - Ascent
+@open east=east to Brimstone Foothills - Ascent 2
+
+# --- Room 9/18 ---
+dig Brimstone Foothills - Ascent 2
+@desc You navigate a desolate ledge above a foreboding pool of molten rock. ethereal radiance from the lava paints the cavern in pristine hues, and you hear muffled voices rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@open north=north to Brimstone Foothills - Expanse
+@open west=west to Brimstone Foothills - Expanse 2
+@open south=south to Brimstone Foothills - Path 2
+@open east=east to Brimstone Foothills - Passage
+
+# --- Room 10/18 ---
+dig Brimstone Foothills - Passage
+@desc You navigate a corrupted ledge above a majestic pool of molten rock. filtered light from the lava paints the cavern in corrupted hues, and you hear low rumbling tremors rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_skirmisher_lvl8
+@tel here
+@open north=north to Brimstone Foothills - Descent
+@open west=west to Brimstone Foothills - Ascent 2
+@open south=south to Brimstone Foothills - Grotto
+
+# --- Room 11/18 ---
+dig Brimstone Foothills - Ledge 2
+@desc A corrupted chamber opens before you, dominated by a majestic magma vent. You hear strange whispers of desolate power reverberating through the rock, and see flickering torchlight glowing with inner fire.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_skirmisher_lvl1
+@tel here
+@spawn gen_caster_lvl3
+@tel here
+@open north=north to Brimstone Foothills - Hollow
+@open south=south to Brimstone Foothills - Path
+@open east=east to Brimstone Foothills - Gallery
+
+# --- Room 12/18 ---
+dig Brimstone Foothills - Gallery
+@desc The ground trembles beneath your feet as pristine vents hiss crumbling steam nearby. Rivers of desolate lava flow through channels in the corrupted rock, and the air burns with each breath.
+@tags/set room-zone:brimstone_foothills
+@open north=north to Brimstone Foothills - Stretch
+@open west=west to Brimstone Foothills - Ledge 2
+@open south=south to Brimstone Foothills - Bend
+@open east=east to Brimstone Foothills - Ascent
+
+# --- Room 13/18 ---
+dig Brimstone Foothills - Ascent
+@desc The ground trembles beneath your feet as pristine vents hiss foreboding steam nearby. Rivers of corrupted lava flow through channels in the majestic rock, and the air burns with each breath.
+@tags/set room-zone:brimstone_foothills
+@open north=north to Brimstone Foothills - Expanse 2
+@open west=west to Brimstone Foothills - Gallery
+@open south=south to Brimstone Foothills - Heart
+@open east=east to Brimstone Foothills - Path 2
+
+# --- Room 14/18 ---
+dig Brimstone Foothills - Path 2
+@desc You navigate a ancient ledge above a ethereal pool of molten rock. dim luminescence from the lava paints the cavern in darkened hues, and you hear muffled voices rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_assassin_lvl8
+@tel here
+@open north=north to Brimstone Foothills - Ascent 2
+@open west=west to Brimstone Foothills - Ascent
+@open east=east to Brimstone Foothills - Grotto
+
+# --- Room 15/18 ---
+dig Brimstone Foothills - Grotto
+@desc You navigate a ancient ledge above a corrupted pool of molten rock. sunlight from the lava paints the cavern in foreboding hues, and you hear distant howls rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_caster_lvl1
+@tel here
+@spawn gen_skirmisher_lvl8
+@tel here
+@open north=north to Brimstone Foothills - Passage
+@open west=west to Brimstone Foothills - Path 2
+
+# --- Room 16/18 ---
+dig Brimstone Foothills - Path
+@desc You navigate a ancient ledge above a ancient pool of molten rock. moonlight from the lava paints the cavern in corrupted hues, and you hear faint chants rumbling from deep below.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_tank_lvl1
+@tel here
+@spawn gen_balanced_lvl3
+@tel here
+@open north=north to Brimstone Foothills - Ledge 2
+@open east=east to Brimstone Foothills - Bend
+
+# --- Room 17/18 ---
+dig Brimstone Foothills - Bend
+@desc A darkened chamber opens before you, dominated by a darkened magma vent. You hear distant howls of darkened power reverberating through the rock, and see ancient runes glowing with inner fire.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_caster_lvl1
+@tel here
+@open north=north to Brimstone Foothills - Gallery
+@open west=west to Brimstone Foothills - Path
+@open east=east to Brimstone Foothills - Heart
+
+# --- Room 18/18 ---
+dig Brimstone Foothills - Heart
+@desc A foreboding chamber opens before you, dominated by a corrupted magma vent. You hear faint chants of pristine power reverberating through the rock, and see a broken altar glowing with inner fire.
+@tags/set room-zone:brimstone_foothills
+@spawn gen_skirmisher_lvl8
+@tel here
+@open north=north to Brimstone Foothills - Ascent
+@open west=west to Brimstone Foothills - Bend
+@open east=east to Brimstone Foothills - Grotto
+
+# Zone 'Brimstone Foothills' complete — 18 rooms, 55 directed exits.

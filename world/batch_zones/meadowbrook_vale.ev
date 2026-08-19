@@ -1,0 +1,204 @@
+# Meadowbrook Vale — Level 3-10
+# Auto-generated zone: Peaceful valley with babbling brooks and grazing deer
+# Faction: Aethelgard Alliance
+# Rooms: 20
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.meadowbrook_vale")
+
+# --- Room 1/20 ---
+dig Meadowbrook Vale - Entrance
+@desc Ancient ironwoods tower overhead, their shimmering canopy filtering the faint luminescence into dancing patterns on the forest floor. The air smells of decay, and the ground is carpeted with cracked stone.
+@tags/set room-zone:meadowbrook_vale
+@open south=south to Meadowbrook Vale - Ascent
+@open east=east to Meadowbrook Vale - Grotto
+
+# --- Room 2/20 ---
+dig Meadowbrook Vale - Grotto
+@desc The ironwoods grow dense here, their ethereal branches intertwining overhead. You hear faint chants drifting on the breeze, and the path ahead looks overgrown.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_tank_lvl8
+@tel here
+@open west=west to Meadowbrook Vale - Entrance
+@open south=south to Meadowbrook Vale - Clearing
+@open east=east to Meadowbrook Vale - Gallery
+
+# --- Room 3/20 ---
+dig Meadowbrook Vale - Gallery
+@desc A narrow trail winds through the tangled undergrowth. You hear dripping echoes echoing among the oaks and spot flickering torchlight half-hidden in the thick moss.
+@tags/set room-zone:meadowbrook_vale
+@open west=west to Meadowbrook Vale - Grotto
+@open south=south to Meadowbrook Vale - Hollow 2
+@open east=east to Meadowbrook Vale - Thicket
+
+# --- Room 4/20 ---
+dig Meadowbrook Vale - Thicket
+@desc The elms grow twisted here, their ethereal branches intertwining overhead. You hear muffled voices drifting on the breeze, and the path ahead looks well-worn.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_balanced_lvl10
+@tel here
+@open west=west to Meadowbrook Vale - Gallery
+@open south=south to Meadowbrook Vale - Ledge
+@open east=east to Meadowbrook Vale - Hollow
+
+# --- Room 5/20 ---
+dig Meadowbrook Vale - Hollow
+@desc A narrow trail winds through the twisted undergrowth. You hear strange whispers echoing among the ironwoods and spot a discarded weapon half-hidden in the thick moss.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_balanced_lvl10
+@tel here
+@open west=west to Meadowbrook Vale - Thicket
+@open south=south to Meadowbrook Vale - Gallery 2
+
+# --- Room 6/20 ---
+dig Meadowbrook Vale - Ascent
+@desc The elms grow dense here, their darkened branches intertwining overhead. You hear muffled voices drifting on the breeze, and the path ahead looks barely visible.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_caster_lvl8
+@tel here
+@spawn gen_tank_lvl10
+@tel here
+@open north=north to Meadowbrook Vale - Entrance
+@open south=south to Meadowbrook Vale - Descent
+@open east=east to Meadowbrook Vale - Clearing
+
+# --- Room 7/20 ---
+dig Meadowbrook Vale - Clearing
+@desc The cypresses grow twisted here, their ancient branches intertwining overhead. You hear skittering claws drifting on the breeze, and the path ahead looks overgrown.
+@tags/set room-zone:meadowbrook_vale
+@open north=north to Meadowbrook Vale - Grotto
+@open west=west to Meadowbrook Vale - Ascent
+@open south=south to Meadowbrook Vale - Depths
+@open east=east to Meadowbrook Vale - Hollow 2
+
+# --- Room 8/20 ---
+dig Meadowbrook Vale - Hollow 2
+@desc The elms grow tangled here, their desolate branches intertwining overhead. You hear distant howls drifting on the breeze, and the path ahead looks well-worn.
+@tags/set room-zone:meadowbrook_vale
+@open north=north to Meadowbrook Vale - Gallery
+@open west=west to Meadowbrook Vale - Clearing
+@open south=south to Meadowbrook Vale - Crossroads
+@open east=east to Meadowbrook Vale - Ledge
+
+# --- Room 9/20 ---
+dig Meadowbrook Vale - Ledge
+@desc Ancient pines tower overhead, their dark canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of pine resin, and the ground is carpeted with fallen leaves.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_caster_lvl10
+@tel here
+@open north=north to Meadowbrook Vale - Thicket
+@open west=west to Meadowbrook Vale - Hollow 2
+@open south=south to Meadowbrook Vale - Stretch
+@open east=east to Meadowbrook Vale - Gallery 2
+
+# --- Room 10/20 ---
+dig Meadowbrook Vale - Gallery 2
+@desc The ash trees grow tangled here, their corrupted branches intertwining overhead. You hear low rumbling tremors drifting on the breeze, and the path ahead looks overgrown.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_skirmisher_lvl10
+@tel here
+@spawn gen_tank_lvl8
+@tel here
+@open north=north to Meadowbrook Vale - Hollow
+@open west=west to Meadowbrook Vale - Ledge
+@open south=south to Meadowbrook Vale - Bend
+
+# --- Room 11/20 ---
+dig Meadowbrook Vale - Descent
+@desc You have found a small clearing where ethereal radiance streams through a break in the willows overhead. You notice flickering torchlight resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_tank_lvl5
+@tel here
+@open north=north to Meadowbrook Vale - Ascent
+@open south=south to Meadowbrook Vale - Passage
+@open east=east to Meadowbrook Vale - Depths
+
+# --- Room 12/20 ---
+dig Meadowbrook Vale - Depths
+@desc Ancient elms tower overhead, their tangled canopy filtering the moonlight into dancing patterns on the forest floor. The air smells of ozone, and the ground is carpeted with soft loam.
+@tags/set room-zone:meadowbrook_vale
+@open north=north to Meadowbrook Vale - Clearing
+@open west=west to Meadowbrook Vale - Descent
+@open south=south to Meadowbrook Vale - Ridge 2
+@open east=east to Meadowbrook Vale - Crossroads
+
+# --- Room 13/20 ---
+dig Meadowbrook Vale - Crossroads
+@desc A narrow trail winds through the overgrown undergrowth. You hear distant howls echoing among the ash trees and spot ancient runes half-hidden in the soft loam.
+@tags/set room-zone:meadowbrook_vale
+@open north=north to Meadowbrook Vale - Hollow 2
+@open west=west to Meadowbrook Vale - Depths
+@open south=south to Meadowbrook Vale - Nook 2
+@open east=east to Meadowbrook Vale - Stretch
+
+# --- Room 14/20 ---
+dig Meadowbrook Vale - Stretch
+@desc A narrow trail winds through the tangled undergrowth. You hear skittering claws echoing among the ash trees and spot a discarded weapon half-hidden in the thick moss.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_brute_lvl3
+@tel here
+@open north=north to Meadowbrook Vale - Ledge
+@open west=west to Meadowbrook Vale - Crossroads
+@open south=south to Meadowbrook Vale - Grove 2
+@open east=east to Meadowbrook Vale - Bend
+
+# --- Room 15/20 ---
+dig Meadowbrook Vale - Bend
+@desc A narrow trail winds through the twisted undergrowth. You hear low rumbling tremors echoing among the ironwoods and spot scattered offerings half-hidden in the thick moss.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_balanced_lvl5
+@tel here
+@open north=north to Meadowbrook Vale - Gallery 2
+@open west=west to Meadowbrook Vale - Stretch
+@open south=south to Meadowbrook Vale - Heart
+
+# --- Room 16/20 ---
+dig Meadowbrook Vale - Passage
+@desc A narrow trail winds through the dense undergrowth. You hear skittering claws echoing among the ash trees and spot a broken altar half-hidden in the soft loam.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_caster_lvl10
+@tel here
+@open north=north to Meadowbrook Vale - Descent
+@open east=east to Meadowbrook Vale - Ridge 2
+
+# --- Room 17/20 ---
+dig Meadowbrook Vale - Ridge 2
+@desc A narrow trail winds through the overgrown undergrowth. You hear dripping echoes echoing among the cypresses and spot a weathered statue half-hidden in the soft loam.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_brute_lvl3
+@tel here
+@open north=north to Meadowbrook Vale - Depths
+@open west=west to Meadowbrook Vale - Passage
+@open east=east to Meadowbrook Vale - Nook 2
+
+# --- Room 18/20 ---
+dig Meadowbrook Vale - Nook 2
+@desc You have found a small clearing where moonlight streams through a break in the pines overhead. You notice scattered offerings resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_balanced_lvl8
+@tel here
+@spawn gen_brute_lvl10
+@tel here
+@open north=north to Meadowbrook Vale - Crossroads
+@open west=west to Meadowbrook Vale - Ridge 2
+@open east=east to Meadowbrook Vale - Grove 2
+
+# --- Room 19/20 ---
+dig Meadowbrook Vale - Grove 2
+@desc Ancient bloodoaks tower overhead, their shimmering canopy filtering the faint luminescence into dancing patterns on the forest floor. The air smells of decay, and the ground is carpeted with scattered bones.
+@tags/set room-zone:meadowbrook_vale
+@open north=north to Meadowbrook Vale - Stretch
+@open west=west to Meadowbrook Vale - Nook 2
+@open east=east to Meadowbrook Vale - Heart
+
+# --- Room 20/20 ---
+dig Meadowbrook Vale - Heart
+@desc Ancient oaks tower overhead, their dark canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with cracked stone.
+@tags/set room-zone:meadowbrook_vale
+@spawn gen_balanced_lvl3
+@tel here
+@open north=north to Meadowbrook Vale - Bend
+@open west=west to Meadowbrook Vale - Grove 2
+
+# Zone 'Meadowbrook Vale' complete — 20 rooms, 62 directed exits.

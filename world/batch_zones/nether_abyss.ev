@@ -1,0 +1,359 @@
+# Nether Abyss — Level 63-80
+# Auto-generated zone: The deepest pit of the underworld where ancient evils slumber
+# Faction: Gorgoroth Horde
+# Rooms: 33
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.nether_abyss")
+
+# --- Room 1/33 ---
+dig Nether Abyss - Entrance
+@desc Crumbling pristine walls rise from the soft loam, remnants of a darkened civilization. You see a discarded weapon carved into the weathered stone, and strange whispers drift through the shimmering halls.
+@tags/set room-zone:nether_abyss
+@open south=south to Nether Abyss - Nook
+@open east=east to Nether Abyss - Path
+
+# --- Room 2/33 ---
+dig Nether Abyss - Path
+@desc A pristine archway still stands defiantly amid the shimmering ruins. You notice ancient runes marking the keystone, and faint chants seem to emanate from the stones themselves.
+@tags/set room-zone:nether_abyss
+@spawn gen_tank_lvl68
+@tel here
+@open west=west to Nether Abyss - Entrance
+@open south=south to Nether Abyss - Crossroads 2
+@open east=east to Nether Abyss - Hollow
+
+# --- Room 3/33 ---
+dig Nether Abyss - Hollow
+@desc Crumbling ancient walls rise from the exposed roots, remnants of a majestic civilization. You see a dark bloodstain carved into the weathered stone, and distant howls drift through the ancient halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_caster_lvl80
+@tel here
+@open west=west to Nether Abyss - Path
+@open south=south to Nether Abyss - Bend
+@open east=east to Nether Abyss - Ascent
+
+# --- Room 4/33 ---
+dig Nether Abyss - Ascent
+@desc You pick your way through desolate rubble that was once a foreboding structure. ethereal radiance streams through gaps in the ceiling, illuminating a weathered statue on the floor.
+@tags/set room-zone:nether_abyss
+@spawn gen_brute_lvl63
+@tel here
+@open west=west to Nether Abyss - Hollow
+@open south=south to Nether Abyss - Clearing 2
+@open east=east to Nether Abyss - Passage
+
+# --- Room 5/33 ---
+dig Nether Abyss - Passage
+@desc You pick your way through shimmering rubble that was once a crumbling structure. ethereal radiance streams through gaps in the ceiling, illuminating a discarded weapon on the floor.
+@tags/set room-zone:nether_abyss
+@spawn gen_tank_lvl73
+@tel here
+@spawn gen_balanced_lvl73
+@tel here
+@open west=west to Nether Abyss - Ascent
+@open south=south to Nether Abyss - Crossroads 3
+@open east=east to Nether Abyss - Ledge
+
+# --- Room 6/33 ---
+dig Nether Abyss - Ledge
+@desc You pick your way through desolate rubble that was once a desolate structure. ethereal radiance streams through gaps in the ceiling, illuminating a discarded weapon on the floor.
+@tags/set room-zone:nether_abyss
+@spawn gen_assassin_lvl75
+@tel here
+@spawn gen_skirmisher_lvl70
+@tel here
+@open west=west to Nether Abyss - Passage
+@open south=south to Nether Abyss - Grotto
+
+# --- Room 7/33 ---
+dig Nether Abyss - Nook
+@desc A corrupted archway still stands defiantly amid the darkened ruins. You notice a weathered statue marking the keystone, and muffled voices seem to emanate from the stones themselves.
+@tags/set room-zone:nether_abyss
+@open north=north to Nether Abyss - Entrance
+@open south=south to Nether Abyss - Descent
+@open east=east to Nether Abyss - Crossroads 2
+
+# --- Room 8/33 ---
+dig Nether Abyss - Crossroads 2
+@desc Crumbling corrupted walls rise from the fallen leaves, remnants of a desolate civilization. You see scattered offerings carved into the weathered stone, and low rumbling tremors drift through the crumbling halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_skirmisher_lvl75
+@tel here
+@open north=north to Nether Abyss - Path
+@open west=west to Nether Abyss - Nook
+@open south=south to Nether Abyss - Ledge 2
+@open east=east to Nether Abyss - Bend
+
+# --- Room 9/33 ---
+dig Nether Abyss - Bend
+@desc A foreboding archway still stands defiantly amid the ethereal ruins. You notice a broken altar marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:nether_abyss
+@spawn gen_skirmisher_lvl68
+@tel here
+@spawn gen_assassin_lvl75
+@tel here
+@open north=north to Nether Abyss - Hollow
+@open west=west to Nether Abyss - Crossroads 2
+@open south=south to Nether Abyss - Bend 2
+@open east=east to Nether Abyss - Clearing 2
+
+# --- Room 10/33 ---
+dig Nether Abyss - Clearing 2
+@desc You pick your way through pristine rubble that was once a foreboding structure. dim luminescence streams through gaps in the ceiling, illuminating a discarded weapon on the floor.
+@tags/set room-zone:nether_abyss
+@spawn gen_balanced_lvl80
+@tel here
+@open north=north to Nether Abyss - Ascent
+@open west=west to Nether Abyss - Bend
+@open south=south to Nether Abyss - Grove 4
+@open east=east to Nether Abyss - Crossroads 3
+
+# --- Room 11/33 ---
+dig Nether Abyss - Crossroads 3
+@desc The ethereal chamber you have entered must once have been important. You notice a dark bloodstain dominating the center, with moonlight pooling around it like a shimmering blessing.
+@tags/set room-zone:nether_abyss
+@open north=north to Nether Abyss - Passage
+@open west=west to Nether Abyss - Clearing 2
+@open south=south to Nether Abyss - Ridge 2
+@open east=east to Nether Abyss - Grotto
+
+# --- Room 12/33 ---
+dig Nether Abyss - Grotto
+@desc You pick your way through ethereal rubble that was once a ancient structure. faint luminescence streams through gaps in the ceiling, illuminating a discarded weapon on the floor.
+@tags/set room-zone:nether_abyss
+@spawn gen_balanced_lvl73
+@tel here
+@spawn gen_tank_lvl68
+@tel here
+@open north=north to Nether Abyss - Ledge
+@open west=west to Nether Abyss - Crossroads 3
+@open south=south to Nether Abyss - Grove
+
+# --- Room 13/33 ---
+dig Nether Abyss - Descent
+@desc Crumbling majestic walls rise from the exposed roots, remnants of a ancient civilization. You see ancient runes carved into the weathered stone, and muffled voices drift through the ancient halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_assassin_lvl73
+@tel here
+@spawn gen_skirmisher_lvl78
+@tel here
+@open north=north to Nether Abyss - Nook
+@open south=south to Nether Abyss - Gallery 3
+@open east=east to Nether Abyss - Ledge 2
+
+# --- Room 14/33 ---
+dig Nether Abyss - Ledge 2
+@desc Crumbling ancient walls rise from the cracked stone, remnants of a desolate civilization. You see a dark bloodstain carved into the weathered stone, and skittering claws drift through the desolate halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_caster_lvl70
+@tel here
+@open north=north to Nether Abyss - Crossroads 2
+@open west=west to Nether Abyss - Descent
+@open south=south to Nether Abyss - Clearing
+@open east=east to Nether Abyss - Bend 2
+
+# --- Room 15/33 ---
+dig Nether Abyss - Bend 2
+@desc Crumbling majestic walls rise from the soft loam, remnants of a majestic civilization. You see ancient runes carved into the weathered stone, and strange whispers drift through the shimmering halls.
+@tags/set room-zone:nether_abyss
+@open north=north to Nether Abyss - Bend
+@open west=west to Nether Abyss - Ledge 2
+@open south=south to Nether Abyss - Stretch 2
+@open east=east to Nether Abyss - Grove 4
+
+# --- Room 16/33 ---
+dig Nether Abyss - Grove 4
+@desc Crumbling shimmering walls rise from the scattered bones, remnants of a crumbling civilization. You see a dark bloodstain carved into the weathered stone, and low rumbling tremors drift through the ancient halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_caster_lvl68
+@tel here
+@spawn gen_tank_lvl68
+@tel here
+@open north=north to Nether Abyss - Clearing 2
+@open west=west to Nether Abyss - Bend 2
+@open south=south to Nether Abyss - Nook 2
+@open east=east to Nether Abyss - Ridge 2
+
+# --- Room 17/33 ---
+dig Nether Abyss - Ridge 2
+@desc You pick your way through ethereal rubble that was once a shimmering structure. sunlight streams through gaps in the ceiling, illuminating a weathered statue on the floor.
+@tags/set room-zone:nether_abyss
+@spawn gen_caster_lvl73
+@tel here
+@open north=north to Nether Abyss - Crossroads 3
+@open west=west to Nether Abyss - Grove 4
+@open south=south to Nether Abyss - Crossroads
+@open east=east to Nether Abyss - Grove
+
+# --- Room 18/33 ---
+dig Nether Abyss - Grove
+@desc A darkened archway still stands defiantly amid the ancient ruins. You notice a weathered statue marking the keystone, and muffled voices seem to emanate from the stones themselves.
+@tags/set room-zone:nether_abyss
+@spawn gen_brute_lvl78
+@tel here
+@spawn gen_skirmisher_lvl68
+@tel here
+@open north=north to Nether Abyss - Grotto
+@open west=west to Nether Abyss - Ridge 2
+@open south=south to Nether Abyss - Gallery 2
+
+# --- Room 19/33 ---
+dig Nether Abyss - Gallery 3
+@desc The ancient chamber you have entered must once have been important. You notice a broken altar dominating the center, with ethereal radiance pooling around it like a darkened blessing.
+@tags/set room-zone:nether_abyss
+@open north=north to Nether Abyss - Descent
+@open south=south to Nether Abyss - Expanse
+@open east=east to Nether Abyss - Clearing
+
+# --- Room 20/33 ---
+dig Nether Abyss - Clearing
+@desc The foreboding chamber you have entered must once have been important. You notice scattered offerings dominating the center, with filtered light pooling around it like a ethereal blessing.
+@tags/set room-zone:nether_abyss
+@spawn gen_caster_lvl68
+@tel here
+@open north=north to Nether Abyss - Ledge 2
+@open west=west to Nether Abyss - Gallery 3
+@open south=south to Nether Abyss - Nook 3
+@open east=east to Nether Abyss - Stretch 2
+
+# --- Room 21/33 ---
+dig Nether Abyss - Stretch 2
+@desc Crumbling ethereal walls rise from the scattered bones, remnants of a ancient civilization. You see a weathered statue carved into the weathered stone, and faint chants drift through the desolate halls.
+@tags/set room-zone:nether_abyss
+@open north=north to Nether Abyss - Bend 2
+@open west=west to Nether Abyss - Clearing
+@open south=south to Nether Abyss - Path 2
+@open east=east to Nether Abyss - Nook 2
+
+# --- Room 22/33 ---
+dig Nether Abyss - Nook 2
+@desc You pick your way through ancient rubble that was once a ethereal structure. moonlight streams through gaps in the ceiling, illuminating a discarded weapon on the floor.
+@tags/set room-zone:nether_abyss
+@spawn gen_tank_lvl75
+@tel here
+@spawn gen_balanced_lvl73
+@tel here
+@open north=north to Nether Abyss - Grove 4
+@open west=west to Nether Abyss - Stretch 2
+@open south=south to Nether Abyss - Chamber
+@open east=east to Nether Abyss - Crossroads
+
+# --- Room 23/33 ---
+dig Nether Abyss - Crossroads
+@desc A majestic archway still stands defiantly amid the ancient ruins. You notice flickering torchlight marking the keystone, and skittering claws seem to emanate from the stones themselves.
+@tags/set room-zone:nether_abyss
+@spawn gen_balanced_lvl73
+@tel here
+@spawn gen_tank_lvl78
+@tel here
+@open north=north to Nether Abyss - Ridge 2
+@open west=west to Nether Abyss - Nook 2
+@open south=south to Nether Abyss - Hollow 4
+@open east=east to Nether Abyss - Gallery 2
+
+# --- Room 24/33 ---
+dig Nether Abyss - Gallery 2
+@desc Crumbling pristine walls rise from the thick moss, remnants of a majestic civilization. You see flickering torchlight carved into the weathered stone, and muffled voices drift through the darkened halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_balanced_lvl80
+@tel here
+@spawn gen_tank_lvl65
+@tel here
+@open north=north to Nether Abyss - Grove
+@open west=west to Nether Abyss - Crossroads
+@open south=south to Nether Abyss - Expanse 2
+
+# --- Room 25/33 ---
+dig Nether Abyss - Expanse
+@desc A crumbling archway still stands defiantly amid the ethereal ruins. You notice scattered offerings marking the keystone, and faint chants seem to emanate from the stones themselves.
+@tags/set room-zone:nether_abyss
+@spawn gen_tank_lvl65
+@tel here
+@spawn gen_assassin_lvl70
+@tel here
+@open north=north to Nether Abyss - Gallery 3
+@open south=south to Nether Abyss - Expanse 3
+@open east=east to Nether Abyss - Nook 3
+
+# --- Room 26/33 ---
+dig Nether Abyss - Nook 3
+@desc The crumbling chamber you have entered must once have been important. You notice a discarded weapon dominating the center, with ethereal radiance pooling around it like a desolate blessing.
+@tags/set room-zone:nether_abyss
+@spawn gen_skirmisher_lvl68
+@tel here
+@open north=north to Nether Abyss - Clearing
+@open west=west to Nether Abyss - Expanse
+@open south=south to Nether Abyss - Gallery
+@open east=east to Nether Abyss - Path 2
+
+# --- Room 27/33 ---
+dig Nether Abyss - Path 2
+@desc A pristine archway still stands defiantly amid the majestic ruins. You notice a discarded weapon marking the keystone, and skittering claws seem to emanate from the stones themselves.
+@tags/set room-zone:nether_abyss
+@spawn gen_tank_lvl75
+@tel here
+@spawn gen_skirmisher_lvl73
+@tel here
+@open north=north to Nether Abyss - Stretch 2
+@open west=west to Nether Abyss - Nook 3
+@open south=south to Nether Abyss - Heart
+@open east=east to Nether Abyss - Chamber
+
+# --- Room 28/33 ---
+dig Nether Abyss - Chamber
+@desc Crumbling majestic walls rise from the soft loam, remnants of a ethereal civilization. You see a broken altar carved into the weathered stone, and dripping echoes drift through the majestic halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_balanced_lvl73
+@tel here
+@open north=north to Nether Abyss - Nook 2
+@open west=west to Nether Abyss - Path 2
+@open east=east to Nether Abyss - Hollow 4
+
+# --- Room 29/33 ---
+dig Nether Abyss - Hollow 4
+@desc Crumbling darkened walls rise from the fallen leaves, remnants of a shimmering civilization. You see a dark bloodstain carved into the weathered stone, and strange whispers drift through the desolate halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_balanced_lvl78
+@tel here
+@open north=north to Nether Abyss - Crossroads
+@open west=west to Nether Abyss - Chamber
+@open east=east to Nether Abyss - Expanse 2
+
+# --- Room 30/33 ---
+dig Nether Abyss - Expanse 2
+@desc Crumbling darkened walls rise from the exposed roots, remnants of a crumbling civilization. You see scattered offerings carved into the weathered stone, and distant howls drift through the majestic halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_brute_lvl78
+@tel here
+@open north=north to Nether Abyss - Gallery 2
+@open west=west to Nether Abyss - Hollow 4
+
+# --- Room 31/33 ---
+dig Nether Abyss - Expanse 3
+@desc You pick your way through foreboding rubble that was once a foreboding structure. moonlight streams through gaps in the ceiling, illuminating a dark bloodstain on the floor.
+@tags/set room-zone:nether_abyss
+@open north=north to Nether Abyss - Expanse
+@open east=east to Nether Abyss - Gallery
+
+# --- Room 32/33 ---
+dig Nether Abyss - Gallery
+@desc Crumbling majestic walls rise from the thick moss, remnants of a ancient civilization. You see ancient runes carved into the weathered stone, and strange whispers drift through the shimmering halls.
+@tags/set room-zone:nether_abyss
+@spawn gen_balanced_lvl70
+@tel here
+@spawn gen_tank_lvl80
+@tel here
+@open north=north to Nether Abyss - Nook 3
+@open west=west to Nether Abyss - Expanse 3
+@open east=east to Nether Abyss - Heart
+
+# --- Room 33/33 ---
+dig Nether Abyss - Heart
+@desc The majestic chamber you have entered must once have been important. You notice a dark bloodstain dominating the center, with moonlight pooling around it like a desolate blessing.
+@tags/set room-zone:nether_abyss
+@open north=north to Nether Abyss - Path 2
+@open west=west to Nether Abyss - Gallery
+
+# Zone 'Nether Abyss' complete — 33 rooms, 108 directed exits.

@@ -1,0 +1,248 @@
+# Petrified Forest of Ages — Level 41-54
+# Auto-generated zone: Ancient forest turned to stone, with fossilized creatures frozen mid-stride
+# Faction: Neutral
+# Rooms: 24
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.petrified_forest")
+
+# --- Room 1/24 ---
+dig Petrified Forest of Ages - Entrance
+@desc A narrow trail winds through the thick undergrowth. You hear muffled voices echoing among the cypresses and spot a dark bloodstain half-hidden in the scattered bones.
+@tags/set room-zone:petrified_forest
+@open south=south to Petrified Forest of Ages - Bend
+@open east=east to Petrified Forest of Ages - Depths
+
+# --- Room 2/24 ---
+dig Petrified Forest of Ages - Depths
+@desc The elms grow sparse here, their ancient branches intertwining overhead. You hear strange whispers drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:petrified_forest
+@open west=west to Petrified Forest of Ages - Entrance
+@open south=south to Petrified Forest of Ages - Grove
+@open east=east to Petrified Forest of Ages - Ascent
+
+# --- Room 3/24 ---
+dig Petrified Forest of Ages - Ascent
+@desc Ancient pines tower overhead, their dense canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of incense, and the ground is carpeted with fallen leaves.
+@tags/set room-zone:petrified_forest
+@open west=west to Petrified Forest of Ages - Depths
+@open south=south to Petrified Forest of Ages - Expanse
+@open east=east to Petrified Forest of Ages - Ridge
+
+# --- Room 4/24 ---
+dig Petrified Forest of Ages - Ridge
+@desc You have found a small clearing where faint luminescence streams through a break in the ash trees overhead. You notice a broken altar resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@spawn gen_skirmisher_lvl50
+@tel here
+@open west=west to Petrified Forest of Ages - Ascent
+@open south=south to Petrified Forest of Ages - Hollow 2
+@open east=east to Petrified Forest of Ages - Ledge
+
+# --- Room 5/24 ---
+dig Petrified Forest of Ages - Ledge
+@desc You have found a small clearing where filtered light streams through a break in the ironwoods overhead. You notice a dark bloodstain resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@spawn gen_brute_lvl53
+@tel here
+@open west=west to Petrified Forest of Ages - Ridge
+@open south=south to Petrified Forest of Ages - Overlook
+
+# --- Room 6/24 ---
+dig Petrified Forest of Ages - Bend
+@desc You have found a small clearing where faint luminescence streams through a break in the cypresses overhead. You notice ancient runes resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@open north=north to Petrified Forest of Ages - Entrance
+@open south=south to Petrified Forest of Ages - Passage
+@open east=east to Petrified Forest of Ages - Grove
+
+# --- Room 7/24 ---
+dig Petrified Forest of Ages - Grove
+@desc A narrow trail winds through the overgrown undergrowth. You hear skittering claws echoing among the ash trees and spot scattered offerings half-hidden in the soft loam.
+@tags/set room-zone:petrified_forest
+@spawn gen_skirmisher_lvl43
+@tel here
+@spawn gen_caster_lvl45
+@tel here
+@open north=north to Petrified Forest of Ages - Depths
+@open west=west to Petrified Forest of Ages - Bend
+@open south=south to Petrified Forest of Ages - Hollow
+@open east=east to Petrified Forest of Ages - Expanse
+
+# --- Room 8/24 ---
+dig Petrified Forest of Ages - Expanse
+@desc You have found a small clearing where sunlight streams through a break in the pines overhead. You notice a weathered statue resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@spawn gen_skirmisher_lvl45
+@tel here
+@open north=north to Petrified Forest of Ages - Ascent
+@open west=west to Petrified Forest of Ages - Grove
+@open south=south to Petrified Forest of Ages - Descent
+@open east=east to Petrified Forest of Ages - Hollow 2
+
+# --- Room 9/24 ---
+dig Petrified Forest of Ages - Hollow 2
+@desc You have found a small clearing where dim luminescence streams through a break in the willows overhead. You notice a weathered statue resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@spawn gen_balanced_lvl48
+@tel here
+@spawn gen_brute_lvl50
+@tel here
+@open north=north to Petrified Forest of Ages - Ridge
+@open west=west to Petrified Forest of Ages - Expanse
+@open south=south to Petrified Forest of Ages - Grotto 2
+@open east=east to Petrified Forest of Ages - Overlook
+
+# --- Room 10/24 ---
+dig Petrified Forest of Ages - Overlook
+@desc A narrow trail winds through the sparse undergrowth. You hear dripping echoes echoing among the willows and spot a broken altar half-hidden in the scattered bones.
+@tags/set room-zone:petrified_forest
+@open north=north to Petrified Forest of Ages - Ledge
+@open west=west to Petrified Forest of Ages - Hollow 2
+@open south=south to Petrified Forest of Ages - Ascent 2
+
+# --- Room 11/24 ---
+dig Petrified Forest of Ages - Passage
+@desc Ancient cypresses tower overhead, their ancient canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of brimstone, and the ground is carpeted with scattered bones.
+@tags/set room-zone:petrified_forest
+@open north=north to Petrified Forest of Ages - Bend
+@open south=south to Petrified Forest of Ages - Chamber
+@open east=east to Petrified Forest of Ages - Hollow
+
+# --- Room 12/24 ---
+dig Petrified Forest of Ages - Hollow
+@desc You have found a small clearing where sunlight streams through a break in the oaks overhead. You notice a dark bloodstain resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@open north=north to Petrified Forest of Ages - Grove
+@open west=west to Petrified Forest of Ages - Passage
+@open south=south to Petrified Forest of Ages - Ridge 2
+@open east=east to Petrified Forest of Ages - Descent
+
+# --- Room 13/24 ---
+dig Petrified Forest of Ages - Descent
+@desc Ancient willows tower overhead, their dense canopy filtering the faint luminescence into dancing patterns on the forest floor. The air smells of pine resin, and the ground is carpeted with scattered bones.
+@tags/set room-zone:petrified_forest
+@spawn gen_brute_lvl45
+@tel here
+@open north=north to Petrified Forest of Ages - Expanse
+@open west=west to Petrified Forest of Ages - Hollow
+@open south=south to Petrified Forest of Ages - Overlook 2
+@open east=east to Petrified Forest of Ages - Grotto 2
+
+# --- Room 14/24 ---
+dig Petrified Forest of Ages - Grotto 2
+@desc Ancient oaks tower overhead, their ancient canopy filtering the faint luminescence into dancing patterns on the forest floor. The air smells of pine resin, and the ground is carpeted with fallen leaves.
+@tags/set room-zone:petrified_forest
+@spawn gen_assassin_lvl43
+@tel here
+@spawn gen_skirmisher_lvl43
+@tel here
+@open north=north to Petrified Forest of Ages - Hollow 2
+@open west=west to Petrified Forest of Ages - Descent
+@open south=south to Petrified Forest of Ages - Descent 2
+@open east=east to Petrified Forest of Ages - Ascent 2
+
+# --- Room 15/24 ---
+dig Petrified Forest of Ages - Ascent 2
+@desc Ancient oaks tower overhead, their dense canopy filtering the moonlight into dancing patterns on the forest floor. The air smells of ozone, and the ground is carpeted with exposed roots.
+@tags/set room-zone:petrified_forest
+@spawn gen_tank_lvl43
+@tel here
+@open north=north to Petrified Forest of Ages - Overlook
+@open west=west to Petrified Forest of Ages - Grotto 2
+@open south=south to Petrified Forest of Ages - Gallery
+
+# --- Room 16/24 ---
+dig Petrified Forest of Ages - Chamber
+@desc You have found a small clearing where sunlight streams through a break in the bloodoaks overhead. You notice a dark bloodstain resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@spawn gen_assassin_lvl43
+@tel here
+@spawn gen_brute_lvl43
+@tel here
+@open north=north to Petrified Forest of Ages - Passage
+@open south=south to Petrified Forest of Ages - Expanse 2
+@open east=east to Petrified Forest of Ages - Ridge 2
+
+# --- Room 17/24 ---
+dig Petrified Forest of Ages - Ridge 2
+@desc A narrow trail winds through the sparse undergrowth. You hear low rumbling tremors echoing among the pines and spot ancient runes half-hidden in the soft loam.
+@tags/set room-zone:petrified_forest
+@spawn gen_tank_lvl48
+@tel here
+@open north=north to Petrified Forest of Ages - Hollow
+@open west=west to Petrified Forest of Ages - Chamber
+@open south=south to Petrified Forest of Ages - Grotto
+@open east=east to Petrified Forest of Ages - Overlook 2
+
+# --- Room 18/24 ---
+dig Petrified Forest of Ages - Overlook 2
+@desc You have found a small clearing where moonlight streams through a break in the cypresses overhead. You notice a dark bloodstain resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@spawn gen_balanced_lvl45
+@tel here
+@open north=north to Petrified Forest of Ages - Descent
+@open west=west to Petrified Forest of Ages - Ridge 2
+@open south=south to Petrified Forest of Ages - Clearing
+@open east=east to Petrified Forest of Ages - Descent 2
+
+# --- Room 19/24 ---
+dig Petrified Forest of Ages - Descent 2
+@desc Ancient oaks tower overhead, their tangled canopy filtering the filtered light into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with soft loam.
+@tags/set room-zone:petrified_forest
+@spawn gen_brute_lvl53
+@tel here
+@open north=north to Petrified Forest of Ages - Grotto 2
+@open west=west to Petrified Forest of Ages - Overlook 2
+@open south=south to Petrified Forest of Ages - Heart
+@open east=east to Petrified Forest of Ages - Gallery
+
+# --- Room 20/24 ---
+dig Petrified Forest of Ages - Gallery
+@desc A narrow trail winds through the tangled undergrowth. You hear skittering claws echoing among the cypresses and spot a discarded weapon half-hidden in the soft loam.
+@tags/set room-zone:petrified_forest
+@spawn gen_brute_lvl43
+@tel here
+@open north=north to Petrified Forest of Ages - Ascent 2
+@open west=west to Petrified Forest of Ages - Descent 2
+
+# --- Room 21/24 ---
+dig Petrified Forest of Ages - Expanse 2
+@desc The pines grow thick here, their darkened branches intertwining overhead. You hear distant howls drifting on the breeze, and the path ahead looks overgrown.
+@tags/set room-zone:petrified_forest
+@open north=north to Petrified Forest of Ages - Chamber
+@open east=east to Petrified Forest of Ages - Grotto
+
+# --- Room 22/24 ---
+dig Petrified Forest of Ages - Grotto
+@desc A narrow trail winds through the overgrown undergrowth. You hear muffled voices echoing among the pines and spot a weathered statue half-hidden in the exposed roots.
+@tags/set room-zone:petrified_forest
+@spawn gen_tank_lvl48
+@tel here
+@spawn gen_assassin_lvl48
+@tel here
+@open north=north to Petrified Forest of Ages - Ridge 2
+@open west=west to Petrified Forest of Ages - Expanse 2
+@open east=east to Petrified Forest of Ages - Clearing
+
+# --- Room 23/24 ---
+dig Petrified Forest of Ages - Clearing
+@desc You have found a small clearing where faint luminescence streams through a break in the ironwoods overhead. You notice flickering torchlight resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:petrified_forest
+@spawn gen_tank_lvl50
+@tel here
+@spawn gen_balanced_lvl45
+@tel here
+@open north=north to Petrified Forest of Ages - Overlook 2
+@open west=west to Petrified Forest of Ages - Grotto
+@open east=east to Petrified Forest of Ages - Heart
+
+# --- Room 24/24 ---
+dig Petrified Forest of Ages - Heart
+@desc The ironwoods grow overgrown here, their ethereal branches intertwining overhead. You hear distant howls drifting on the breeze, and the path ahead looks treacherous.
+@tags/set room-zone:petrified_forest
+@open north=north to Petrified Forest of Ages - Descent 2
+@open west=west to Petrified Forest of Ages - Clearing
+
+# Zone 'Petrified Forest of Ages' complete — 24 rooms, 76 directed exits.

@@ -1,0 +1,126 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Armory — Rites of Passage{% endblock %}
+
+{% block content %}
+
+<div class="content-card ornate">
+  <h1>Armory</h1>
+  <p style="text-align: center; color: var(--text-dim);">
+    All characters who have completed their Rites of Passage.
+    Search, sort, and inspect the heroes and villains of the realm.
+  </p>
+</div>
+
+<div class="content-card">
+  <!-- Controls -->
+  <form method="get" action="/armory" class="armory-controls">
+    <input type="search" name="q" placeholder="Search by name, race, or class..." value="{{ search_query }}" autofocus>
+    <select name="sort" onchange="this.form.submit()">
+      <option value="name" {% if sort_by == "name" %}selected{% endif %}>Sort: Name</option>
+      <option value="level" {% if sort_by == "level" %}selected{% endif %}>Sort: Level ↓</option>
+      <option value="race" {% if sort_by == "race" %}selected{% endif %}>Sort: Race</option>
+      <option value="class" {% if sort_by == "class" %}selected{% endif %}>Sort: Class</option>
+      <option value="kills" {% if sort_by == "kills" %}selected{% endif %}>Sort: Kills ↓</option>
+      <option value="warpoints" {% if sort_by == "warpoints" %}selected{% endif %}>Sort: Warpoints ↓</option>
+      <option value="hp" {% if sort_by == "hp" %}selected{% endif %}>Sort: HP ↓</option>
+    </select>
+    <select name="faction" onchange="this.form.submit()">
+      <option value="">All Factions</option>
+      <option value="good" {% if faction_filter == "good" %}selected{% endif %}>Good Only</option>
+      <option value="evil" {% if faction_filter == "evil" %}selected{% endif %}>Evil Only</option>
+    </select>
+    <select name="class" onchange="this.form.submit()">
+      <option value="">All Classes</option>
+      {% for c in all_classes %}
+        <option value="{{ c }}" {% if class_filter == c %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+    {% if search_query or faction_filter or class_filter %}
+      <a href="/armory" class="btn btn-sm btn-secondary">Clear</a>
+    {% endif %}
+  </form>
+
+  <div class="armory-stats">
+    <strong>{{ total_chars }}</strong> character{{ total_chars|pluralize }} found
+    {% if search_query %}matching "<em>{{ search_query }}</em>"{% endif %}
+  </div>
+</div>
+
+<!-- Results Table -->
+<div class="content-card" style="overflow-x: auto;">
+  {% if characters %}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Race</th>
+        <th>Class</th>
+        <th>Faction</th>
+        <th>HP</th>
+        <th>Mana</th>
+        <th>Kills</th>
+        <th>Warpoints</th>
+        <th>Stats</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for char in characters %}
+      <tr class="{% if char.alignment == 'Good' %}good-row{% else %}evil-row{% endif %}">
+        <td>
+          <span class="character-name-link">{{ char.name }}</span>
+        </td>
+        <td><span class="level-badge">{{ char.level }}</span></td>
+        <td>{{ char.race }}</td>
+        <td>{{ char.cls }}</td>
+        <td>
+          {% if char.alignment == "Good" %}
+            <span class="badge badge-good">Good</span>
+          {% else %}
+            <span class="badge badge-evil">Evil</span>
+          {% endif %}
+        </td>
+        <td>
+          {{ char.hp }}/{{ char.max_hp }}
+          <div class="stat-bar">
+            <div class="stat-bar-fill hp" style="width: {% widthratio char.hp char.max_hp 100 %}%"></div>
+          </div>
+        </td>
+        <td>
+          {{ char.mana }}/{{ char.max_mana }}
+          <div class="stat-bar">
+            <div class="stat-bar-fill mana" style="width: {% widthratio char.mana char.max_mana 100 %}%"></div>
+          </div>
+        </td>
+        <td style="text-align: center; font-family: var(--font-display); color: var(--red-bright); font-weight: 700;">
+          {{ char.kills }}
+        </td>
+        <td style="text-align: center; font-family: var(--font-display); color: var(--gold); font-weight: 700;">
+          {{ char.warpoints }}
+        </td>
+        <td style="white-space: nowrap;">
+          <span class="stat-mini" title="STR">{{ char.stats.str }}</span>
+          <span class="stat-mini" title="DEX">{{ char.stats.dex }}</span>
+          <span class="stat-mini" title="CON">{{ char.stats.con }}</span>
+          <span class="stat-mini" title="INT">{{ char.stats.int }}</span>
+          <span class="stat-mini" title="WIS">{{ char.stats.wis }}</span>
+          <span class="stat-mini" title="CHA">{{ char.stats.cha }}</span>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div style="text-align: center; padding: var(--space-2xl); color: var(--text-muted);">
+      <p style="font-size: 1.2rem;">No characters found</p>
+      <p>{% if search_query or faction_filter or class_filter %}Try adjusting your filters.{% else %}Be the first to complete the Rites of Passage!{% endif %}</p>
+      {% if not search_query and not faction_filter and not class_filter %}
+        <a href="/webclient/" class="btn" style="margin-top: var(--space-md);">Create a Character</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,330 @@
+# Dragonbone Graveyard — Level 41-55
+# Auto-generated zone: Ancient battlefield littered with the skeletal remains of dragons
+# Faction: Neutral
+# Rooms: 30
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.dragonbone_graveyard")
+
+# --- Room 1/30 ---
+dig Dragonbone Graveyard - Entrance
+@desc Crumbling pristine walls rise from the fallen leaves, remnants of a ethereal civilization. You see a broken altar carved into the weathered stone, and skittering claws drift through the pristine halls.
+@tags/set room-zone:dragonbone_graveyard
+@open south=south to Dragonbone Graveyard - Nook
+@open east=east to Dragonbone Graveyard - Passage
+
+# --- Room 2/30 ---
+dig Dragonbone Graveyard - Passage
+@desc A shimmering archway still stands defiantly amid the shimmering ruins. You notice ancient runes marking the keystone, and strange whispers seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@open west=west to Dragonbone Graveyard - Entrance
+@open south=south to Dragonbone Graveyard - Bend
+@open east=east to Dragonbone Graveyard - Chamber
+
+# --- Room 3/30 ---
+dig Dragonbone Graveyard - Chamber
+@desc You pick your way through corrupted rubble that was once a corrupted structure. faint luminescence streams through gaps in the ceiling, illuminating flickering torchlight on the floor.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_caster_lvl50
+@tel here
+@spawn gen_caster_lvl43
+@tel here
+@open west=west to Dragonbone Graveyard - Passage
+@open south=south to Dragonbone Graveyard - Grove
+@open east=east to Dragonbone Graveyard - Hollow
+
+# --- Room 4/30 ---
+dig Dragonbone Graveyard - Hollow
+@desc Crumbling corrupted walls rise from the cracked stone, remnants of a crumbling civilization. You see scattered offerings carved into the weathered stone, and low rumbling tremors drift through the ancient halls.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_caster_lvl55
+@tel here
+@spawn gen_balanced_lvl50
+@tel here
+@open west=west to Dragonbone Graveyard - Chamber
+@open south=south to Dragonbone Graveyard - Grotto 2
+@open east=east to Dragonbone Graveyard - Gallery 2
+
+# --- Room 5/30 ---
+dig Dragonbone Graveyard - Gallery 2
+@desc The ancient chamber you have entered must once have been important. You notice a weathered statue dominating the center, with faint luminescence pooling around it like a shimmering blessing.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_assassin_lvl50
+@tel here
+@spawn gen_caster_lvl45
+@tel here
+@open west=west to Dragonbone Graveyard - Hollow
+@open south=south to Dragonbone Graveyard - Ascent
+@open east=east to Dragonbone Graveyard - Gallery
+
+# --- Room 6/30 ---
+dig Dragonbone Graveyard - Gallery
+@desc A pristine archway still stands defiantly amid the pristine ruins. You notice scattered offerings marking the keystone, and faint chants seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_caster_lvl55
+@tel here
+@spawn gen_tank_lvl43
+@tel here
+@open west=west to Dragonbone Graveyard - Gallery 2
+@open south=south to Dragonbone Graveyard - Descent
+
+# --- Room 7/30 ---
+dig Dragonbone Graveyard - Nook
+@desc The crumbling chamber you have entered must once have been important. You notice a discarded weapon dominating the center, with faint luminescence pooling around it like a shimmering blessing.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Entrance
+@open south=south to Dragonbone Graveyard - Overlook 3
+@open east=east to Dragonbone Graveyard - Bend
+
+# --- Room 8/30 ---
+dig Dragonbone Graveyard - Bend
+@desc A darkened archway still stands defiantly amid the majestic ruins. You notice a broken altar marking the keystone, and skittering claws seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Passage
+@open west=west to Dragonbone Graveyard - Nook
+@open south=south to Dragonbone Graveyard - Path
+@open east=east to Dragonbone Graveyard - Grove
+
+# --- Room 9/30 ---
+dig Dragonbone Graveyard - Grove
+@desc A foreboding archway still stands defiantly amid the shimmering ruins. You notice scattered offerings marking the keystone, and muffled voices seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_tank_lvl55
+@tel here
+@open north=north to Dragonbone Graveyard - Chamber
+@open west=west to Dragonbone Graveyard - Bend
+@open south=south to Dragonbone Graveyard - Expanse
+@open east=east to Dragonbone Graveyard - Grotto 2
+
+# --- Room 10/30 ---
+dig Dragonbone Graveyard - Grotto 2
+@desc A majestic archway still stands defiantly amid the crumbling ruins. You notice a dark bloodstain marking the keystone, and dripping echoes seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_skirmisher_lvl48
+@tel here
+@spawn gen_brute_lvl43
+@tel here
+@open north=north to Dragonbone Graveyard - Hollow
+@open west=west to Dragonbone Graveyard - Grove
+@open south=south to Dragonbone Graveyard - Passage 2
+@open east=east to Dragonbone Graveyard - Ascent
+
+# --- Room 11/30 ---
+dig Dragonbone Graveyard - Ascent
+@desc A foreboding archway still stands defiantly amid the ethereal ruins. You notice flickering torchlight marking the keystone, and dripping echoes seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Gallery 2
+@open west=west to Dragonbone Graveyard - Grotto 2
+@open south=south to Dragonbone Graveyard - Depths
+@open east=east to Dragonbone Graveyard - Descent
+
+# --- Room 12/30 ---
+dig Dragonbone Graveyard - Descent
+@desc Crumbling crumbling walls rise from the thick moss, remnants of a shimmering civilization. You see flickering torchlight carved into the weathered stone, and low rumbling tremors drift through the foreboding halls.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_skirmisher_lvl53
+@tel here
+@spawn gen_tank_lvl55
+@tel here
+@open north=north to Dragonbone Graveyard - Gallery
+@open west=west to Dragonbone Graveyard - Ascent
+@open south=south to Dragonbone Graveyard - Ledge 2
+
+# --- Room 13/30 ---
+dig Dragonbone Graveyard - Overlook 3
+@desc A ethereal archway still stands defiantly amid the desolate ruins. You notice a discarded weapon marking the keystone, and muffled voices seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Nook
+@open south=south to Dragonbone Graveyard - Overlook
+@open east=east to Dragonbone Graveyard - Path
+
+# --- Room 14/30 ---
+dig Dragonbone Graveyard - Path
+@desc A shimmering archway still stands defiantly amid the foreboding ruins. You notice scattered offerings marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Bend
+@open west=west to Dragonbone Graveyard - Overlook 3
+@open south=south to Dragonbone Graveyard - Bend 2
+@open east=east to Dragonbone Graveyard - Expanse
+
+# --- Room 15/30 ---
+dig Dragonbone Graveyard - Expanse
+@desc Crumbling ancient walls rise from the cracked stone, remnants of a pristine civilization. You see ancient runes carved into the weathered stone, and skittering claws drift through the crumbling halls.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_brute_lvl43
+@tel here
+@spawn gen_skirmisher_lvl50
+@tel here
+@open north=north to Dragonbone Graveyard - Grove
+@open west=west to Dragonbone Graveyard - Path
+@open south=south to Dragonbone Graveyard - Hollow 2
+@open east=east to Dragonbone Graveyard - Passage 2
+
+# --- Room 16/30 ---
+dig Dragonbone Graveyard - Passage 2
+@desc The desolate chamber you have entered must once have been important. You notice flickering torchlight dominating the center, with moonlight pooling around it like a crumbling blessing.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Grotto 2
+@open west=west to Dragonbone Graveyard - Expanse
+@open south=south to Dragonbone Graveyard - Chamber 2
+@open east=east to Dragonbone Graveyard - Depths
+
+# --- Room 17/30 ---
+dig Dragonbone Graveyard - Depths
+@desc A pristine archway still stands defiantly amid the majestic ruins. You notice scattered offerings marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_brute_lvl55
+@tel here
+@spawn gen_balanced_lvl48
+@tel here
+@open north=north to Dragonbone Graveyard - Ascent
+@open west=west to Dragonbone Graveyard - Passage 2
+@open south=south to Dragonbone Graveyard - Descent 2
+@open east=east to Dragonbone Graveyard - Ledge 2
+
+# --- Room 18/30 ---
+dig Dragonbone Graveyard - Ledge 2
+@desc A majestic archway still stands defiantly amid the ethereal ruins. You notice flickering torchlight marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_brute_lvl50
+@tel here
+@spawn gen_tank_lvl45
+@tel here
+@open north=north to Dragonbone Graveyard - Descent
+@open west=west to Dragonbone Graveyard - Depths
+@open south=south to Dragonbone Graveyard - Hollow 3
+
+# --- Room 19/30 ---
+dig Dragonbone Graveyard - Overlook
+@desc Crumbling majestic walls rise from the thick moss, remnants of a majestic civilization. You see flickering torchlight carved into the weathered stone, and skittering claws drift through the pristine halls.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_brute_lvl43
+@tel here
+@spawn gen_skirmisher_lvl48
+@tel here
+@open north=north to Dragonbone Graveyard - Overlook 3
+@open south=south to Dragonbone Graveyard - Ridge
+@open east=east to Dragonbone Graveyard - Bend 2
+
+# --- Room 20/30 ---
+dig Dragonbone Graveyard - Bend 2
+@desc The pristine chamber you have entered must once have been important. You notice flickering torchlight dominating the center, with filtered light pooling around it like a darkened blessing.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_assassin_lvl53
+@tel here
+@open north=north to Dragonbone Graveyard - Path
+@open west=west to Dragonbone Graveyard - Overlook
+@open south=south to Dragonbone Graveyard - Grove 2
+@open east=east to Dragonbone Graveyard - Hollow 2
+
+# --- Room 21/30 ---
+dig Dragonbone Graveyard - Hollow 2
+@desc You pick your way through desolate rubble that was once a pristine structure. faint luminescence streams through gaps in the ceiling, illuminating flickering torchlight on the floor.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_caster_lvl53
+@tel here
+@spawn gen_assassin_lvl43
+@tel here
+@open north=north to Dragonbone Graveyard - Expanse
+@open west=west to Dragonbone Graveyard - Bend 2
+@open south=south to Dragonbone Graveyard - Depths 2
+@open east=east to Dragonbone Graveyard - Chamber 2
+
+# --- Room 22/30 ---
+dig Dragonbone Graveyard - Chamber 2
+@desc A crumbling archway still stands defiantly amid the crumbling ruins. You notice a weathered statue marking the keystone, and dripping echoes seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Passage 2
+@open west=west to Dragonbone Graveyard - Hollow 2
+@open south=south to Dragonbone Graveyard - Stretch 2
+@open east=east to Dragonbone Graveyard - Descent 2
+
+# --- Room 23/30 ---
+dig Dragonbone Graveyard - Descent 2
+@desc A majestic archway still stands defiantly amid the shimmering ruins. You notice a dark bloodstain marking the keystone, and faint chants seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@open north=north to Dragonbone Graveyard - Depths
+@open west=west to Dragonbone Graveyard - Chamber 2
+@open south=south to Dragonbone Graveyard - Path 2
+@open east=east to Dragonbone Graveyard - Hollow 3
+
+# --- Room 24/30 ---
+dig Dragonbone Graveyard - Hollow 3
+@desc A foreboding archway still stands defiantly amid the darkened ruins. You notice a weathered statue marking the keystone, and strange whispers seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_balanced_lvl55
+@tel here
+@spawn gen_balanced_lvl50
+@tel here
+@open north=north to Dragonbone Graveyard - Ledge 2
+@open west=west to Dragonbone Graveyard - Descent 2
+@open south=south to Dragonbone Graveyard - Heart
+
+# --- Room 25/30 ---
+dig Dragonbone Graveyard - Ridge
+@desc You pick your way through foreboding rubble that was once a ethereal structure. ethereal radiance streams through gaps in the ceiling, illuminating a weathered statue on the floor.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_balanced_lvl45
+@tel here
+@spawn gen_assassin_lvl43
+@tel here
+@open north=north to Dragonbone Graveyard - Overlook
+@open east=east to Dragonbone Graveyard - Grove 2
+
+# --- Room 26/30 ---
+dig Dragonbone Graveyard - Grove 2
+@desc Crumbling crumbling walls rise from the scattered bones, remnants of a desolate civilization. You see ancient runes carved into the weathered stone, and dripping echoes drift through the ancient halls.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_brute_lvl50
+@tel here
+@spawn gen_assassin_lvl53
+@tel here
+@open north=north to Dragonbone Graveyard - Bend 2
+@open west=west to Dragonbone Graveyard - Ridge
+@open east=east to Dragonbone Graveyard - Depths 2
+
+# --- Room 27/30 ---
+dig Dragonbone Graveyard - Depths 2
+@desc A shimmering archway still stands defiantly amid the desolate ruins. You notice a weathered statue marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_caster_lvl43
+@tel here
+@open north=north to Dragonbone Graveyard - Hollow 2
+@open west=west to Dragonbone Graveyard - Grove 2
+@open east=east to Dragonbone Graveyard - Stretch 2
+
+# --- Room 28/30 ---
+dig Dragonbone Graveyard - Stretch 2
+@desc A ethereal archway still stands defiantly amid the pristine ruins. You notice scattered offerings marking the keystone, and low rumbling tremors seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_skirmisher_lvl55
+@tel here
+@spawn gen_balanced_lvl53
+@tel here
+@open north=north to Dragonbone Graveyard - Chamber 2
+@open west=west to Dragonbone Graveyard - Depths 2
+@open east=east to Dragonbone Graveyard - Path 2
+
+# --- Room 29/30 ---
+dig Dragonbone Graveyard - Path 2
+@desc A corrupted archway still stands defiantly amid the foreboding ruins. You notice scattered offerings marking the keystone, and skittering claws seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_skirmisher_lvl45
+@tel here
+@spawn gen_balanced_lvl55
+@tel here
+@open north=north to Dragonbone Graveyard - Descent 2
+@open west=west to Dragonbone Graveyard - Stretch 2
+@open east=east to Dragonbone Graveyard - Heart
+
+# --- Room 30/30 ---
+dig Dragonbone Graveyard - Heart
+@desc A shimmering archway still stands defiantly amid the desolate ruins. You notice a broken altar marking the keystone, and strange whispers seem to emanate from the stones themselves.
+@tags/set room-zone:dragonbone_graveyard
+@spawn gen_brute_lvl55
+@tel here
+@open north=north to Dragonbone Graveyard - Hollow 3
+@open west=west to Dragonbone Graveyard - Path 2
+
+# Zone 'Dragonbone Graveyard' complete — 30 rooms, 98 directed exits.

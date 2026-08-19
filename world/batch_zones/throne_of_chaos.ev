@@ -1,0 +1,377 @@
+# Throne of Chaos — Level 61-78
+# Auto-generated zone: The seat of ultimate power where reality bends and breaks
+# Faction: Neutral
+# Rooms: 35
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.throne_of_chaos")
+
+# --- Room 1/35 ---
+dig Throne of Chaos - Entrance
+@desc The oaks grow tangled here, their majestic branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks well-worn.
+@tags/set room-zone:throne_of_chaos
+@open south=south to Throne of Chaos - Thicket
+@open east=east to Throne of Chaos - Expanse
+
+# --- Room 2/35 ---
+dig Throne of Chaos - Expanse
+@desc A narrow trail winds through the dense undergrowth. You hear skittering claws echoing among the pines and spot a discarded weapon half-hidden in the exposed roots.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_balanced_lvl65
+@tel here
+@spawn gen_balanced_lvl65
+@tel here
+@open west=west to Throne of Chaos - Entrance
+@open south=south to Throne of Chaos - Passage
+@open east=east to Throne of Chaos - Ridge
+
+# --- Room 3/35 ---
+dig Throne of Chaos - Ridge
+@desc Ancient ash trees tower overhead, their dense canopy filtering the sunlight into dancing patterns on the forest floor. The air smells of damp earth, and the ground is carpeted with soft loam.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_brute_lvl73
+@tel here
+@open west=west to Throne of Chaos - Expanse
+@open south=south to Throne of Chaos - Stretch 2
+@open east=east to Throne of Chaos - Stretch
+
+# --- Room 4/35 ---
+dig Throne of Chaos - Stretch
+@desc The pines grow thick here, their corrupted branches intertwining overhead. You hear muffled voices drifting on the breeze, and the path ahead looks treacherous.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_caster_lvl70
+@tel here
+@open west=west to Throne of Chaos - Ridge
+@open south=south to Throne of Chaos - Clearing
+@open east=east to Throne of Chaos - Bend
+
+# --- Room 5/35 ---
+dig Throne of Chaos - Bend
+@desc Ancient cypresses tower overhead, their shimmering canopy filtering the filtered light into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with cracked stone.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_caster_lvl63
+@tel here
+@open west=west to Throne of Chaos - Stretch
+@open south=south to Throne of Chaos - Grotto
+@open east=east to Throne of Chaos - Crossroads
+
+# --- Room 6/35 ---
+dig Throne of Chaos - Crossroads
+@desc Ancient ironwoods tower overhead, their ancient canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with thick moss.
+@tags/set room-zone:throne_of_chaos
+@open west=west to Throne of Chaos - Bend
+@open south=south to Throne of Chaos - Grove
+
+# --- Room 7/35 ---
+dig Throne of Chaos - Thicket
+@desc Ancient pines tower overhead, their emerald canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of pine resin, and the ground is carpeted with thick moss.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_skirmisher_lvl63
+@tel here
+@spawn gen_skirmisher_lvl70
+@tel here
+@open north=north to Throne of Chaos - Entrance
+@open south=south to Throne of Chaos - Descent
+@open east=east to Throne of Chaos - Passage
+
+# --- Room 8/35 ---
+dig Throne of Chaos - Passage
+@desc The pines grow sparse here, their darkened branches intertwining overhead. You hear low rumbling tremors drifting on the breeze, and the path ahead looks treacherous.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Expanse
+@open west=west to Throne of Chaos - Thicket
+@open south=south to Throne of Chaos - Expanse 2
+@open east=east to Throne of Chaos - Stretch 2
+
+# --- Room 9/35 ---
+dig Throne of Chaos - Stretch 2
+@desc You have found a small clearing where dim luminescence streams through a break in the ash trees overhead. You notice a broken altar resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Ridge
+@open west=west to Throne of Chaos - Passage
+@open south=south to Throne of Chaos - Hollow
+@open east=east to Throne of Chaos - Clearing
+
+# --- Room 10/35 ---
+dig Throne of Chaos - Clearing
+@desc You have found a small clearing where faint luminescence streams through a break in the cypresses overhead. You notice a weathered statue resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_tank_lvl78
+@tel here
+@open north=north to Throne of Chaos - Stretch
+@open west=west to Throne of Chaos - Stretch 2
+@open south=south to Throne of Chaos - Overlook
+@open east=east to Throne of Chaos - Grotto
+
+# --- Room 11/35 ---
+dig Throne of Chaos - Grotto
+@desc The cypresses grow overgrown here, their pristine branches intertwining overhead. You hear faint chants drifting on the breeze, and the path ahead looks overgrown.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_tank_lvl65
+@tel here
+@spawn gen_tank_lvl73
+@tel here
+@open north=north to Throne of Chaos - Bend
+@open west=west to Throne of Chaos - Clearing
+@open south=south to Throne of Chaos - Passage 2
+@open east=east to Throne of Chaos - Grove
+
+# --- Room 12/35 ---
+dig Throne of Chaos - Grove
+@desc You have found a small clearing where dim luminescence streams through a break in the elms overhead. You notice a discarded weapon resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Crossroads
+@open west=west to Throne of Chaos - Grotto
+@open south=south to Throne of Chaos - Ascent 2
+
+# --- Room 13/35 ---
+dig Throne of Chaos - Descent
+@desc The oaks grow sparse here, their crumbling branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_skirmisher_lvl70
+@tel here
+@open north=north to Throne of Chaos - Thicket
+@open south=south to Throne of Chaos - Crossroads 2
+@open east=east to Throne of Chaos - Expanse 2
+
+# --- Room 14/35 ---
+dig Throne of Chaos - Expanse 2
+@desc The elms grow sparse here, their majestic branches intertwining overhead. You hear distant howls drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_brute_lvl75
+@tel here
+@spawn gen_skirmisher_lvl78
+@tel here
+@open north=north to Throne of Chaos - Passage
+@open west=west to Throne of Chaos - Descent
+@open south=south to Throne of Chaos - Ascent
+@open east=east to Throne of Chaos - Hollow
+
+# --- Room 15/35 ---
+dig Throne of Chaos - Hollow
+@desc Ancient bloodoaks tower overhead, their ancient canopy filtering the dim luminescence into dancing patterns on the forest floor. The air smells of damp earth, and the ground is carpeted with soft loam.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_brute_lvl65
+@tel here
+@spawn gen_caster_lvl75
+@tel here
+@open north=north to Throne of Chaos - Stretch 2
+@open west=west to Throne of Chaos - Expanse 2
+@open south=south to Throne of Chaos - Path
+@open east=east to Throne of Chaos - Overlook
+
+# --- Room 16/35 ---
+dig Throne of Chaos - Overlook
+@desc A narrow trail winds through the twisted undergrowth. You hear low rumbling tremors echoing among the pines and spot a dark bloodstain half-hidden in the thick moss.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_caster_lvl70
+@tel here
+@open north=north to Throne of Chaos - Clearing
+@open west=west to Throne of Chaos - Hollow
+@open south=south to Throne of Chaos - Chamber
+@open east=east to Throne of Chaos - Passage 2
+
+# --- Room 17/35 ---
+dig Throne of Chaos - Passage 2
+@desc You have found a small clearing where moonlight streams through a break in the oaks overhead. You notice a broken altar resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_brute_lvl78
+@tel here
+@spawn gen_caster_lvl75
+@tel here
+@open north=north to Throne of Chaos - Grotto
+@open west=west to Throne of Chaos - Overlook
+@open south=south to Throne of Chaos - Path 2
+@open east=east to Throne of Chaos - Ascent 2
+
+# --- Room 18/35 ---
+dig Throne of Chaos - Ascent 2
+@desc You have found a small clearing where filtered light streams through a break in the ash trees overhead. You notice a discarded weapon resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_skirmisher_lvl78
+@tel here
+@spawn gen_assassin_lvl70
+@tel here
+@open north=north to Throne of Chaos - Grove
+@open west=west to Throne of Chaos - Passage 2
+@open south=south to Throne of Chaos - Thicket 2
+
+# --- Room 19/35 ---
+dig Throne of Chaos - Crossroads 2
+@desc A narrow trail winds through the dense undergrowth. You hear skittering claws echoing among the ash trees and spot ancient runes half-hidden in the fallen leaves.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Descent
+@open south=south to Throne of Chaos - Depths 2
+@open east=east to Throne of Chaos - Ascent
+
+# --- Room 20/35 ---
+dig Throne of Chaos - Ascent
+@desc The cypresses grow sparse here, their corrupted branches intertwining overhead. You hear strange whispers drifting on the breeze, and the path ahead looks barely visible.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_skirmisher_lvl68
+@tel here
+@open north=north to Throne of Chaos - Expanse 2
+@open west=west to Throne of Chaos - Crossroads 2
+@open south=south to Throne of Chaos - Grove 2
+@open east=east to Throne of Chaos - Path
+
+# --- Room 21/35 ---
+dig Throne of Chaos - Path
+@desc The ash trees grow thick here, their majestic branches intertwining overhead. You hear low rumbling tremors drifting on the breeze, and the path ahead looks treacherous.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_assassin_lvl78
+@tel here
+@open north=north to Throne of Chaos - Hollow
+@open west=west to Throne of Chaos - Ascent
+@open south=south to Throne of Chaos - Ridge 3
+@open east=east to Throne of Chaos - Chamber
+
+# --- Room 22/35 ---
+dig Throne of Chaos - Chamber
+@desc Ancient pines tower overhead, their dense canopy filtering the filtered light into dancing patterns on the forest floor. The air smells of brimstone, and the ground is carpeted with cracked stone.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_tank_lvl75
+@tel here
+@spawn gen_balanced_lvl65
+@tel here
+@open north=north to Throne of Chaos - Overlook
+@open west=west to Throne of Chaos - Path
+@open south=south to Throne of Chaos - Stretch 3
+@open east=east to Throne of Chaos - Path 2
+
+# --- Room 23/35 ---
+dig Throne of Chaos - Path 2
+@desc The bloodoaks grow sparse here, their desolate branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_brute_lvl68
+@tel here
+@open north=north to Throne of Chaos - Passage 2
+@open west=west to Throne of Chaos - Chamber
+@open south=south to Throne of Chaos - Ledge 2
+@open east=east to Throne of Chaos - Thicket 2
+
+# --- Room 24/35 ---
+dig Throne of Chaos - Thicket 2
+@desc A narrow trail winds through the thick undergrowth. You hear distant howls echoing among the ash trees and spot ancient runes half-hidden in the thick moss.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Ascent 2
+@open west=west to Throne of Chaos - Path 2
+@open south=south to Throne of Chaos - Ledge 3
+
+# --- Room 25/35 ---
+dig Throne of Chaos - Depths 2
+@desc You have found a small clearing where moonlight streams through a break in the cypresses overhead. You notice scattered offerings resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_balanced_lvl68
+@tel here
+@spawn gen_skirmisher_lvl73
+@tel here
+@open north=north to Throne of Chaos - Crossroads 2
+@open south=south to Throne of Chaos - Gallery 2
+@open east=east to Throne of Chaos - Grove 2
+
+# --- Room 26/35 ---
+dig Throne of Chaos - Grove 2
+@desc A narrow trail winds through the twisted undergrowth. You hear muffled voices echoing among the oaks and spot a discarded weapon half-hidden in the thick moss.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_assassin_lvl63
+@tel here
+@open north=north to Throne of Chaos - Ascent
+@open west=west to Throne of Chaos - Depths 2
+@open south=south to Throne of Chaos - Expanse 3
+@open east=east to Throne of Chaos - Ridge 3
+
+# --- Room 27/35 ---
+dig Throne of Chaos - Ridge 3
+@desc The bloodoaks grow tangled here, their pristine branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks barely visible.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Path
+@open west=west to Throne of Chaos - Grove 2
+@open south=south to Throne of Chaos - Ridge 2
+@open east=east to Throne of Chaos - Stretch 3
+
+# --- Room 28/35 ---
+dig Throne of Chaos - Stretch 3
+@desc You have found a small clearing where dim luminescence streams through a break in the cypresses overhead. You notice ancient runes resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_brute_lvl68
+@tel here
+@spawn gen_skirmisher_lvl70
+@tel here
+@open north=north to Throne of Chaos - Chamber
+@open west=west to Throne of Chaos - Ridge 3
+@open south=south to Throne of Chaos - Gallery 3
+@open east=east to Throne of Chaos - Ledge 2
+
+# --- Room 29/35 ---
+dig Throne of Chaos - Ledge 2
+@desc Ancient cypresses tower overhead, their emerald canopy filtering the dim luminescence into dancing patterns on the forest floor. The air smells of decay, and the ground is carpeted with exposed roots.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Path 2
+@open west=west to Throne of Chaos - Stretch 3
+@open south=south to Throne of Chaos - Heart
+@open east=east to Throne of Chaos - Ledge 3
+
+# --- Room 30/35 ---
+dig Throne of Chaos - Ledge 3
+@desc Ancient elms tower overhead, their dense canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of damp earth, and the ground is carpeted with thick moss.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_skirmisher_lvl63
+@tel here
+@spawn gen_assassin_lvl63
+@tel here
+@open north=north to Throne of Chaos - Thicket 2
+@open west=west to Throne of Chaos - Ledge 2
+
+# --- Room 31/35 ---
+dig Throne of Chaos - Gallery 2
+@desc A narrow trail winds through the dense undergrowth. You hear strange whispers echoing among the bloodoaks and spot a discarded weapon half-hidden in the scattered bones.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_tank_lvl68
+@tel here
+@open north=north to Throne of Chaos - Depths 2
+@open east=east to Throne of Chaos - Expanse 3
+
+# --- Room 32/35 ---
+dig Throne of Chaos - Expanse 3
+@desc The pines grow overgrown here, their foreboding branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks overgrown.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_caster_lvl68
+@tel here
+@open north=north to Throne of Chaos - Grove 2
+@open west=west to Throne of Chaos - Gallery 2
+@open east=east to Throne of Chaos - Ridge 2
+
+# --- Room 33/35 ---
+dig Throne of Chaos - Ridge 2
+@desc You have found a small clearing where filtered light streams through a break in the willows overhead. You notice a broken altar resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_caster_lvl75
+@tel here
+@spawn gen_tank_lvl73
+@tel here
+@open north=north to Throne of Chaos - Ridge 3
+@open west=west to Throne of Chaos - Expanse 3
+@open east=east to Throne of Chaos - Gallery 3
+
+# --- Room 34/35 ---
+dig Throne of Chaos - Gallery 3
+@desc You have found a small clearing where moonlight streams through a break in the bloodoaks overhead. You notice a dark bloodstain resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@open north=north to Throne of Chaos - Stretch 3
+@open west=west to Throne of Chaos - Ridge 2
+@open east=east to Throne of Chaos - Heart
+
+# --- Room 35/35 ---
+dig Throne of Chaos - Heart
+@desc You have found a small clearing where filtered light streams through a break in the pines overhead. You notice ancient runes resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:throne_of_chaos
+@spawn gen_tank_lvl75
+@tel here
+@spawn gen_skirmisher_lvl65
+@tel here
+@open north=north to Throne of Chaos - Ledge 2
+@open west=west to Throne of Chaos - Gallery 3
+
+# Zone 'Throne of Chaos' complete — 35 rooms, 116 directed exits.

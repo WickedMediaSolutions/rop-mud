@@ -1,0 +1,117 @@
+You are a fantasy cartographer AI. Generate a detailed, realistic topographical map of the following dark fantasy realm. The map should be rendered in a 16:9 landscape format using a rich, moody color palette with elevation contours, terrain textures, and clearly labeled geographic features.
+
+---
+
+## REALM NAME: Rites Of Passage
+
+## OVERALL CONTINENT LAYOUT (East-West orientation)
+
+The realm is a rectangular continent approximately 120 miles wide (east-west) by 48 miles tall (north-south). The world is sharply divided along a moral/geographic axis:
+
+- **EASTERN HALF (GOOD REALM):** Lush, fertile, temperate. Green hills, forests, lakes, farmland, and a serene coastline. Civilization thrives here.
+- **WESTERN HALF (EVIL REALM):** Blasted, volcanic, corrupted. Blackened earth, lava flows, bone-strewn marshes, perpetual twilight. A hellscape of suffering.
+- **CENTRAL BELT (NEUTRAL DESERT):** A harsh desert running north-south through the middle, separating the two realms. Ancient ruins, salt flats, mesas, and oases.
+- **NORTHERN BAND (ANCIENT BOREAL FOREST):** A massive ancient forest spanning the entire northern border. Giant pines, misty glades, and an ancient trade path cutting east-west through it.
+- **SOUTHERN SHORELINE (NEUTRAL COAST):** Golden sand beaches along the southern edge, with the open sea beyond.
+
+---
+
+## DETAILED ZONE DESCRIPTIONS
+
+### EASTERN (GOOD) REALM — x: 0-53, y: 0-40
+
+**Rolling Plains of Aethelgard** (0-15, 0-25) — Gentle green hills, wildflowers, bright blue sky. The heartland of the good realm. Town: Aethelgard (capital).
+
+**Emerald Forest** (15-27, 0-25) — Ancient oak and maple forest, dappled green light, birdsong. Town: Fairhaven.
+
+**Crystal Lake District** (27-39, 0-25) — A pristine blue lake fed by crystal-clear streams from the hills. Town: Brightwater on the lake shore.
+
+**Golden Farmland** (39-53, 0-25) — Fields of wheat and barley rippling like a golden sea. Farmhouses with chimney smoke. Towns: Meadowvale, Ironforge.
+
+**Silverpine Hills** (0-15, 25-40) — Rolling hills covered in fragrant pine trees, crisp clean air. Town: Silverbrook.
+
+**Sunrise Coast** (15-27, 25-40) — Eastern coastline, white sand beaches, gentle waves, fishing boats, gulls. Town: Sunhold.
+
+**Verdant Valley** (27-39, 25-40) — Lush valley with a meandering river, willows, wild berries. Town: Highcrest.
+
+**Highland Meadows** (39-53, 25-40) — Windswept highlands, hardy grass, heather, sweeping views of the eastern realm. Towns: Dawnfield, Greenhaven, Goldport, Oakvale, Riverbend, Stonewall, Clearwater.
+
+---
+
+### WESTERN (EVIL) REALM — x: 67-120, y: 0-40
+
+**Blasted Heath** (67-81, 0-25) — Cracked earth, withered vegetation, perpetual grey overcast. Town: Gorgoroth (capital).
+
+**Molten Scar** (81-93, 0-25) — Rivers of molten rock cutting through blackened earth. Sulfur stench, shimmering heat. Town: Shadowmere.
+
+**Bone Marshes** (93-105, 0-25) — Stagnant waters filled with bones, fetid mist, treacherous ground. Town: Bloodmarch.
+
+**Shadow Fen** (105-120, 0-25) — Dark swamp, bioluminescent fungi, shadows that move independently. Towns: Darkholme, Ironfang.
+
+**Iron Crater Fields** (67-81, 25-40) — Impact craters with jagged iron rims, glowing meteoric shards. Town: Blightwatch.
+
+**Ashen Barrens** (81-93, 25-40) — Grey wasteland of volcanic ash and petrified trees. Suffocating stillness. Town: Soulcrest.
+
+**Thornwood Thickets** (93-105, 25-40) — Dense twisted trees weeping black sap. Constant shadow movement. Towns: Doomhaven, Nethermoor.
+
+**Dusk Coast** (105-120, 25-40) — Perpetual twilight shore, dark waves crashing against jagged black rocks and crumbling cliffs. Towns: Grimspire, Ashport, Bonekeep, Thornhold, Rotmire, Dreadfall.
+
+---
+
+### CENTRAL DESERT — x: 53-67, y: 0-40
+
+**Scorched Dunes** (53-67, 0-10) — Vast sand dunes like frozen waves, blazing sun, suffocating heat.
+
+**Cracked Salt Flats** (53-67, 10-20) — Endless white salt flats cracked into geometric patterns. Blinding glare, absolute silence.
+
+**Ancient Mesas** (53-67, 20-30) — Flat-topped mesas with weathered red rock faces adorned with ancient petroglyphs.
+
+**Whispering Oasis Belt** (53-60, 30-40) — A line of scattered oases with palm trees and trickling water.
+
+**Sunken Ruins of the Sand** (60-67, 30-40) — Half-buried ruins of an ancient civilization, crumbling pillars, toppled statues.
+
+---
+
+### NORTHERN BOREAL FOREST — x: 0-72, y: 40-52
+
+**Giant Pines** (0-24, 40-52) — Colossal pine trees with trunks as wide as houses. Soft carpet of fallen needles.
+
+**Trade Path Corridor** (24-48, 40-52) — A wide ancient stone highway cutting through the forest. Worn waystones, centuries-old inscriptions.
+
+**Misty Glade Groves** (48-72, 40-52) — Ethereal mist weaving between ancient oaks. Glowing flowers in perpetual twilight beneath the canopy.
+
+---
+
+### SOUTHERN SHORELINE — x: 53-81, y: 40-48
+
+**Golden Sand Beaches** (53-81, 40-48) — Gentle waves, warm golden sand, the southern sea stretching to the horizon. Salt air.
+
+---
+
+## MAP STYLE REQUIREMENTS
+
+1. **Color Palette:** Use a dark fantasy aesthetic — muted greens and golds in the east transitioning to ashen greys, deep reds, volcanic oranges, and sickly purples in the west. The central desert should be warm ochres and pale whites. The northern forest should be deep emerald and pine green. The southern coast should be warm sand tones against deep blue sea.
+
+2. **Topography:** Show elevation via contour lines and subtle hillshading. The good realm has gentle rolling hills. The evil realm has jagged scarps, craters, and volcanic peaks. The desert has dramatic dunes and mesa formations. The northern forest sits on slightly elevated highlands.
+
+3. **Water Features:** Crystal Lake in the east (a large, clear blue lake). Meandering rivers in Verdant Valley. Lava rivers in the Molten Scar. Stagnant swamp waters in Bone Marshes and Shadow Fen. Oases in the desert belt. The southern sea.
+
+4. **Settlements:** Mark all 30 towns as small icons (golden for good towns, dark red/black for evil towns). Label them clearly.
+
+5. **Labels:** Label every zone, major geographic feature, and town. Use a fantasy-appropriate serif font.
+
+6. **Compass Rose & Scale:** Include an ornate compass rose and a scale bar in miles.
+
+7. **Border:** Add a decorative medieval-style border with corner flourishes.
+
+8. **Legend:** Include a legend showing terrain types (plains, forest, desert, swamp, volcanic, mountains/hills, water, settlement).
+
+9. **Roads/Trade Routes:** Show the ancient Trade Path Corridor cutting east-west through the northern forest. Show faint roads connecting the towns within each realm.
+
+10. **Atmosphere:** The map should feel like it belongs in a dark fantasy RPG — visually striking, slightly ominous, with the sharp contrast between the idyllic east and the corrupted west immediately apparent.
+
+---
+
+## OUTPUT FORMAT
+
+Generate a single, high-resolution topographical map image (16:9 landscape, minimum 2560x1440 pixels). The map should be a bird's-eye view with a slight isometric or straight top-down perspective. Make it look like a professional cartographer's work — something you'd find in the front matter of a dark fantasy novel.

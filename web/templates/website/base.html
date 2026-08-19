@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Rites of Passage{% endblock %}</title>
+<link rel="icon" type="image/png" href="{% static 'website/images/favicon.png' %}">
+<link rel="stylesheet" href="{% static 'website/css/rop_site.css' %}">
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-top-bar"></div>
+  <div class="container header-inner">
+    <a href="/" class="site-logo-link" aria-label="Rites of Passage Home">
+      <img
+        src="{% static 'website/images/roplogo.png' %}"
+        alt="Rites of Passage"
+        class="site-logo"
+        width="320"
+        height="80"
+      >
+    </a>
+    <nav role="navigation" aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/new-players">New Players</a></li>
+        <li><a href="/how-to-play">How to Play</a></li>
+        <li><a href="/races">Races & Classes</a></li>
+        <li><a href="/armory">Armory</a></li>
+        <li><a href="/map">Map</a></li>
+        <li><a href="/webclient/" class="nav-play-now">Play Now</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="/admin/">Admin</a></li>
+          <li><a href="/accounts/logout/">Logout</a></li>
+        {% else %}
+          <li><a href="/accounts/login/">Login</a></li>
+          <li><a href="/accounts/register/">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+  <div class="header-bottom-bar"></div>
+</header>
+
+<main class="site-main">
+  <div class="container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-ornament"></div>
+  <img
+    src="{% static 'website/images/roplogo.png' %}"
+    alt="Rites of Passage"
+    class="footer-logo"
+    width="200"
+    height="50"
+  >
+  <p class="footer-tagline">A dark fantasy MUD &mdash; Through darkness, we forge our destiny.</p>
+  <p class="footer-copy">&copy; {% now "Y" %} Rites of Passage. All rights reserved.</p>
+</footer>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

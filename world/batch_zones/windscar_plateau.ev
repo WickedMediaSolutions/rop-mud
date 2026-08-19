@@ -1,0 +1,204 @@
+# Windscar Plateau — Level 14-25
+# Auto-generated zone: Windswept highland plateau with ancient standing stones
+# Faction: Aethelgard Alliance
+# Rooms: 20
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.windscar_plateau")
+
+# --- Room 1/20 ---
+dig Windscar Plateau - Entrance
+@desc A corrupted plateau offers a moment of rest from the climb. You notice a dark bloodstain arranged here, and the view stretches to the pristine horizon.
+@tags/set room-zone:windscar_plateau
+@open south=south to Windscar Plateau - Descent
+@open east=east to Windscar Plateau - Thicket
+
+# --- Room 2/20 ---
+dig Windscar Plateau - Thicket
+@desc Jagged rocks jut from the shimmering slope like desolate sentinels. The air is thin and deathly cold, and moonlight casts long shadows across the stone.
+@tags/set room-zone:windscar_plateau
+@open west=west to Windscar Plateau - Entrance
+@open south=south to Windscar Plateau - Grove
+@open east=east to Windscar Plateau - Clearing
+
+# --- Room 3/20 ---
+dig Windscar Plateau - Clearing
+@desc Jagged rocks jut from the foreboding slope like crumbling sentinels. The air is thin and sweltering, and moonlight casts long shadows across the stone.
+@tags/set room-zone:windscar_plateau
+@spawn gen_brute_lvl18
+@tel here
+@open west=west to Windscar Plateau - Thicket
+@open south=south to Windscar Plateau - Hollow
+@open east=east to Windscar Plateau - Ascent
+
+# --- Room 4/20 ---
+dig Windscar Plateau - Ascent
+@desc The trail clings to the mountainside, with a crumbling drop on one side and pristine cliffs on the other. dim luminescence bathes the peaks ahead, and the wind carries muffled voices.
+@tags/set room-zone:windscar_plateau
+@open west=west to Windscar Plateau - Clearing
+@open south=south to Windscar Plateau - Overlook
+@open east=east to Windscar Plateau - Expanse
+
+# --- Room 5/20 ---
+dig Windscar Plateau - Expanse
+@desc The trail clings to the mountainside, with a shimmering drop on one side and ethereal cliffs on the other. dim luminescence bathes the peaks ahead, and the wind carries distant howls.
+@tags/set room-zone:windscar_plateau
+@spawn gen_brute_lvl20
+@tel here
+@open west=west to Windscar Plateau - Ascent
+@open south=south to Windscar Plateau - Chamber
+
+# --- Room 6/20 ---
+dig Windscar Plateau - Descent
+@desc The trail clings to the mountainside, with a darkened drop on one side and desolate cliffs on the other. faint luminescence bathes the peaks ahead, and the wind carries strange whispers.
+@tags/set room-zone:windscar_plateau
+@spawn gen_tank_lvl25
+@tel here
+@open north=north to Windscar Plateau - Entrance
+@open south=south to Windscar Plateau - Depths 2
+@open east=east to Windscar Plateau - Grove
+
+# --- Room 7/20 ---
+dig Windscar Plateau - Grove
+@desc Jagged rocks jut from the desolate slope like pristine sentinels. The air is thin and pleasantly cool, and sunlight casts long shadows across the stone.
+@tags/set room-zone:windscar_plateau
+@spawn gen_tank_lvl22
+@tel here
+@spawn gen_brute_lvl20
+@tel here
+@open north=north to Windscar Plateau - Thicket
+@open west=west to Windscar Plateau - Descent
+@open south=south to Windscar Plateau - Stretch 2
+@open east=east to Windscar Plateau - Hollow
+
+# --- Room 8/20 ---
+dig Windscar Plateau - Hollow
+@desc You stand on a shimmering ridge overlooking a immense valley below. You notice ancient runes marking the path forward, and you hear distant howls drifting up from the depths.
+@tags/set room-zone:windscar_plateau
+@spawn gen_skirmisher_lvl25
+@tel here
+@spawn gen_skirmisher_lvl15
+@tel here
+@open north=north to Windscar Plateau - Clearing
+@open west=west to Windscar Plateau - Grove
+@open south=south to Windscar Plateau - Thicket 2
+@open east=east to Windscar Plateau - Overlook
+
+# --- Room 9/20 ---
+dig Windscar Plateau - Overlook
+@desc The trail clings to the mountainside, with a corrupted drop on one side and crumbling cliffs on the other. ethereal radiance bathes the peaks ahead, and the wind carries skittering claws.
+@tags/set room-zone:windscar_plateau
+@open north=north to Windscar Plateau - Ascent
+@open west=west to Windscar Plateau - Hollow
+@open south=south to Windscar Plateau - Nook
+@open east=east to Windscar Plateau - Chamber
+
+# --- Room 10/20 ---
+dig Windscar Plateau - Chamber
+@desc The trail clings to the mountainside, with a foreboding drop on one side and corrupted cliffs on the other. faint luminescence bathes the peaks ahead, and the wind carries distant howls.
+@tags/set room-zone:windscar_plateau
+@spawn gen_brute_lvl22
+@tel here
+@spawn gen_brute_lvl18
+@tel here
+@open north=north to Windscar Plateau - Expanse
+@open west=west to Windscar Plateau - Overlook
+@open south=south to Windscar Plateau - Bend
+
+# --- Room 11/20 ---
+dig Windscar Plateau - Depths 2
+@desc A darkened plateau offers a moment of rest from the climb. You notice a weathered statue arranged here, and the view stretches to the majestic horizon.
+@tags/set room-zone:windscar_plateau
+@spawn gen_tank_lvl22
+@tel here
+@open north=north to Windscar Plateau - Descent
+@open south=south to Windscar Plateau - Overlook 2
+@open east=east to Windscar Plateau - Stretch 2
+
+# --- Room 12/20 ---
+dig Windscar Plateau - Stretch 2
+@desc A corrupted plateau offers a moment of rest from the climb. You notice a dark bloodstain arranged here, and the view stretches to the majestic horizon.
+@tags/set room-zone:windscar_plateau
+@open north=north to Windscar Plateau - Grove
+@open west=west to Windscar Plateau - Depths 2
+@open south=south to Windscar Plateau - Gallery
+@open east=east to Windscar Plateau - Thicket 2
+
+# --- Room 13/20 ---
+dig Windscar Plateau - Thicket 2
+@desc A ethereal plateau offers a moment of rest from the climb. You notice a broken altar arranged here, and the view stretches to the ethereal horizon.
+@tags/set room-zone:windscar_plateau
+@open north=north to Windscar Plateau - Hollow
+@open west=west to Windscar Plateau - Stretch 2
+@open south=south to Windscar Plateau - Hollow 2
+@open east=east to Windscar Plateau - Nook
+
+# --- Room 14/20 ---
+dig Windscar Plateau - Nook
+@desc The trail clings to the mountainside, with a ancient drop on one side and crumbling cliffs on the other. moonlight bathes the peaks ahead, and the wind carries skittering claws.
+@tags/set room-zone:windscar_plateau
+@spawn gen_assassin_lvl18
+@tel here
+@open north=north to Windscar Plateau - Overlook
+@open west=west to Windscar Plateau - Thicket 2
+@open south=south to Windscar Plateau - Ridge
+@open east=east to Windscar Plateau - Bend
+
+# --- Room 15/20 ---
+dig Windscar Plateau - Bend
+@desc You stand on a desolate ridge overlooking a cavernous valley below. You notice scattered offerings marking the path forward, and you hear faint chants drifting up from the depths.
+@tags/set room-zone:windscar_plateau
+@open north=north to Windscar Plateau - Chamber
+@open west=west to Windscar Plateau - Nook
+@open south=south to Windscar Plateau - Heart
+
+# --- Room 16/20 ---
+dig Windscar Plateau - Overlook 2
+@desc You stand on a shimmering ridge overlooking a cavernous valley below. You notice flickering torchlight marking the path forward, and you hear dripping echoes drifting up from the depths.
+@tags/set room-zone:windscar_plateau
+@spawn gen_skirmisher_lvl18
+@tel here
+@open north=north to Windscar Plateau - Depths 2
+@open east=east to Windscar Plateau - Gallery
+
+# --- Room 17/20 ---
+dig Windscar Plateau - Gallery
+@desc A desolate plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the shimmering horizon.
+@tags/set room-zone:windscar_plateau
+@spawn gen_brute_lvl15
+@tel here
+@open north=north to Windscar Plateau - Stretch 2
+@open west=west to Windscar Plateau - Overlook 2
+@open east=east to Windscar Plateau - Hollow 2
+
+# --- Room 18/20 ---
+dig Windscar Plateau - Hollow 2
+@desc The trail clings to the mountainside, with a shimmering drop on one side and pristine cliffs on the other. filtered light bathes the peaks ahead, and the wind carries low rumbling tremors.
+@tags/set room-zone:windscar_plateau
+@spawn gen_assassin_lvl18
+@tel here
+@open north=north to Windscar Plateau - Thicket 2
+@open west=west to Windscar Plateau - Gallery
+@open east=east to Windscar Plateau - Ridge
+
+# --- Room 19/20 ---
+dig Windscar Plateau - Ridge
+@desc The trail clings to the mountainside, with a ethereal drop on one side and ethereal cliffs on the other. sunlight bathes the peaks ahead, and the wind carries muffled voices.
+@tags/set room-zone:windscar_plateau
+@open north=north to Windscar Plateau - Nook
+@open west=west to Windscar Plateau - Hollow 2
+@open east=east to Windscar Plateau - Heart
+
+# --- Room 20/20 ---
+dig Windscar Plateau - Heart
+@desc Jagged rocks jut from the ancient slope like pristine sentinels. The air is thin and deathly cold, and ethereal radiance casts long shadows across the stone.
+@tags/set room-zone:windscar_plateau
+@spawn gen_assassin_lvl20
+@tel here
+@spawn gen_caster_lvl25
+@tel here
+@open north=north to Windscar Plateau - Bend
+@open west=west to Windscar Plateau - Ridge
+
+# Zone 'Windscar Plateau' complete — 20 rooms, 62 directed exits.

@@ -1,0 +1,188 @@
+# Newbie Zone — Levels 1-5
+# 25+ rooms of forest clearing, goblin camp, and cave entrance.
+# Only passive/neutral mobs. Two spawner rooms with 5-minute respawn timers.
+# First quest NPC with a delivery/collection quest.
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.newbie_zone")
+
+# ---------------------------------------------------------------
+# Zone Entrance
+# ---------------------------------------------------------------
+dig Newbie Zone - Forest Clearing
+@desc A sun-dappled clearing opens in the lush woodland. Wildflowers sway in the breeze, and the air is alive with birdsong. A well-worn path leads further into the trees, and the faint smoke of a goblin camp drifts from the north. This is a safe training ground for new adventurers.
+@tags/set room-zone:newbie
+@open north=north to Newbie Zone - Woodland Path
+@open south=south to Newbie Zone - The Mossy Spring
+@open east=east to Newbie Zone - Rabbit Meadow
+
+# ---------------------------------------------------------------
+# Quest-giver NPC
+# ---------------------------------------------------------------
+dig Newbie Zone - The Trapper's Hut
+@desc A ramshackle hut of timber and thatch squats at the edge of the clearing. Pelts hang drying from the eaves, and a thin plume of smoke curls from the chimney. An old trapper sits on a stump outside, whittling a branch.
+@open west=west to Newbie Zone - Forest Clearing
+@spawn newbie_quest_npc
+@tel here
+
+# ---------------------------------------------------------------
+# Spawner: Rabbit Meadow (passive mobs)
+# ---------------------------------------------------------------
+dig Newbie Zone - Rabbit Meadow
+@desc A broad meadow of soft grass and scattered wildflowers. Plump rabbits nibble at the clover, scarcely noticing your approach. The ground here is gentle and safe, ideal for practicing your first strikes.
+@open west=west to Newbie Zone - Forest Clearing
+@open north=north to Newbie Zone - The Gnarled Oak
+# Passive rabbit spawner
+@spawn rabbit_spawner
+@tel here
+
+# ---------------------------------------------------------------
+# Additional Passives
+# ---------------------------------------------------------------
+dig Newbie Zone - The Gnarled Oak
+@desc A single enormous oak dominates this quiet glade, its branches twisted with age. Squirrels chatter among the leaves, and the soft rustle of small animals fills the undergrowth. The path continues north toward the goblin warren.
+@open south=south to Newbie Zone - Rabbit Meadow
+@open north=north to Newbie Zone - Goblin Camp Outskirts
+
+# ---------------------------------------------------------------
+# Goblin Camp (Neutral mobs)
+# ---------------------------------------------------------------
+dig Newbie Zone - Goblin Camp Outskirts
+@desc The trees thin out here, revealing a crude encampment of hide tents and smoldering cook-fires ahead. The reek of unwashed goblins and roasting meat hangs in the air. Warily, a few goblin scouts patrol the perimeter. Steel yourself — these are your first true foes.
+@open south=south to Newbie Zone - The Gnarled Oak
+@open north=north to Newbie Zone - Goblin Camp Center
+@spawn goblin_scout_spawner
+@tel here
+
+# ---------------------------------------------------------------
+# Camp Center
+# ---------------------------------------------------------------
+dig Newbie Zone - Goblin Camp Center
+@desc You stand at the heart of a squalid goblin camp. Ramshackle tents cluster around a fire pit of cracked skulls, and mismatched spears lean against every surface. Goblin scouts squabble and pick their teeth, alert for intruders.
+@open south=south to Newbie Zone - Goblin Camp Outskirts
+@open north=north to Newbie Zone - Cave Entrance
+@open east=east to Newbie Zone - The Scavenger's Midden
+
+# ---------------------------------------------------------------
+# Cave Entrance
+# ---------------------------------------------------------------
+dig Newbie Zone - Cave Entrance
+@desc A dark cave mouth gapes in a rocky hillside, its entrance slick with moss and bat droppings. Chittering echoes from within, and the air is cool and damp. Faint marks on the stone suggest something large drags its prey inside.
+@open south=south to Newbie Zone - Goblin Camp Center
+@open north=north to Newbie Zone - The Mossy Spring
+
+# ---------------------------------------------------------------
+# The Mossy Spring
+# ---------------------------------------------------------------
+dig Newbie Zone - The Mossy Spring
+@desc A clear spring bubbles up among soft cushions of emerald moss. The water is cold and pure, reflecting the green canopy above. Small fish dart beneath the surface, and the gentle sound of running water is deeply calming.
+@open north=north to Newbie Zone - Forest Clearing
+@open south=south to Newbie Zone - The Weeping Willows
+
+# ---------------------------------------------------------------
+# More Passive-Filled Areas
+# ---------------------------------------------------------------
+dig Newbie Zone - The Weeping Willows
+@desc Graceful willows trail their branches into a quiet pond. The air is cool and still, and the only movement is the occasional ripple of a fish. A serene, sheltered spot rarely disturbed by larger beasts.
+@open north=north to Newbie Zone - The Mossy Spring
+@open east=east to Newbie Zone - The Babbling Brook
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Babbling Brook
+@desc A shallow brook chatters over smooth stones, crossing the path from west to east. The water is cold and clear, and stepping stones allow easy passage. Dragonflies dart above the surface in flashes of blue and green.
+@open west=west to Newbie Zone - The Weeping Willows
+@open east=east to Newbie Zone - The Sunken Log
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Sunken Log
+@desc A huge fallen log, thick with moss and bracket fungi, lies across the trail. Tiny insects scurry through the decaying wood, and a pile of gathered acorns hints at a diligent squirrel's hoard.
+@open west=west to Newbie Zone - The Babbling Brook
+@open north=north to Newbie Zone - The Rock Garden
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Rock Garden
+@desc Smooth grey boulders rise from a bed of ferns in this natural rock garden. Lizards bask on the sun-warmed stones, and the air is dry and pleasant. A perfect place to catch your breath.
+@open south=south to Newbie Zone - The Sunken Log
+@open east=east to Newbie Zone - The Berry Thicket
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Berry Thicket
+@desc A dense thicket of berry bushes crowds the trail, heavy with ripe fruit. Birds flit among the branches, squabbling over the sweetest morsels. The air is fragrant and warm.
+@open west=west to Newbie Zone - The Rock Garden
+@open north=north to Newbie Zone - The Meadow Run
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Meadow Run
+@desc A wide, grassy corridor runs between two low hills, dotted with poppies and clover. The soft ground is easy underfoot, and the sky is wide and blue overhead. Small game darts between the grasses.
+@open south=south to Newbie Zone - The Berry Thicket
+@open north=north to Newbie Zone - The Old Stone Bridge
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Old Stone Bridge
+@desc A mossy stone bridge arches over a slow, clear stream. The workmanship is old but solid, and the sound of water passing beneath is soothing. On the far side, the woods grow deeper and wilder.
+@open south=south to Newbie Zone - The Meadow Run
+@open north=north to Newbie Zone - The Deep Thicket Border
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Deep Thicket Border
+@desc Here the friendly forest begins to darken into a deeper, older wood. The path grows dimmer, and the cheerful birdsong fades into uneasy silence. A boundary marker of lashed branches warns against careless travel further north.
+@open south=south to Newbie Zone - The Old Stone Bridge
+@open north=north to Darkwood Forest - The Gnarly Path
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Scavenger's Midden
+@desc A stinking heap of refuse and gnawed bones marks this goblin midden. Flies buzz thickly over the garbage, and the ground is treacherous with scraps. A few shiny trinkets glint amid the filth.
+@open west=west to Newbie Zone - Goblin Camp Center
+@open south=south to Newbie Zone - The Fallen Log
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Fallen Log
+@desc Another great tree has toppled here, its roots torn skyward in a tangle of earth and stone. The shattered trunk offers shelter to burrowing creatures, and the underbrush rustles with their comings and goings.
+@open north=north to Newbie Zone - The Scavenger's Midden
+@open west=west to Newbie Zone - The Mossy Spring
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Warbling Thicket
+@desc A chorus of birdsong fills this dense thicket, a cheerful counterpoint to the grim goblin camp nearby. Thorns tug at your clothing as you pass, and the air is sweet with wild honey.
+@open north=north to Newbie Zone - Goblin Camp Center
+@open west=west to Newbie Zone - The Gnarled Oak
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Quiet Pond
+@desc A perfectly still pond reflects the surrounding trees like dark glass. Not a breath of wind stirs the surface, and even the insects seem muted. The peace here is almost eerie.
+@open west=west to Newbie Zone - The Mossy Spring
+@open south=south to Newbie Zone - Rabbit Meadow
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Bramble Tunnel
+@desc A tunnel of interwoven brambles arches over the path, creating a dim green passage. Berries hang within easy reach, and the thorns glisten with morning dew. Watch your step on the uneven ground.
+@open east=east to Newbie Zone - The Quiet Pond
+@open north=north to Newbie Zone - Forest Clearing
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Watch Stump
+@desc A broad, flat-topped stump stands at the edge of a rise, affording a good view of the surrounding woodland. It looks like a favorite resting place for passing rangers and scouts.
+@open south=south to Newbie Zone - Forest Clearing
+@open east=east to Newbie Zone - Rabbit Meadow
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Mossy Hollow
+@desc A shallow hollow thick with moss and soft ferns nestles between the tree roots. The air is cool and damp, and the ground here is as soft as a mattress. A gentle spot to rest.
+@open west=west to Newbie Zone - The Watch Stump
+@open north=north to Newbie Zone - The Mossy Spring
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Sun Dappled Way
+@desc Golden light filters through the leaves to dapple the path in shifting patterns. The wood is vibrant and alive, thick with the drone of bees and the rustle of small creatures.
+@open south=south to Newbie Zone - The Gnarled Oak
+@open east=east to Newbie Zone - The Mossy Hollow
+
+# ---------------------------------------------------------------
+dig Newbie Zone - The Lichen Rocks
+@desc Patches of pale lichen and dark moss coat a jumble of weathered stones. The rocks are smooth and cool, offering a fine place to sit and listen to the forest.
+@open west=west to Newbie Zone - Sun Dappled Way
+@open north=north to Newbie Zone - Forest Clearing
+
+# Done
+@echo Newbie Zone build complete: 25 rooms, 1 quest NPC, 2 spawners, 1 passive mob den.

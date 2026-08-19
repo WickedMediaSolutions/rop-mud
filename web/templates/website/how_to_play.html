@@ -1,0 +1,200 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}How to Play — Rites of Passage{% endblock %}
+
+{% block content %}
+
+<div class="content-card">
+  <h1>How to Play</h1>
+
+  <p>
+    <strong>Rites of Passage</strong> is a text-based multiplayer RPG (MUD). You type commands
+    to interact with the world, other players, and monsters. This guide covers the essentials
+    so you can jump in and start your adventure.
+  </p>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Getting Started</h2>
+
+  <h3>Connecting to the Game</h3>
+  <p>
+    You can play directly in your browser using the
+    <a href="/webclient/">Web Client</a>, or connect via a dedicated MUD client (Telnet)
+    to <code>your-server.com</code> on port <code>4010</code>.
+  </p>
+
+  <h3>Creating an Account</h3>
+  <p>When you connect, you'll see the login screen. Type:</p>
+  <blockquote>create <username> <password></blockquote>
+  <p>Pick a strong password. Your account persists between sessions.</p>
+
+  <h3>Logging In</h3>
+  <p>Already have an account? Type:</p>
+  <blockquote>connect <username> <password></blockquote>
+
+  <h3>Character Creation</h3>
+  <p>After logging in, you'll enter the character creation menu where you can:</p>
+  <ul>
+    <li><strong>Create a new character</strong> — pick your race, class, and name.</li>
+    <li><strong>Select an existing character</strong> — if you've played before.</li>
+    <li><strong>Delete characters</strong> — to start fresh.</li>
+  </ul>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Basic Commands</h2>
+  <p>Every action in Rites of Passage is driven by typed commands. Here are the essentials:</p>
+
+  <table>
+    <thead>
+      <tr><th>Command</th><th>What It Does</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>look</code></td><td>Describe the room you're in, including players, objects, and exits.</td></tr>
+      <tr><td><code>n</code>, <code>s</code>, <code>e</code>, <code>w</code></td><td>Move north, south, east, or west.</td></tr>
+      <tr><td><code>ne</code>, <code>nw</code>, <code>se</code>, <code>sw</code></td><td>Diagonal movement.</td></tr>
+      <tr><td><code>in</code> / <code>out</code></td><td>Enter or leave a building or portal.</td></tr>
+      <tr><td><code>say <message></code></td><td>Speak aloud to everyone in the room.</td></tr>
+      <tr><td><code>tell <player> <message></code></td><td>Send a private message to another player.</td></tr>
+      <tr><td><code>help</code></td><td>Show the help menu. <code>help <topic></code> for specifics.</td></tr>
+      <tr><td><code>inventory</code> or <code>i</code></td><td>List what you're carrying.</td></tr>
+      <tr><td><code>get <item></code></td><td>Pick up an item from the ground.</td></tr>
+      <tr><td><code>drop <item></code></td><td>Drop an item from your inventory.</td></tr>
+      <tr><td><code>examine <thing></code></td><td>Inspect an object, player, or monster closely.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Combat</h2>
+
+  <h3>Starting a Fight</h3>
+  <blockquote>attack <target></blockquote>
+  <p>Initiates combat with the named creature or player. You'll automatically continue
+  attacking each round until one side is defeated or you flee.</p>
+
+  <h3>Combat Options</h3>
+  <table>
+    <thead>
+      <tr><th>Command</th><th>Effect</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>attack <target></code></td><td>Begin basic physical attacks.</td></tr>
+      <tr><td><code>cast <spell> <target></code></td><td>Cast a spell at the target (requires learned spells & mana).</td></tr>
+      <tr><td><code>flee</code></td><td>Attempt to escape from combat (may fail).</td></tr>
+      <tr><td><code>stats</code></td><td>View your current health, mana, and attributes.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Death</h3>
+  <p>When your HP reaches zero, you die. You'll respawn at your faction's home base
+  (Aethelgard for Good, Gorgoroth for Evil). You may lose some experience or items
+  upon death, so be careful!</p>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Races & Classes</h2>
+
+  <h3>Races (16 Total)</h3>
+  <p>Your race determines your starting stats, passive ability, and faction alignment:</p>
+
+  <table>
+    <thead>
+      <tr><th>Race</th><th>Alignment</th><th>Passive Bonus</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Human</td><td>Good</td><td>Adaptable — +5% bonus XP gain</td></tr>
+      <tr><td>High Elf</td><td>Good</td><td>Arcane Affinity — +15% Max Mana</td></tr>
+      <tr><td>Wood Elf</td><td>Good</td><td>Forest Step — +10% Dodge Rate</td></tr>
+      <tr><td>Mountain Dwarf</td><td>Good</td><td>Stone Skin — +5 Base Armor Class</td></tr>
+      <tr><td>Stout Halfling</td><td>Good</td><td>Lucky — +5% Critical Strike Chance</td></tr>
+      <tr><td>Gnome</td><td>Good</td><td>Keen Mind — +10 Magic Resistance</td></tr>
+      <tr><td>Centaur</td><td>Good</td><td>Gallop — +20% Movement Speed</td></tr>
+      <tr><td>Pixie</td><td>Good</td><td>Flight — +15% Evasion, immune to ground traps</td></tr>
+      <tr><td>Orc</td><td>Evil</td><td>Berserk Rage — +10% Melee Damage</td></tr>
+      <tr><td>Dark Elf</td><td>Evil</td><td>Shadowmeld — +15% Stealth Efficiency</td></tr>
+      <tr><td>Undead</td><td>Evil</td><td>Unliving — Immune to Poison & Bleed</td></tr>
+      <tr><td>Goblin</td><td>Evil</td><td>Scavenger — +15% Bonus Gold Drops</td></tr>
+      <tr><td>Minotaur</td><td>Evil</td><td>Gore — +10% Chance to Stun on Hit</td></tr>
+      <tr><td>Lizardfolk</td><td>Evil</td><td>Thick Scales — +4 Natural Armor Class</td></tr>
+      <tr><td>Ogre</td><td>Evil</td><td>Thick Skull — +20% Max Health</td></tr>
+      <tr><td>Demonkin</td><td>Evil</td><td>Hellfire Resistance — +15 Fire/Dark Magic Resistance</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Classes (10 Total)</h3>
+  <table>
+    <thead>
+      <tr><th>Class</th><th>Primary Stat</th><th>HP/Level</th><th>Mana/Level</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Warrior</td><td>Strength</td><td>15</td><td>2</td><td>Heavy armor juggernauts, masters of weapons and shields.</td></tr>
+      <tr><td>Paladin</td><td>Strength</td><td>13</td><td>6</td><td>Holy crusaders blending melee with healing and defense.</td></tr>
+      <tr><td>Cleric</td><td>Wisdom</td><td>10</td><td>12</td><td>Divine casters devoted to mending allies and purging enemies.</td></tr>
+      <tr><td>Mage</td><td>Intelligence</td><td>6</td><td>16</td><td>Masters of destructive elemental magic and arcane utility.</td></tr>
+      <tr><td>Rogue</td><td>Dexterity</td><td>9</td><td>4</td><td>Stealth specialists: lockpicking, poisons, critical strikes.</td></tr>
+      <tr><td>Warlock</td><td>Intelligence</td><td>8</td><td>14</td><td>Dark casters draining soul energy and dealing damage over time.</td></tr>
+      <tr><td>Druid</td><td>Wisdom</td><td>10</td><td>10</td><td>Nature guardians: shapeshifting, healing, and storms.</td></tr>
+      <tr><td>Ranger</td><td>Dexterity</td><td>10</td><td>6</td><td>Deadly marksmen and wilderness trackers.</td></tr>
+      <tr><td>Monk</td><td>Dexterity</td><td>11</td><td>5</td><td>Unarmed martial artists using speed and ki power.</td></tr>
+      <tr><td>Necromancer</td><td>Intelligence</td><td>7</td><td>15</td><td>Commanders of death raising undead minions.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Communication</h2>
+
+  <table>
+    <thead>
+      <tr><th>Command</th><th>Reach</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>say <msg></code></td><td>Room</td><td>Everyone in the current room hears you.</td></tr>
+      <tr><td><code>tell <player> <msg></code></td><td>Private</td><td>Whisper directly to one player anywhere in the world.</td></tr>
+      <tr><td><code>yell <msg></code></td><td>Area</td><td>Shout so adjacent rooms can hear.</td></tr>
+      <tr><td><code>emote <action></code></td><td>Room</td><td>Narrate an action (e.g., <code>emote bows deeply</code>).</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ───────────────────────────────────────────────── -->
+<div class="content-card">
+  <h2>Advanced Tips</h2>
+
+  <h3>Aliases</h3>
+  <p>Most commands have short aliases. For example, <code>n</code> for north, <code>i</code>
+  for inventory, <code>l</code> for look, <code>sc</code> for score (stats). Learn these to
+  speed up your play.</p>
+
+  <h3>Exploring</h3>
+  <p>The world is massive. Don't be afraid to wander — but keep an eye on your health
+  and the level of monsters in the area. <code>consider <target></code> gives you an
+  idea of how tough a fight will be.</p>
+
+  <h3>Quests & NPCs</h3>
+  <p>Talk to NPCs: <code>say hello</code> in a room with an NPC may trigger dialogue or
+  quest hints. Interact with objects: <code>pull lever</code>, <code>open chest</code>.</p>
+
+  <h3>Grouping</h3>
+  <p>Party up with other players to tackle harder content. Parties share experience.
+  Use <code>follow <player></code> to stick together.</p>
+</div>
+
+<div class="section-divider">Forge Your Destiny</div>
+
+<div class="content-card" style="text-align: center;">
+  <p style="font-size: 1.1rem; margin: 0;">
+    Ready to begin your journey?
+    <a href="/webclient/" style="font-weight: 700;">Enter the Realm</a>
+  </p>
+</div>
+
+{% endblock %}

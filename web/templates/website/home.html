@@ -1,0 +1,143 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Rites of Passage - Come Battle{% endblock %}
+
+{% block content %}
+
+<!-- ============ HERO ============ -->
+<div class="hero-section">
+  <img
+    src="{% static 'website/images/roplogo.png' %}"
+    alt="Rites of Passage"
+    class="hero-logo"
+    width="480"
+    height="120"
+  >
+
+
+  <p class="hero-tagline">
+    Through darkness, we forge our destiny.<br>
+    Step into a realm of ancient magic, brutal conflict, and forgotten gods.<br>
+    Choose your allegiance, master your craft, and carve your name into the annals of history.
+  </p>
+
+  <div class="hero-cta">
+    <a href="/webclient/" class="btn btn-xl">
+      ◆ Play Now ◆
+    </a>
+  </div>
+</div>
+
+<!-- ============ FACTIONS ============ -->
+<div class="faction-showcase">
+  <div class="faction-panel good-panel">
+    <span class="faction-icon">☀️</span>
+    <h2>The Aethelgard Alliance</h2>
+    <p class="faction-city">The Grand Sanctum of Light</p>
+    <p>
+      Hallowed halls and towering spires rise from the blessed plains.
+      Paladins train in sunlit courtyards while clerics chant hymns to
+      forgotten gods. Honor, justice, and the eternal flame unite those
+      who stand against the encroaching darkness.
+    </p>
+    <div class="faction-races">
+      <span class="faction-race-tag">Human</span>
+      <span class="faction-race-tag">High Elf</span>
+      <span class="faction-race-tag">Wood Elf</span>
+      <span class="faction-race-tag">Mtn Dwarf</span>
+      <span class="faction-race-tag">Stout Halfling</span>
+      <span class="faction-race-tag">Gnome</span>
+      <span class="faction-race-tag">Centaur</span>
+      <span class="faction-race-tag">Pixie</span>
+    </div>
+  </div>
+
+  <div class="faction-panel evil-panel">
+    <span class="faction-icon">💀</span>
+    <h2>The Gorgoroth Horde</h2>
+    <p class="faction-city">The Blood Forge of Darkness</p>
+    <p>
+      Rivers of molten iron course through obsidian citadels.
+      War drums echo endlessly through blackened halls where warlocks
+      weave shadow and orcs sharpen axe-blades. Power belongs to
+      those strong enough to seize it.
+    </p>
+    <div class="faction-races">
+      <span class="faction-race-tag">Orc</span>
+      <span class="faction-race-tag">Dark Elf</span>
+      <span class="faction-race-tag">Undead</span>
+      <span class="faction-race-tag">Goblin</span>
+      <span class="faction-race-tag">Minotaur</span>
+      <span class="faction-race-tag">Lizardfolk</span>
+      <span class="faction-race-tag">Ogre</span>
+      <span class="faction-race-tag">Demonkin</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FEATURES ============ -->
+<div class="content-card">
+  <h2>The World Awaits</h2>
+  <p>
+    <strong>Rites of Passage</strong> is a text-based multiplayer RPG (MUD) set in a sprawling
+    dark fantasy world. Two factions stand locked in eternal conflict. With
+    <strong>16 unique races</strong> and <strong>10 distinct classes</strong>, your path is
+    yours to forge.
+  </p>
+  <p>
+    Will you be a noble High Elf Paladin smiting darkness with holy fire? A cunning Goblin Rogue
+    stalking shadowed corridors? A Minotaur Warrior whose footsteps shake the ground? A Pixie Mage
+    weaving illusion and flame?
+  </p>
+</div>
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <span class="feature-icon">⚔️</span>
+    <h3>Deep Combat</h3>
+    <p>Engage in tactical combat with physical attacks, magic, stealth, and unique class abilities across a vast world.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">🏛️</span>
+    <h3>Two Factions</h3>
+    <p>Swear fealty to Good or embrace the darkness of Evil. Your alignment shapes your home city, quests, and allies.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">🧬</span>
+    <h3>16 Unique Races</h3>
+    <p>From noble High Elves to savage Orcs — each race brings distinct stat bonuses and a unique passive ability.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">📜</span>
+    <h3>10 Classes</h3>
+    <p>Warrior, Mage, Rogue, Paladin, Cleric, Warlock, Druid, Ranger, Monk, Necromancer — master your chosen path.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">🗺️</span>
+    <h3>Vast Hand-Crafted World</h3>
+    <p>Explore cities, dungeons, wilderness, and hidden secrets across a meticulously built realm.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">🤝</span>
+    <h3>Community Driven</h3>
+    <p>Forge alliances, trade goods, and battle alongside other players in a living, breathing world.</p>
+  </div>
+</div>
+
+<div class="section-divider">The Journey Begins</div>
+
+<div class="cta-banner">
+  <h2>Ready to Begin Your Legend?</h2>
+  <p>
+    New to MUDs? We've got you covered with guides designed to help
+    you take your first steps into the realm.
+  </p>
+  <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+    <a href="/new-players" class="btn btn-secondary btn-lg">New Player Guide</a>
+    <a href="/how-to-play" class="btn btn-secondary btn-lg">How to Play</a>
+    <a href="/webclient/" class="btn btn-lg">Enter the Realm</a>
+  </div>
+</div>
+
+{% endblock %}

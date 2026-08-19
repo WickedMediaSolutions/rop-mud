@@ -1,0 +1,170 @@
+# Aethelgard Town — Good Starting City
+# Builds 18 interconnected rooms, guards, townsfolk, shopkeepers,
+# guildmasters, and a tutorial NPC in the starting room.
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.aethelgard_town")
+
+# ---------------------------------------------------------------
+# 1. Starting room with tutorial NPC
+# ---------------------------------------------------------------
+dig Aethelgard - Shrine of Light
+@desc You stand within the Shrine of Light, the spiritual heart of Aethelgard. Rays of golden sunlight pour through tall stained-glass windows, painting the polished marble floor in shifting hues of amber and rose. A gentle font of blessed water trickles nearby, and the air hums with quiet reverence. This is where new champions of the Light are welcomed into the realm.
+@tags/set room-zone:aethelgard
+
+# Tutorial NPC in the starting room
+@spawn tutorial_guide
+@tel here
+
+# ---------------------------------------------------------------
+# 2. Town Square & Surroundings
+# ---------------------------------------------------------------
+dig Aethelgard - Sunlit Square
+@desc You are in the bustling main square of Aethelgard. Merchants hawk their wares beneath colorful awnings while armored guards patrol the cobblestones. The grand cathedral rises to the north, its white spires piercing the sky. Streets branch away in every direction, and the scent of fresh bread drifts from a nearby bakery.
+@open north=north to Aethelgard - Paladin Training Grounds
+@open south=south to Aethelgard - City Gates
+@open east=east to Aethelgard - Merchant Row
+@open west=west to Aethelgard - Temple District
+@open down=down to Aethelgard - Shrine of Light
+
+# ---------------------------------------------------------------
+# 3. Paladin Training Grounds
+# ---------------------------------------------------------------
+dig Aethelgard - Paladin Training Grounds
+@desc This open-air courtyard is dedicated to the training of Aethelgard's famed paladins. The clang of steel echoes as knights drill with blunted blades. Racks of training gear line the whitewashed walls, and a stern instructor watches from a raised platform.
+@open south=south to Aethelgard - Sunlit Square
+@spawn paladin_guildmaster
+@tel here
+
+# ---------------------------------------------------------------
+# 4. Temple District (Cleric Guild)
+# ---------------------------------------------------------------
+dig Aethelgard - Temple District
+@desc A serene district of chapels and cloisters surrounds you. Robed clergy move quietly between shrines, their soft prayers blending with the gentle ringing of temple bells. The smell of incense clings to the air, and a sense of peace settles over the street.
+@open east=east to Aethelgard - Sunlit Square
+@open north=north to Aethelgard - Cathedral Spires
+@spawn cleric_guildmaster
+@tel here
+
+# ---------------------------------------------------------------
+# 5. Cathedral Spires
+# ---------------------------------------------------------------
+dig Aethelgard - Cathedral Spires
+@desc You stand on a high balcony among the spires of the great cathedral. The wind tugs at your cloak, carrying the distant murmur of the city far below. The view stretches across sunlit rooftops to the rolling green hills beyond. A narrow winding stair leads back to the temple district.
+@open south=south to Aethelgard - Temple District
+
+# ---------------------------------------------------------------
+# 6. Merchant Row (Shops)
+# ---------------------------------------------------------------
+dig Aethelgard - Merchant Row
+@desc A lively avenue of shops and stalls stretches before you. Signboards swing overhead, advertising everything from sharpened swords to exotic spices. Shopkeepers call out cheerfully to passersby, and the jingle of coins is a constant refrain.
+@open west=west to Aethelgard - Sunlit Square
+@open north=north to Aethelgard - The Iron Anvil Smithy
+@open south=south to Aethelgard - The Silver Chalice Apothecary
+@open east=east to Aethelgard - The Wardrobe General Store
+
+# ---------------------------------------------------------------
+# 7. General Store
+# ---------------------------------------------------------------
+dig Aethelgard - The Wardrobe General Store
+@desc The interior of this general store is crammed with shelves of provisions: coils of rope, bedrolls, lantern oil, dried rations, and all manner of adventuring sundries. A cheerful proprietor minds the cluttered counter.
+@open west=west to Aethelgard - Merchant Row
+@spawn general_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 8. Weaponsmith
+# ---------------------------------------------------------------
+dig Aethelgard - The Iron Anvil Smithy
+@desc The forge-heat hits you as you step inside the smithy. A burly smith hammers a glowing blade against an anvil, sparks spraying. Finished weapons—swords, axes, maces, and daggers—hang in gleaming rows along the walls.
+@open south=south to Aethelgard - Merchant Row
+@spawn weaponsmith_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 9. Armorer
+# ---------------------------------------------------------------
+dig Aethelgard - The Armorer's Workshop
+@desc This workshop smells of oiled leather and hot metal. Breastplates, helms, greaves, and shields are arranged on wooden stands, each polished to a bright sheen. A craggy armorer looks up from his work as you enter.
+@open north=north to Aethelgard - Merchant Row
+@spawn armorer_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 10. Apothecary (Potions)
+# ---------------------------------------------------------------
+dig Aethelgard - The Silver Chalice Apothecary
+@desc Countless vials and jars of luminous elixirs line the shelves of this apothecary. The air is sweet with the smell of herbs and alchemical reagents. A robed alchemist carefully measures a shimmering powder behind the counter.
+@open north=north to Aethelgard - Merchant Row
+@spawn potion_shopkeeper
+@tel here
+
+# ---------------------------------------------------------------
+# 11. City Gates (Guards)
+# ---------------------------------------------------------------
+dig Aethelgard - City Gates
+@desc Massive gates of oak and iron stand open, marking the southern entrance to Aethelgard. Towering guards in silver and white armor watch the road with wary eyes. Beyond the gates, a well-trodden path leads south into the farmlands.
+@open north=north to Aethelgard - Sunlit Square
+@open south=south to The Rolling Green Hills
+@spawn good_city_guard
+@tel here
+
+# ---------------------------------------------------------------
+# 12. Tavern
+# ---------------------------------------------------------------
+dig Aethelgard - The Golden Lion Tavern
+@desc The warm glow of a hearth fills this bustling tavern. Travelers and townsfolk share long tables, mugs of ale in hand, while a minstrel plucks a lute in the corner. The air smells of roasted meat and woodsmoke. A friendly barkeep wipes down the counter.
+@open west=west to Aethelgard - Sunlit Square
+
+# ---------------------------------------------------------------
+# 13. Library / Mage Guild
+# ---------------------------------------------------------------
+dig Aethelgard - The Arcane Athenaeum
+@desc Towering shelves of ancient tomes rise into shadow within this grand library. The scent of old parchment and candle wax fills the air. Hooded scholars drift between the stacks, and spheres of soft magical light bob near the ceiling.
+@open south=south to Aethelgard - Temple District
+@spawn mage_guildmaster
+@tel here
+
+# ---------------------------------------------------------------
+# 14. Barracks (Guard HQ)
+# ---------------------------------------------------------------
+dig Aethelgard - The Silver Barracks
+@desc The crisp efficiency of Aethelgard's city watch is on full display here. Bunks stand in neat rows, and suits of polished armor gleam on their stands. A captain reviews a map table, issuing orders to attentive sergeants.
+@open east=east to Aethelgard - City Gates
+@spawn good_city_guard
+@tel here
+
+# ---------------------------------------------------------------
+# 15. Starting Field to Newbie Zone
+# ---------------------------------------------------------------
+dig The Rolling Green Hills
+@desc You find yourself amidst gentle, rolling hills of vibrant green. The air is fresh and clean, filled with the scent of wildflowers. The eastern sky darkens with the promise of wilder lands, while the farmlands spread to the south.
+@open north=north to Aethelgard - City Gates
+@open south=south to Lush Farmland
+@open east=east to Newbie Zone - Forest Clearing
+
+# ---------------------------------------------------------------
+# 16. Farmland Link
+# ---------------------------------------------------------------
+dig Lush Farmland
+@desc Expansive fields of golden wheat stretch before you. A simple farmhouse with smoke curling from its chimney sits nearby. The path is less defined here, but you can see the city walls to the north.
+@open north=north to The Rolling Green Hills
+
+# ---------------------------------------------------------------
+# 17. Guard Outpost
+# ---------------------------------------------------------------
+dig Aethelgard Guard Outpost
+@desc A sturdy wooden watchtower stands here, offering a commanding view of the surrounding lands. This outpost marks the eastern border of Aethelgard's influence. A few guards scan the horizon for signs of trouble.
+@open west=west to Lush Farmland
+
+# ---------------------------------------------------------------
+# 18. Town Gates South Plaza
+# ---------------------------------------------------------------
+dig Aethelgard - Gatehouse Plaza
+@desc A wide plaza spreads before the main gates, thronged with merchants and travelers preparing to depart. Wagons creak past, and the clatter of hooves echoes off the stone. The road south is open and inviting.
+@open north=north to Aethelgard - City Gates
+
+# Done
+@teleport #2 Aethelgard - Shrine of Light
+@echo Aethelgard Town build complete: 18 rooms, 4 shops, 5 guildmasters, 2 guards, 1 tutorial NPC.

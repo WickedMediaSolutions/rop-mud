@@ -1,0 +1,71 @@
+# High-Level Zones — Levels 15-30, 30-50, 50-80
+# Skellion for the levels beyond Darkwood. These are template stubs with
+# representative rooms, spawners, and bosses. Expand as content is authored.
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.high_level_zones")
+
+# ------------------------------------------------------------------
+# LEVEL 15-30: The Crimson Wastes (Transitional semi-arid frontline)
+# ------------------------------------------------------------------
+dig The Crimson Wastes - The Forsaken Road
+@desc A cracked road of blood-red stone cuts through a desolate scrubland. The wind carries the smell of dust and old iron. Vultures circle overhead, patient and watchful. This is the frontline between the warring factions.
+@tags/set room-zone:crimson_wastes
+@open north=north to The Crimson Wastes - The Battlefield of Ash
+
+dig The Crimson Wastes - The Battlefield of Ash
+@desc A blasted plain littered with the broken remnants of war: shattered shields, splintered spears, and the bones of fallen soldiers. Ash falls like grey snow, and the ground is scorched black in places.
+@open south=south to The Crimson Wastes - The Forsaken Road
+@open east=east to The Crimson Wastes - The Carrion Fields
+
+dig The Crimson Wastes - The Carrion Fields
+@desc The stench of rot hangs heavy over this grim expanse. Carrion birds and feral scavengers fight over the remains of the fallen. The ground is soft and treacherous, thick with decay.
+@open west=west to The Crimson Wastes - The Battlefield of Ash
+
+# Level 15-30 boss arena
+dig The Crimson Wastes - The Warlord's Redoubt
+@desc A ruined fortress of scorched stone crowns a low hill. The banners of fallen armies hang in tatters from the battlements. Somewhere within, a warlord broods over the spoils of endless war.
+@open south=south to The Crimson Wastes - The Battlefield of Ash
+@spawn crimson_warlord
+@tel here
+
+# ------------------------------------------------------------------
+# LEVEL 30-50: The Glacial Rift (High wilderness / frozen frontier)
+# ------------------------------------------------------------------
+dig The Glacial Rift - The Icebound Pass
+@desc A narrow pass winds between sheer walls of blue ice. The cold is brutal, biting through armor and flesh alike. The only sound is the groan of ancient glaciers and the howl of the wind.
+@tags/set room-zone:glacial_rift
+@open north=north to The Glacial Rift - The Frozen Lake
+
+dig The Glacial Rift - The Frozen Lake
+@desc A vast lake of black ice stretches into the mist. Cracks web its surface, and dark shapes glide beneath the frozen skin. The cold here is a living, hungry thing.
+@open south=south to The Glacial Rift - The Icebound Pass
+@open east=east to The Glacial Rift - The Frost Giant's Reach
+
+dig The Glacial Rift - The Frost Giant's Reach
+@desc Colossal footprints and shattered trees mark this valley as the domain of frost giants. The air is so cold it burns, and the ground trembles faintly as something enormous moves in the distance.
+@open west=west to The Glacial Rift - The Frozen Lake
+@spawn frost_giant_spawner
+@tel here
+
+# ------------------------------------------------------------------
+# LEVEL 50-80: The Nether Bastion (Endgame demonic citadel)
+# ------------------------------------------------------------------
+dig The Nether Bastion - The Black Gate
+@desc A titanic gate of black iron and fused bone rises before you, wreathed in emerald flame. The air thunders with the chant of infernal legions. To pass is to enter the very heart of darkness.
+@tags/set room-zone:nether_bastion
+@open north=north to The Nether Bastion - The Hall of Blades
+
+dig The Nether Bastion - The Hall of Blades
+@desc A cyclopean hall lined with racks upon racks of cruel, glowing weapons. The heat is intense, and the walls weep molten metal. This is the armory of the end times.
+@open south=south to The Nether Bastion - The Black Gate
+@open east=east to The Nether Bastion - The Throne of Bone
+
+dig The Nether Bastion - The Throne of Bone
+@desc At the heart of the bastion sits a throne carved from the fused skeleton of some ancient leviathan. The air crackles with dark power, and the shadows bow toward the dais. An Overlord awaits.
+@open west=west to The Nether Bastion - The Hall of Blades
+@spawn nether_overlord
+@tel here
+
+@echo High-level zones build complete: 3 zones (15-30, 30-50, 50-80), 3 bosses.

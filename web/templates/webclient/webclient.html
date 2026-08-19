@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="color-scheme" content="dark">
+    <title>Rites of Passage — Web Client</title>
+    <link rel="icon" type="image/x-icon" href="/static/website/images/roplogo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+    <!-- Evennia color definitions (557 .color-NNN + .bgcolor-NNN classes) -->
+    <link rel="stylesheet" href="{% static 'webclient/css/webclient.css' %}">
+    <!-- ROP custom terminal styles (overrides webclient body/layout) -->
+    <link rel="stylesheet" href="{% static 'webclient/css/rop-terminal.css' %}">
+</head>
+<body class="rop-client">
+
+    <!-- Connection status bar -->
+    <div id="rop-status" role="status" aria-live="polite" aria-label="Connection status">
+        <span id="rop-status-dot" class="status-dot disconnected"></span>
+        <span id="rop-status-text">Disconnected</span>
+        <button id="rop-reconnect-btn" class="rop-btn rop-btn--reconnect" disabled
+                aria-label="Reconnect to game server">Reconnect</button>
+        <div class="rop-audio-controls">
+            <button id="rop-mute-btn" class="rop-mute-btn" aria-label="Mute game audio">&#x1F50A;</button>
+            <input type="range" id="rop-volume-slider" class="rop-volume-slider"
+                   min="0" max="100" value="70" aria-label="Game audio volume">
+        </div>
+    </div>
+
+    <!-- Terminal output window -->
+    <main id="rop-terminal" class="rop-terminal" role="log" aria-live="polite" aria-label="Game output">
+        <div class="rop-welcome">
+            <pre class="rop-ascii-banner">
+╔══════════════════════════════════════════════════════╗
+║                   RITES OF PASSAGE                   ║
+║               A Dark Fantasy MUD Realm                ║
+╚══════════════════════════════════════════════════════╝
+            </pre>
+            <p class="rop-welcome__connecting">Establishing connection to the realm&hellip;</p>
+        </div>
+    </main>
+
+    <!-- Command input bar -->
+    <footer id="rop-input-bar" class="rop-input-bar">
+        <span class="rop-prompt">></span>
+        <input type="text" id="rop-command" class="rop-command-input"
+               placeholder="Type a command and press Enter&hellip;"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+               aria-label="Command input" disabled>
+    </footer>
+
+    <script>
+        // Configuration injected by Django (from server/conf/settings.py).
+        // websocket_url defaults to the Caddy-proxied wss:// endpoint in
+        // production; the JS client falls back to direct ws://host:4012
+        // for local development when no URL is configured.
+        window.ROP_CONFIG = {
+            websocketUrl: "{{ websocket_url|default:'' }}",
+            websocketPort: {{ websocket_port|default:4012 }},
+            subprotocol: "v1.evennia.com",
+            csessid: "{{ browser_sessid|default:'' }}"
+        };
+    </script>
+    <script src="{% static 'webclient/js/rop-client.js' %}"></script>
+</body>
+</html>

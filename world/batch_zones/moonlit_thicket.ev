@@ -1,0 +1,216 @@
+# Moonlit Thicket — Level 15-25
+# Auto-generated zone: Eerie forest that only reveals its paths under moonlight
+# Faction: Neutral
+# Rooms: 20
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.moonlit_thicket")
+
+# --- Room 1/20 ---
+dig Moonlit Thicket - Entrance
+@desc Ancient ash trees tower overhead, their tangled canopy filtering the dim luminescence into dancing patterns on the forest floor. The air smells of ozone, and the ground is carpeted with cracked stone.
+@tags/set room-zone:moonlit_thicket
+@open south=south to Moonlit Thicket - Ledge
+@open east=east to Moonlit Thicket - Stretch
+
+# --- Room 2/20 ---
+dig Moonlit Thicket - Stretch
+@desc A narrow trail winds through the twisted undergrowth. You hear low rumbling tremors echoing among the oaks and spot a broken altar half-hidden in the exposed roots.
+@tags/set room-zone:moonlit_thicket
+@open west=west to Moonlit Thicket - Entrance
+@open south=south to Moonlit Thicket - Depths
+@open east=east to Moonlit Thicket - Grotto
+
+# --- Room 3/20 ---
+dig Moonlit Thicket - Grotto
+@desc The elms grow tangled here, their crumbling branches intertwining overhead. You hear skittering claws drifting on the breeze, and the path ahead looks barely visible.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_tank_lvl25
+@tel here
+@open west=west to Moonlit Thicket - Stretch
+@open south=south to Moonlit Thicket - Gallery
+@open east=east to Moonlit Thicket - Path
+
+# --- Room 4/20 ---
+dig Moonlit Thicket - Path
+@desc You have found a small clearing where moonlight streams through a break in the cypresses overhead. You notice flickering torchlight resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_tank_lvl20
+@tel here
+@open west=west to Moonlit Thicket - Grotto
+@open south=south to Moonlit Thicket - Passage
+@open east=east to Moonlit Thicket - Crossroads 2
+
+# --- Room 5/20 ---
+dig Moonlit Thicket - Crossroads 2
+@desc You have found a small clearing where moonlight streams through a break in the bloodoaks overhead. You notice flickering torchlight resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:moonlit_thicket
+@open west=west to Moonlit Thicket - Path
+@open south=south to Moonlit Thicket - Nook
+
+# --- Room 6/20 ---
+dig Moonlit Thicket - Ledge
+@desc A narrow trail winds through the overgrown undergrowth. You hear dripping echoes echoing among the ironwoods and spot a dark bloodstain half-hidden in the fallen leaves.
+@tags/set room-zone:moonlit_thicket
+@open north=north to Moonlit Thicket - Entrance
+@open south=south to Moonlit Thicket - Descent
+@open east=east to Moonlit Thicket - Depths
+
+# --- Room 7/20 ---
+dig Moonlit Thicket - Depths
+@desc A narrow trail winds through the overgrown undergrowth. You hear strange whispers echoing among the oaks and spot ancient runes half-hidden in the cracked stone.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_skirmisher_lvl20
+@tel here
+@spawn gen_tank_lvl18
+@tel here
+@open north=north to Moonlit Thicket - Stretch
+@open west=west to Moonlit Thicket - Ledge
+@open south=south to Moonlit Thicket - Ridge
+@open east=east to Moonlit Thicket - Gallery
+
+# --- Room 8/20 ---
+dig Moonlit Thicket - Gallery
+@desc A narrow trail winds through the thick undergrowth. You hear distant howls echoing among the elms and spot flickering torchlight half-hidden in the cracked stone.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_brute_lvl20
+@tel here
+@open north=north to Moonlit Thicket - Grotto
+@open west=west to Moonlit Thicket - Depths
+@open south=south to Moonlit Thicket - Chamber 2
+@open east=east to Moonlit Thicket - Passage
+
+# --- Room 9/20 ---
+dig Moonlit Thicket - Passage
+@desc The willows grow twisted here, their crumbling branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks barely visible.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_assassin_lvl22
+@tel here
+@open north=north to Moonlit Thicket - Path
+@open west=west to Moonlit Thicket - Gallery
+@open south=south to Moonlit Thicket - Grove
+@open east=east to Moonlit Thicket - Nook
+
+# --- Room 10/20 ---
+dig Moonlit Thicket - Nook
+@desc A narrow trail winds through the twisted undergrowth. You hear dripping echoes echoing among the willows and spot scattered offerings half-hidden in the exposed roots.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_assassin_lvl20
+@tel here
+@open north=north to Moonlit Thicket - Crossroads 2
+@open west=west to Moonlit Thicket - Passage
+@open south=south to Moonlit Thicket - Clearing
+
+# --- Room 11/20 ---
+dig Moonlit Thicket - Descent
+@desc A narrow trail winds through the dense undergrowth. You hear muffled voices echoing among the cypresses and spot a broken altar half-hidden in the scattered bones.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_brute_lvl22
+@tel here
+@open north=north to Moonlit Thicket - Ledge
+@open south=south to Moonlit Thicket - Ascent 2
+@open east=east to Moonlit Thicket - Ridge
+
+# --- Room 12/20 ---
+dig Moonlit Thicket - Ridge
+@desc The ironwoods grow dense here, their darkened branches intertwining overhead. You hear low rumbling tremors drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_caster_lvl18
+@tel here
+@spawn gen_caster_lvl15
+@tel here
+@open north=north to Moonlit Thicket - Depths
+@open west=west to Moonlit Thicket - Descent
+@open south=south to Moonlit Thicket - Grotto 2
+@open east=east to Moonlit Thicket - Chamber 2
+
+# --- Room 13/20 ---
+dig Moonlit Thicket - Chamber 2
+@desc A narrow trail winds through the tangled undergrowth. You hear faint chants echoing among the pines and spot scattered offerings half-hidden in the scattered bones.
+@tags/set room-zone:moonlit_thicket
+@open north=north to Moonlit Thicket - Gallery
+@open west=west to Moonlit Thicket - Ridge
+@open south=south to Moonlit Thicket - Crossroads
+@open east=east to Moonlit Thicket - Grove
+
+# --- Room 14/20 ---
+dig Moonlit Thicket - Grove
+@desc Ancient oaks tower overhead, their emerald canopy filtering the sunlight into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with exposed roots.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_assassin_lvl22
+@tel here
+@spawn gen_balanced_lvl18
+@tel here
+@open north=north to Moonlit Thicket - Passage
+@open west=west to Moonlit Thicket - Chamber 2
+@open south=south to Moonlit Thicket - Bend
+@open east=east to Moonlit Thicket - Clearing
+
+# --- Room 15/20 ---
+dig Moonlit Thicket - Clearing
+@desc You have found a small clearing where ethereal radiance streams through a break in the willows overhead. You notice a dark bloodstain resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_brute_lvl25
+@tel here
+@spawn gen_balanced_lvl15
+@tel here
+@open north=north to Moonlit Thicket - Nook
+@open west=west to Moonlit Thicket - Grove
+@open south=south to Moonlit Thicket - Heart
+
+# --- Room 16/20 ---
+dig Moonlit Thicket - Ascent 2
+@desc Ancient cypresses tower overhead, their dark canopy filtering the filtered light into dancing patterns on the forest floor. The air smells of ozone, and the ground is carpeted with thick moss.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_assassin_lvl22
+@tel here
+@open north=north to Moonlit Thicket - Descent
+@open east=east to Moonlit Thicket - Grotto 2
+
+# --- Room 17/20 ---
+dig Moonlit Thicket - Grotto 2
+@desc You have found a small clearing where ethereal radiance streams through a break in the bloodoaks overhead. You notice flickering torchlight resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_skirmisher_lvl22
+@tel here
+@spawn gen_assassin_lvl22
+@tel here
+@open north=north to Moonlit Thicket - Ridge
+@open west=west to Moonlit Thicket - Ascent 2
+@open east=east to Moonlit Thicket - Crossroads
+
+# --- Room 18/20 ---
+dig Moonlit Thicket - Crossroads
+@desc You have found a small clearing where filtered light streams through a break in the cypresses overhead. You notice scattered offerings resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_balanced_lvl20
+@tel here
+@open north=north to Moonlit Thicket - Chamber 2
+@open west=west to Moonlit Thicket - Grotto 2
+@open east=east to Moonlit Thicket - Bend
+
+# --- Room 19/20 ---
+dig Moonlit Thicket - Bend
+@desc A narrow trail winds through the dense undergrowth. You hear distant howls echoing among the oaks and spot a dark bloodstain half-hidden in the exposed roots.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_caster_lvl25
+@tel here
+@spawn gen_caster_lvl20
+@tel here
+@open north=north to Moonlit Thicket - Grove
+@open west=west to Moonlit Thicket - Crossroads
+@open east=east to Moonlit Thicket - Heart
+
+# --- Room 20/20 ---
+dig Moonlit Thicket - Heart
+@desc You have found a small clearing where dim luminescence streams through a break in the bloodoaks overhead. You notice a weathered statue resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:moonlit_thicket
+@spawn gen_brute_lvl15
+@tel here
+@spawn gen_assassin_lvl22
+@tel here
+@open north=north to Moonlit Thicket - Clearing
+@open west=west to Moonlit Thicket - Bend
+
+# Zone 'Moonlit Thicket' complete — 20 rooms, 62 directed exits.

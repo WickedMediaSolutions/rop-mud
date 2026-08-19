@@ -1,0 +1,121 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Races & Classes — Rites of Passage{% endblock %}
+
+{% block extra_head %}
+<style>
+  .race-portrait {
+    width: 120px; height: 120px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-subtle);
+    object-fit: cover;
+    background: var(--bg-dark);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="content-card ornate">
+  <h1>Races of the Realm</h1>
+  <p style="text-align: center; color: var(--text-dim);">
+    16 unique races divided between Good and Evil. Your race determines your starting
+    stats, passive ability, faction allegiance, and starting city.
+  </p>
+</div>
+
+<!-- ============ GOOD RACES ============ -->
+<div class="section-divider">☀️  Good — Aethelgard Alliance  ☀️</div>
+
+<div class="race-grid">
+  {% for race_name, rdata in good_races %}
+  <div class="race-card good-race">
+    <img
+      src="{% static 'website/images/races/'|add:race_name|add:'.png' %}"
+      alt="{{ race_name }}"
+      class="race-portrait"
+      onerror="this.style.display='none'"
+      loading="lazy"
+    >
+    <div class="race-details">
+      <h3>
+        {{ race_name }}
+        <span class="badge badge-good">Good</span>
+      </h3>
+      <p style="margin: 0 0 var(--space-sm) 0; font-size: 0.9rem;">{{ rdata.desc }}</p>
+      <div class="stat-row">
+        <span>STR<br><strong>{{ rdata.stats.str }}</strong></span>
+        <span>DEX<br><strong>{{ rdata.stats.dex }}</strong></span>
+        <span>CON<br><strong>{{ rdata.stats.con }}</strong></span>
+        <span>INT<br><strong>{{ rdata.stats.int }}</strong></span>
+        <span>WIS<br><strong>{{ rdata.stats.wis }}</strong></span>
+        <span>CHA<br><strong>{{ rdata.stats.cha }}</strong></span>
+      </div>
+      <div class="passive">✦ {{ rdata.passive }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ============ EVIL RACES ============ -->
+<div class="section-divider">💀  Evil — Gorgoroth Horde  💀</div>
+
+<div class="race-grid">
+  {% for race_name, rdata in evil_races %}
+  <div class="race-card evil-race">
+    <img
+      src="{% static 'website/images/races/'|add:race_name|add:'.png' %}"
+      alt="{{ race_name }}"
+      class="race-portrait"
+      onerror="this.style.display='none'"
+      loading="lazy"
+    >
+    <div class="race-details">
+      <h3>
+        {{ race_name }}
+        <span class="badge badge-evil">Evil</span>
+      </h3>
+      <p style="margin: 0 0 var(--space-sm) 0; font-size: 0.9rem;">{{ rdata.desc }}</p>
+      <div class="stat-row">
+        <span>STR<br><strong>{{ rdata.stats.str }}</strong></span>
+        <span>DEX<br><strong>{{ rdata.stats.dex }}</strong></span>
+        <span>CON<br><strong>{{ rdata.stats.con }}</strong></span>
+        <span>INT<br><strong>{{ rdata.stats.int }}</strong></span>
+        <span>WIS<br><strong>{{ rdata.stats.wis }}</strong></span>
+        <span>CHA<br><strong>{{ rdata.stats.cha }}</strong></span>
+      </div>
+      <div class="passive">✦ {{ rdata.passive }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ============ CLASSES ============ -->
+<div class="section-divider">📜  Classes  📜</div>
+
+<div class="content-card">
+  <h2>Choose Your Path</h2>
+  <p>10 distinct classes, each with unique progression, abilities, and combat style.</p>
+</div>
+
+<div class="class-grid">
+  {% for cls_name, cdata in classes.items %}
+  <div class="class-card">
+    <h3>{{ cls_name }}</h3>
+    <div class="class-meta">
+      <span><strong>Primary:</strong> {{ cdata.primary_stat|upper }}</span>
+      <span><strong>HP/Lv:</strong> {{ cdata.hp_per_level }}</span>
+      <span><strong>MP/Lv:</strong> {{ cdata.mana_per_level }}</span>
+    </div>
+    <p>{{ cdata.desc }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="content-card" style="text-align: center;">
+  <h2 style="border-left: none; text-align: center;">Ready to Forge Your Legend?</h2>
+  <a href="/webclient/" class="btn btn-lg">◆ Begin Your Journey ◆</a>
+</div>
+
+{% endblock %}

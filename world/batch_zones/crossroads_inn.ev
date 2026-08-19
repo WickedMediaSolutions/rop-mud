@@ -1,0 +1,153 @@
+# Crossroads Inn & Stables — Level 1-10
+# Auto-generated zone: Busy waystation where travelers from all realms meet
+# Faction: Neutral
+# Rooms: 15
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.crossroads_inn")
+
+# --- Room 1/15 ---
+dig Crossroads Inn & Stables - Entrance
+@desc Ancient elms tower overhead, their shimmering canopy filtering the moonlight into dancing patterns on the forest floor. The air smells of brimstone, and the ground is carpeted with thick moss.
+@tags/set room-zone:crossroads_inn
+@open south=south to Crossroads Inn & Stables - Bend
+@open east=east to Crossroads Inn & Stables - Depths
+
+# --- Room 2/15 ---
+dig Crossroads Inn & Stables - Depths
+@desc A narrow trail winds through the thick undergrowth. You hear muffled voices echoing among the pines and spot a dark bloodstain half-hidden in the cracked stone.
+@tags/set room-zone:crossroads_inn
+@spawn gen_skirmisher_lvl3
+@tel here
+@spawn gen_skirmisher_lvl10
+@tel here
+@open west=west to Crossroads Inn & Stables - Entrance
+@open south=south to Crossroads Inn & Stables - Ascent
+@open east=east to Crossroads Inn & Stables - Path
+
+# --- Room 3/15 ---
+dig Crossroads Inn & Stables - Path
+@desc A narrow trail winds through the tangled undergrowth. You hear dripping echoes echoing among the pines and spot a broken altar half-hidden in the scattered bones.
+@tags/set room-zone:crossroads_inn
+@spawn gen_assassin_lvl8
+@tel here
+@open west=west to Crossroads Inn & Stables - Depths
+@open south=south to Crossroads Inn & Stables - Ridge
+@open east=east to Crossroads Inn & Stables - Nook
+
+# --- Room 4/15 ---
+dig Crossroads Inn & Stables - Nook
+@desc A narrow trail winds through the tangled undergrowth. You hear low rumbling tremors echoing among the elms and spot a broken altar half-hidden in the thick moss.
+@tags/set room-zone:crossroads_inn
+@spawn gen_skirmisher_lvl5
+@tel here
+@spawn gen_skirmisher_lvl1
+@tel here
+@open west=west to Crossroads Inn & Stables - Path
+@open south=south to Crossroads Inn & Stables - Crossroads
+
+# --- Room 5/15 ---
+dig Crossroads Inn & Stables - Bend
+@desc The ash trees grow tangled here, their ancient branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks treacherous.
+@tags/set room-zone:crossroads_inn
+@open north=north to Crossroads Inn & Stables - Entrance
+@open south=south to Crossroads Inn & Stables - Crossroads 2
+@open east=east to Crossroads Inn & Stables - Ascent
+
+# --- Room 6/15 ---
+dig Crossroads Inn & Stables - Ascent
+@desc The bloodoaks grow sparse here, their pristine branches intertwining overhead. You hear distant howls drifting on the breeze, and the path ahead looks slick with moisture.
+@tags/set room-zone:crossroads_inn
+@open north=north to Crossroads Inn & Stables - Depths
+@open west=west to Crossroads Inn & Stables - Bend
+@open south=south to Crossroads Inn & Stables - Stretch
+@open east=east to Crossroads Inn & Stables - Ridge
+
+# --- Room 7/15 ---
+dig Crossroads Inn & Stables - Ridge
+@desc A narrow trail winds through the twisted undergrowth. You hear muffled voices echoing among the pines and spot a dark bloodstain half-hidden in the thick moss.
+@tags/set room-zone:crossroads_inn
+@spawn gen_tank_lvl8
+@tel here
+@open north=north to Crossroads Inn & Stables - Path
+@open west=west to Crossroads Inn & Stables - Ascent
+@open south=south to Crossroads Inn & Stables - Clearing
+@open east=east to Crossroads Inn & Stables - Crossroads
+
+# --- Room 8/15 ---
+dig Crossroads Inn & Stables - Crossroads
+@desc Ancient elms tower overhead, their dense canopy filtering the faint luminescence into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with soft loam.
+@tags/set room-zone:crossroads_inn
+@spawn gen_skirmisher_lvl3
+@tel here
+@spawn gen_brute_lvl1
+@tel here
+@open north=north to Crossroads Inn & Stables - Nook
+@open west=west to Crossroads Inn & Stables - Ridge
+@open south=south to Crossroads Inn & Stables - Stretch 2
+
+# --- Room 9/15 ---
+dig Crossroads Inn & Stables - Crossroads 2
+@desc You have found a small clearing where dim luminescence streams through a break in the cypresses overhead. You notice a discarded weapon resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:crossroads_inn
+@open north=north to Crossroads Inn & Stables - Bend
+@open south=south to Crossroads Inn & Stables - Thicket
+@open east=east to Crossroads Inn & Stables - Stretch
+
+# --- Room 10/15 ---
+dig Crossroads Inn & Stables - Stretch
+@desc A narrow trail winds through the twisted undergrowth. You hear skittering claws echoing among the elms and spot ancient runes half-hidden in the soft loam.
+@tags/set room-zone:crossroads_inn
+@spawn gen_brute_lvl1
+@tel here
+@spawn gen_skirmisher_lvl1
+@tel here
+@open north=north to Crossroads Inn & Stables - Ascent
+@open west=west to Crossroads Inn & Stables - Crossroads 2
+@open south=south to Crossroads Inn & Stables - Grotto 2
+@open east=east to Crossroads Inn & Stables - Clearing
+
+# --- Room 11/15 ---
+dig Crossroads Inn & Stables - Clearing
+@desc Ancient cypresses tower overhead, their dark canopy filtering the moonlight into dancing patterns on the forest floor. The air smells of brimstone, and the ground is carpeted with thick moss.
+@tags/set room-zone:crossroads_inn
+@open north=north to Crossroads Inn & Stables - Ridge
+@open west=west to Crossroads Inn & Stables - Stretch
+@open south=south to Crossroads Inn & Stables - Heart
+@open east=east to Crossroads Inn & Stables - Stretch 2
+
+# --- Room 12/15 ---
+dig Crossroads Inn & Stables - Stretch 2
+@desc The willows grow dense here, their darkened branches intertwining overhead. You hear muffled voices drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:crossroads_inn
+@spawn gen_skirmisher_lvl10
+@tel here
+@open north=north to Crossroads Inn & Stables - Crossroads
+@open west=west to Crossroads Inn & Stables - Clearing
+
+# --- Room 13/15 ---
+dig Crossroads Inn & Stables - Thicket
+@desc Ancient oaks tower overhead, their ancient canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with scattered bones.
+@tags/set room-zone:crossroads_inn
+@spawn gen_caster_lvl10
+@tel here
+@open north=north to Crossroads Inn & Stables - Crossroads 2
+@open east=east to Crossroads Inn & Stables - Grotto 2
+
+# --- Room 14/15 ---
+dig Crossroads Inn & Stables - Grotto 2
+@desc Ancient pines tower overhead, their emerald canopy filtering the sunlight into dancing patterns on the forest floor. The air smells of wildflowers, and the ground is carpeted with exposed roots.
+@tags/set room-zone:crossroads_inn
+@open north=north to Crossroads Inn & Stables - Stretch
+@open west=west to Crossroads Inn & Stables - Thicket
+@open east=east to Crossroads Inn & Stables - Heart
+
+# --- Room 15/15 ---
+dig Crossroads Inn & Stables - Heart
+@desc The elms grow tangled here, their corrupted branches intertwining overhead. You hear low rumbling tremors drifting on the breeze, and the path ahead looks overgrown.
+@tags/set room-zone:crossroads_inn
+@open north=north to Crossroads Inn & Stables - Clearing
+@open west=west to Crossroads Inn & Stables - Grotto 2
+
+# Zone 'Crossroads Inn & Stables' complete — 15 rooms, 44 directed exits.

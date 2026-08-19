@@ -1,0 +1,43 @@
+# Caddy Reverse Proxy Configuration for Rites of Passage (ROP)
+# =================================================================
+# This file configures Caddy to:
+#   1. Serve static webclient assets directly from STATIC_ROOT
+#   2. Proxy WebSocket connections to Evennia's internal WS port
+#   3. Proxy all other HTTP traffic to Evennia's web server
+#   4. Set proper WebSocket upgrade headers
+#
+# Prerequisites (run from game root before starting Caddy):
+#   evennia clearweb
+#   evennia collectstatic
+#
+# The STATIC_ROOT path below must match the STATIC_ROOT in
+# server/conf/settings.py.  Adjust if your deployment path differs.
+# =================================================================
+
+rop.dirtysouthjosh.com {
+    # -----------------------------------------------------------------
+    # Static assets — served directly by Caddy (fast, no Django overhead)
+    # -----------------------------------------------------------------
+    handle_path /static/* {
+        root * /root/rop/rop/server/conf/static
+        file_server
+    }
+
+    # -----------------------------------------------------------------
+    # WebSocket endpoint — proxied to Evennia's internal WS port (4012)
+    # Caddy v2 automatically handles WebSocket upgrade headers when
+    # proxying, so no explicit header matching is needed.
+    # -----------------------------------------------------------------
+    handle_path /ws/* {
+        reverse_proxy localhost:4012
+    }
+
+    # -----------------------------------------------------------------
+    # All other traffic — proxied to Evennia's web server (4011→4015)
+    # -----------------------------------------------------------------
+    reverse_proxy localhost:4011 {
+        header_up Host {host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}

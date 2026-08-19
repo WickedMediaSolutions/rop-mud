@@ -1,0 +1,36 @@
+/*
+ * ROP Webclient Custom CSS
+ * =========================
+ * Replaces harsh ANSI magenta/pink (#ff00ff, #800080) with gold tones
+ * matching the Rites of Passage professional dark-fantasy palette.
+ *
+ * IMPORTANT: All color overrides MUST remain readable against the
+ * webclient's black (#000) background.  Dark tones that blend into
+ * the background make text invisible.
+ */
+
+/* Bright magenta (#ff00ff) and all pink/magenta variants -> gold (#d4a843) */
+.color-013, .color-201, .color-199, .color-197, .color-165,
+.color-127, .color-129, .color-163, .color-171, .color-177,
+.color-183, .color-207, .color-213, .color-219, .color-225 {
+    color: #d4a843;
+}
+
+/* Dark magenta/purple (#800080) and variants -> readable warm gold (#b8963e).
+ * Previous value #42413e was nearly invisible on black background. */
+.color-005, .color-089, .color-091, .color-093, .color-125,
+.color-126, .color-161 {
+    color: #b8963e;
+}
+
+/* Background variants — keep dark but distinguishable from pure black */
+.bgcolor-013, .bgcolor-201, .bgcolor-199, .bgcolor-197, .bgcolor-165,
+.bgcolor-127, .bgcolor-129, .bgcolor-163, .bgcolor-171, .bgcolor-177,
+.bgcolor-183, .bgcolor-207, .bgcolor-213, .bgcolor-219, .bgcolor-225 {
+    background-color: #353330;
+}
+
+.bgcolor-005, .bgcolor-089, .bgcolor-091, .bgcolor-093, .bgcolor-125,
+.bgcolor-126, .bgcolor-161 {
+    background-color: #2b2926;
+}

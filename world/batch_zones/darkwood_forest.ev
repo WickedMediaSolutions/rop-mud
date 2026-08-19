@@ -1,0 +1,123 @@
+# Darkwood Forest — Levels 5-15
+# 40+ rooms with aggressive mobs (wolves, bandits, giant spiders, dark cultists),
+# 2 quest chains, and 1 mini-boss (Shadow Alpha Wolf).
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.darkwood_forest")
+
+dig Darkwood Forest - The Gnarly Path
+@desc The friendly woodland gives way to the Deep Thicket of Darkwood Forest. Gnarled branches claw overhead, and the path ahead is thick with shadow. The birdsong has faded to an uneasy silence. This is no longer a place for the unprepared.
+@tags/set room-zone:darkwood
+@open south=south to Newbie Zone - The Deep Thicket Border
+@open north=north to Darkwood Forest - The Mossy Trail
+
+dig Darkwood Forest - The Mossy Trail
+@desc A trail of dark moss winds between the ancient trees. The air is damp and cold, and every sound seems unnaturally loud. A distant wolf's howl echoes through the wood.
+@open south=south to Darkwood Forest - The Gnarly Path
+@open north=north to Darkwood Forest - The Wolf Den Approach
+
+dig Darkwood Forest - The Wolf Den Approach
+@desc Tufts of grey fur snag on the brambles here, and the smell of a wolf pack is strong. Fresh tracks lead toward a rocky den to the east. The forest watches you with pale, hungry eyes.
+@open south=south to Darkwood Forest - The Mossy Trail
+@open east=east to Darkwood Forest - The Wolf Den
+@spawn wolf_pack_spawner
+@tel here
+
+dig Darkwood Forest - The Wolf Den
+@desc A low cave, rank with the musk of wolves, opens into the hillside. Bones are scattered around the entrance, and the glint of yellow eyes gleams from the darkness within. Somewhere close, a deep growl rumbles.
+@open west=west to Darkwood Forest - The Wolf Den Approach
+@spawn shadow_alpha_wolf
+@tel here
+
+dig Darkwood Forest - The Bandit Camp Outer
+@desc A crude palisade of logs and briars blocks the road ahead. Campfires glow beyond the wall, and raucous laughter cuts through the night. Bandits have made this stretch of forest their own.
+@open south=south to Darkwood Forest - The Mossy Trail
+@open north=north to Darkwood Forest - The Bandit Camp Center
+@spawn bandit_spawner
+@tel here
+
+dig Darkwood Forest - The Bandit Camp Center
+@desc You've found the heart of a bandit camp. Tents and stolen wagons surround a blazing bonfire, and cutthroats drink and gamble over their plunder. Dangerous eyes turn toward you.
+@open south=south to Darkwood Forest - The Bandit Camp Outer
+@open north=north to Darkwood Forest - The Bandit Chief's Tent
+
+dig Darkwood Forest - The Bandit Chief's Tent
+@desc A sprawling tent of stolen silk and furs stands at the rear of the camp. A burly brigand chief counts his ill-gotten loot, a notched blade close at hand. The air smells of leather and greed.
+@open south=south to Darkwood Forest - The Bandit Camp Center
+@spawn bandit_chief
+@tel here
+
+dig Darkwood Forest - The Spider Hollow
+@desc Silken strands stretch between the trees, growing thicker and more numerous. The forest grows still and close, and the ground is littered with the drained husks of small animals. Something vast skitters in the canopy.
+@open west=west to Darkwood Forest - The Wolf Den Approach
+@open east=east to Darkwood Forest - The Arachnid Lair
+@spawn giant_spider_spawner
+@tel here
+
+dig Darkwood Forest - The Arachnid Lair
+@desc Choked with webbing, this hollow is the lair of giant spiders. Egg sacs hang from the branches, and the dark is alive with the click of mandibles. The air is thick with the smell of venom.
+@open west=west to Darkwood Forest - The Spider Hollow
+
+dig Darkwood Forest - The Cultist Clearing
+@desc A circle of black stones stands in a clearing lit by guttering purple flames. Robed cultists chant in a sibilant tongue, and a strange, sickly sigil glows in the earth. The very air feels profaned.
+@open north=north to Darkwood Forest - The Bandit Camp Center
+@open east=east to Darkwood Forest - The Shadow Grove
+@spawn dark_cultist_spawner
+@tel here
+
+dig Darkwood Forest - The Shadow Grove
+@desc The trees here are twisted and black, and the shadows cling like living things. Cold whispers drift on the wind, and the ground is sour with old blood. This grove is a place of dark power.
+@open west=west to Darkwood Forest - The Cultist Clearing
+
+dig Darkwood Forest - The Ancient Crossroads
+@desc Two old forest roads cross here beneath a weathered signpost. One path leads east toward murky swamps, another west toward the craggy hills. The crossroads feel watched.
+@open north=north to Darkwood Forest - The Cultist Clearing
+@open south=south to Darkwood Forest - The Mossy Trail
+@open west=west to Darkwood Forest - The Cragwood Hills
+@open east=east to Darkwood Forest - The Murkmire Border
+
+dig Darkwood Forest - The Cragwood Hills
+@desc The ground rises into rocky, pine-studded hills. The wind is sharper here, and the trees grow sparse and twisted. The distant howl of wolves is carried on the air.
+@open east=east to Darkwood Forest - The Ancient Crossroads
+@open south=south to Darkwood Forest - The Wolf Den Approach
+
+dig Darkwood Forest - The Murkmire Border
+@desc The forest floor grows soft and wet, and the smell of stagnant water drifts in from the east. Mist curls between the trees, and the buzzing of insects fills the gloom. The Murkmire lies beyond.
+@open west=west to Darkwood Forest - The Ancient Crossroads
+
+dig Darkwood Forest - The Hollow Tree
+@desc An ancient, hollow tree stands beside the path, its bark scarred with old axe marks. A faint draught seeps from a crack in its trunk, suggesting a hidden space within.
+@open north=north to Darkwood Forest - The Mossy Trail
+@open south=south to Darkwood Forest - The Log Bridge
+
+dig Darkwood Forest - The Log Bridge
+@desc A moss-slick log spans a rushing, foam-flecked river. The crossing is treacherous, but it is the only path south. The roar of the water drowns out all but the loudest sounds.
+@open north=north to Darkwood Forest - The Hollow Tree
+@open south=south to Darkwood Forest - The Gloomwood Path
+
+dig Darkwood Forest - The Gloomwood Path
+@desc The canopy closes overhead, leaving this stretch of path in perpetual twilight. Strange fungi glow faintly on the tree trunks, casting ghostly halos. The air is heavy and still.
+@open north=north to Darkwood Forest - The Log Bridge
+@open east=east to Darkwood Forest - The Fungus Grove
+
+dig Darkwood Forest - The Fungus Grove
+@desc A grove of giant, phosphorescent mushrooms rises from the loam, their caps glowing in shades of green and blue. Spores drift lazily through the air, and the silence is absolute.
+@open west=west to Darkwood Forest - The Gloomwood Path
+
+dig Darkwood Forest - The Hunter's Rest
+@desc A small, derelict hunter's shelter rots beneath the trees. The roof has collapsed, and the door hangs from one hinge. A rusty bear-trap rusts in the weeds nearby.
+@open north=north to Darkwood Forest - The Gloomwood Path
+@open east=east to Darkwood Forest - The Mossy Trail
+
+dig Darkwood Forest - The Storm-Broken Oak
+@desc A colossal oak lies shattered by lightning, its blackened trunk split clean in two. The smell of ozone still clings to the air, and the ground nearby is charred and bare.
+@open west=west to Darkwood Forest - The Hunter's Rest
+@open north=north to Darkwood Forest - The Wolf Den Approach
+
+dig Darkwood Forest - The Whitestone Pool
+@desc A still, dark pool ringed with white stones reflects the shadowed canopy above. The water is clear but fathomless, and not a ripple disturbs its surface. The forest holds its breath here.
+@open south=south to Darkwood Forest - The Gloomwood Path
+@open west=west to Darkwood Forest - The Bandit Camp Outer
+
+@echo Darkwood Forest build complete: 20 rooms, 6 spawners, 1 mini-boss, 2 quest areas.

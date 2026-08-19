@@ -1,0 +1,261 @@
+# Blightwood Marsh — Level 26-36
+# Auto-generated zone: Fetid swamp where twisted trees drip with poisonous sap
+# Faction: Gorgoroth Horde
+# Rooms: 25
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.blightwood_marsh")
+
+# --- Room 1/25 ---
+dig Blightwood Marsh - Entrance
+@desc Your boots sink into the desolate muck with every step. filtered light barely penetrates the foreboding canopy, and you hear muffled voices coming from the foreboding shadows.
+@tags/set room-zone:blightwood_marsh
+@open south=south to Blightwood Marsh - Ridge
+@open east=east to Blightwood Marsh - Bend
+
+# --- Room 2/25 ---
+dig Blightwood Marsh - Bend
+@desc The swamp opens into a corrupted bayou where sunlight reflects off the dark water. You notice ancient runes hanging from the cypresses, and the air is thick with the smell of decay.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_brute_lvl35
+@tel here
+@open west=west to Blightwood Marsh - Entrance
+@open south=south to Blightwood Marsh - Stretch
+@open east=east to Blightwood Marsh - Thicket
+
+# --- Room 3/25 ---
+dig Blightwood Marsh - Thicket
+@desc Crumbling water stretches between gnarled cypresses, their roots disappearing into the murky depths. You hear dripping echoes in the heavy air and see scattered offerings floating on the stagnant surface.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_brute_lvl30
+@tel here
+@spawn gen_balanced_lvl28
+@tel here
+@open west=west to Blightwood Marsh - Bend
+@open south=south to Blightwood Marsh - Expanse
+@open east=east to Blightwood Marsh - Grove
+
+# --- Room 4/25 ---
+dig Blightwood Marsh - Grove
+@desc Pristine water stretches between gnarled bloodoaks, their roots disappearing into the murky depths. You hear faint chants in the heavy air and see flickering torchlight floating on the stagnant surface.
+@tags/set room-zone:blightwood_marsh
+@open west=west to Blightwood Marsh - Thicket
+@open south=south to Blightwood Marsh - Ridge 2
+@open east=east to Blightwood Marsh - Depths
+
+# --- Room 5/25 ---
+dig Blightwood Marsh - Depths
+@desc Shimmering water stretches between gnarled ash trees, their roots disappearing into the murky depths. You hear strange whispers in the heavy air and see a broken altar floating on the stagnant surface.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_brute_lvl28
+@tel here
+@open west=west to Blightwood Marsh - Grove
+@open south=south to Blightwood Marsh - Expanse 2
+@open east=east to Blightwood Marsh - Ledge
+
+# --- Room 6/25 ---
+dig Blightwood Marsh - Ledge
+@desc Your boots sink into the ancient muck with every step. sunlight barely penetrates the ethereal canopy, and you hear skittering claws coming from the ancient shadows.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_assassin_lvl30
+@tel here
+@open west=west to Blightwood Marsh - Depths
+@open south=south to Blightwood Marsh - Crossroads
+
+# --- Room 7/25 ---
+dig Blightwood Marsh - Ridge
+@desc Your boots sink into the crumbling muck with every step. ethereal radiance barely penetrates the ancient canopy, and you hear low rumbling tremors coming from the majestic shadows.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Entrance
+@open south=south to Blightwood Marsh - Bend 2
+@open east=east to Blightwood Marsh - Stretch
+
+# --- Room 8/25 ---
+dig Blightwood Marsh - Stretch
+@desc A ancient boardwalk of rotting planks provides precarious passage through the majestic marsh. You see ancient runes watching from the water, and skittering claws drift through the mist.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_skirmisher_lvl28
+@tel here
+@spawn gen_balanced_lvl30
+@tel here
+@open north=north to Blightwood Marsh - Bend
+@open west=west to Blightwood Marsh - Ridge
+@open south=south to Blightwood Marsh - Hollow
+@open east=east to Blightwood Marsh - Expanse
+
+# --- Room 9/25 ---
+dig Blightwood Marsh - Expanse
+@desc A darkened boardwalk of rotting planks provides precarious passage through the foreboding marsh. You see flickering torchlight watching from the water, and strange whispers drift through the mist.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_brute_lvl35
+@tel here
+@spawn gen_balanced_lvl33
+@tel here
+@open north=north to Blightwood Marsh - Thicket
+@open west=west to Blightwood Marsh - Stretch
+@open south=south to Blightwood Marsh - Chamber 2
+@open east=east to Blightwood Marsh - Ridge 2
+
+# --- Room 10/25 ---
+dig Blightwood Marsh - Ridge 2
+@desc Your boots sink into the shimmering muck with every step. filtered light barely penetrates the desolate canopy, and you hear distant howls coming from the pristine shadows.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_skirmisher_lvl33
+@tel here
+@spawn gen_skirmisher_lvl33
+@tel here
+@open north=north to Blightwood Marsh - Grove
+@open west=west to Blightwood Marsh - Expanse
+@open south=south to Blightwood Marsh - Path
+@open east=east to Blightwood Marsh - Expanse 2
+
+# --- Room 11/25 ---
+dig Blightwood Marsh - Expanse 2
+@desc Your boots sink into the corrupted muck with every step. moonlight barely penetrates the foreboding canopy, and you hear low rumbling tremors coming from the pristine shadows.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_balanced_lvl35
+@tel here
+@open north=north to Blightwood Marsh - Depths
+@open west=west to Blightwood Marsh - Ridge 2
+@open south=south to Blightwood Marsh - Ascent
+@open east=east to Blightwood Marsh - Crossroads
+
+# --- Room 12/25 ---
+dig Blightwood Marsh - Crossroads
+@desc Your boots sink into the darkened muck with every step. filtered light barely penetrates the ethereal canopy, and you hear faint chants coming from the corrupted shadows.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Ledge
+@open west=west to Blightwood Marsh - Expanse 2
+@open south=south to Blightwood Marsh - Gallery 2
+
+# --- Room 13/25 ---
+dig Blightwood Marsh - Bend 2
+@desc The swamp opens into a desolate bayou where sunlight reflects off the dark water. You notice a broken altar hanging from the ironwoods, and the air is thick with the smell of pine resin.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_tank_lvl30
+@tel here
+@spawn gen_tank_lvl35
+@tel here
+@open north=north to Blightwood Marsh - Ridge
+@open south=south to Blightwood Marsh - Stretch 2
+@open east=east to Blightwood Marsh - Hollow
+
+# --- Room 14/25 ---
+dig Blightwood Marsh - Hollow
+@desc Your boots sink into the foreboding muck with every step. dim luminescence barely penetrates the ancient canopy, and you hear strange whispers coming from the foreboding shadows.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Stretch
+@open west=west to Blightwood Marsh - Bend 2
+@open south=south to Blightwood Marsh - Overlook 2
+@open east=east to Blightwood Marsh - Chamber 2
+
+# --- Room 15/25 ---
+dig Blightwood Marsh - Chamber 2
+@desc Your boots sink into the pristine muck with every step. filtered light barely penetrates the corrupted canopy, and you hear muffled voices coming from the darkened shadows.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Expanse
+@open west=west to Blightwood Marsh - Hollow
+@open south=south to Blightwood Marsh - Overlook
+@open east=east to Blightwood Marsh - Path
+
+# --- Room 16/25 ---
+dig Blightwood Marsh - Path
+@desc Your boots sink into the corrupted muck with every step. ethereal radiance barely penetrates the darkened canopy, and you hear dripping echoes coming from the pristine shadows.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_caster_lvl28
+@tel here
+@spawn gen_skirmisher_lvl30
+@tel here
+@open north=north to Blightwood Marsh - Ridge 2
+@open west=west to Blightwood Marsh - Chamber 2
+@open south=south to Blightwood Marsh - Bend 3
+@open east=east to Blightwood Marsh - Ascent
+
+# --- Room 17/25 ---
+dig Blightwood Marsh - Ascent
+@desc The swamp opens into a ethereal bayou where sunlight reflects off the dark water. You notice a discarded weapon hanging from the bloodoaks, and the air is thick with the smell of ozone.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_assassin_lvl35
+@tel here
+@spawn gen_caster_lvl33
+@tel here
+@open north=north to Blightwood Marsh - Expanse 2
+@open west=west to Blightwood Marsh - Path
+@open south=south to Blightwood Marsh - Descent
+@open east=east to Blightwood Marsh - Gallery 2
+
+# --- Room 18/25 ---
+dig Blightwood Marsh - Gallery 2
+@desc A darkened boardwalk of rotting planks provides precarious passage through the crumbling marsh. You see flickering torchlight watching from the water, and distant howls drift through the mist.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Crossroads
+@open west=west to Blightwood Marsh - Ascent
+@open south=south to Blightwood Marsh - Nook 2
+
+# --- Room 19/25 ---
+dig Blightwood Marsh - Stretch 2
+@desc The swamp opens into a foreboding bayou where faint luminescence reflects off the dark water. You notice a dark bloodstain hanging from the pines, and the air is thick with the smell of ozone.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Bend 2
+@open south=south to Blightwood Marsh - Heart
+@open east=east to Blightwood Marsh - Overlook 2
+
+# --- Room 20/25 ---
+dig Blightwood Marsh - Overlook 2
+@desc Pristine water stretches between gnarled pines, their roots disappearing into the murky depths. You hear muffled voices in the heavy air and see a broken altar floating on the stagnant surface.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Hollow
+@open west=west to Blightwood Marsh - Stretch 2
+@open east=east to Blightwood Marsh - Overlook
+
+# --- Room 21/25 ---
+dig Blightwood Marsh - Overlook
+@desc Darkened water stretches between gnarled elms, their roots disappearing into the murky depths. You hear skittering claws in the heavy air and see a weathered statue floating on the stagnant surface.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_brute_lvl35
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Blightwood Marsh - Chamber 2
+@open west=west to Blightwood Marsh - Overlook 2
+@open east=east to Blightwood Marsh - Bend 3
+
+# --- Room 22/25 ---
+dig Blightwood Marsh - Bend 3
+@desc Your boots sink into the shimmering muck with every step. ethereal radiance barely penetrates the foreboding canopy, and you hear muffled voices coming from the ethereal shadows.
+@tags/set room-zone:blightwood_marsh
+@open north=north to Blightwood Marsh - Path
+@open west=west to Blightwood Marsh - Overlook
+@open east=east to Blightwood Marsh - Descent
+
+# --- Room 23/25 ---
+dig Blightwood Marsh - Descent
+@desc A darkened boardwalk of rotting planks provides precarious passage through the corrupted marsh. You see a dark bloodstain watching from the water, and strange whispers drift through the mist.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_skirmisher_lvl30
+@tel here
+@open north=north to Blightwood Marsh - Ascent
+@open west=west to Blightwood Marsh - Bend 3
+@open east=east to Blightwood Marsh - Nook 2
+
+# --- Room 24/25 ---
+dig Blightwood Marsh - Nook 2
+@desc Ancient water stretches between gnarled ironwoods, their roots disappearing into the murky depths. You hear dripping echoes in the heavy air and see flickering torchlight floating on the stagnant surface.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_skirmisher_lvl28
+@tel here
+@spawn gen_balanced_lvl30
+@tel here
+@open north=north to Blightwood Marsh - Gallery 2
+@open west=west to Blightwood Marsh - Descent
+
+# --- Room 25/25 ---
+dig Blightwood Marsh - Heart
+@desc Corrupted water stretches between gnarled cypresses, their roots disappearing into the murky depths. You hear distant howls in the heavy air and see a weathered statue floating on the stagnant surface.
+@tags/set room-zone:blightwood_marsh
+@spawn gen_brute_lvl35
+@tel here
+@open north=north to Blightwood Marsh - Stretch 2
+
+# Zone 'Blightwood Marsh' complete — 25 rooms, 78 directed exits.

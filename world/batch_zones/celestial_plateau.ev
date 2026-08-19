@@ -1,0 +1,243 @@
+# Celestial Plateau — Level 28-40
+# Auto-generated zone: High-altitude mesa where the stars feel close enough to touch
+# Faction: Aethelgard Alliance
+# Rooms: 22
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.celestial_plateau")
+
+# --- Room 1/22 ---
+dig Celestial Plateau - Entrance
+@desc You stand on a ancient ridge overlooking a cavernous valley below. You notice a dark bloodstain marking the path forward, and you hear strange whispers drifting up from the depths.
+@tags/set room-zone:celestial_plateau
+@open south=south to Celestial Plateau - Ledge
+@open east=east to Celestial Plateau - Nook
+
+# --- Room 2/22 ---
+dig Celestial Plateau - Nook
+@desc The trail clings to the mountainside, with a corrupted drop on one side and majestic cliffs on the other. ethereal radiance bathes the peaks ahead, and the wind carries skittering claws.
+@tags/set room-zone:celestial_plateau
+@open west=west to Celestial Plateau - Entrance
+@open south=south to Celestial Plateau - Gallery
+@open east=east to Celestial Plateau - Hollow
+
+# --- Room 3/22 ---
+dig Celestial Plateau - Hollow
+@desc The trail clings to the mountainside, with a darkened drop on one side and pristine cliffs on the other. sunlight bathes the peaks ahead, and the wind carries dripping echoes.
+@tags/set room-zone:celestial_plateau
+@spawn gen_skirmisher_lvl28
+@tel here
+@open west=west to Celestial Plateau - Nook
+@open south=south to Celestial Plateau - Expanse 2
+@open east=east to Celestial Plateau - Grotto
+
+# --- Room 4/22 ---
+dig Celestial Plateau - Grotto
+@desc Jagged rocks jut from the crumbling slope like corrupted sentinels. The air is thin and deathly cold, and dim luminescence casts long shadows across the stone.
+@tags/set room-zone:celestial_plateau
+@spawn gen_brute_lvl30
+@tel here
+@open west=west to Celestial Plateau - Hollow
+@open south=south to Celestial Plateau - Stretch
+@open east=east to Celestial Plateau - Depths 2
+
+# --- Room 5/22 ---
+dig Celestial Plateau - Depths 2
+@desc The trail clings to the mountainside, with a desolate drop on one side and ancient cliffs on the other. moonlight bathes the peaks ahead, and the wind carries low rumbling tremors.
+@tags/set room-zone:celestial_plateau
+@spawn gen_brute_lvl35
+@tel here
+@spawn gen_assassin_lvl35
+@tel here
+@open west=west to Celestial Plateau - Grotto
+@open south=south to Celestial Plateau - Nook 2
+
+# --- Room 6/22 ---
+dig Celestial Plateau - Ledge
+@desc The trail clings to the mountainside, with a pristine drop on one side and pristine cliffs on the other. ethereal radiance bathes the peaks ahead, and the wind carries skittering claws.
+@tags/set room-zone:celestial_plateau
+@spawn gen_tank_lvl40
+@tel here
+@spawn gen_balanced_lvl28
+@tel here
+@open north=north to Celestial Plateau - Entrance
+@open south=south to Celestial Plateau - Expanse
+@open east=east to Celestial Plateau - Gallery
+
+# --- Room 7/22 ---
+dig Celestial Plateau - Gallery
+@desc A foreboding plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the corrupted horizon.
+@tags/set room-zone:celestial_plateau
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Celestial Plateau - Nook
+@open west=west to Celestial Plateau - Ledge
+@open south=south to Celestial Plateau - Gallery 2
+@open east=east to Celestial Plateau - Expanse 2
+
+# --- Room 8/22 ---
+dig Celestial Plateau - Expanse 2
+@desc The trail clings to the mountainside, with a darkened drop on one side and ethereal cliffs on the other. sunlight bathes the peaks ahead, and the wind carries strange whispers.
+@tags/set room-zone:celestial_plateau
+@spawn gen_balanced_lvl33
+@tel here
+@open north=north to Celestial Plateau - Hollow
+@open west=west to Celestial Plateau - Gallery
+@open south=south to Celestial Plateau - Depths
+@open east=east to Celestial Plateau - Stretch
+
+# --- Room 9/22 ---
+dig Celestial Plateau - Stretch
+@desc The trail clings to the mountainside, with a pristine drop on one side and pristine cliffs on the other. faint luminescence bathes the peaks ahead, and the wind carries low rumbling tremors.
+@tags/set room-zone:celestial_plateau
+@spawn gen_brute_lvl38
+@tel here
+@spawn gen_skirmisher_lvl38
+@tel here
+@open north=north to Celestial Plateau - Grotto
+@open west=west to Celestial Plateau - Expanse 2
+@open south=south to Celestial Plateau - Clearing 3
+@open east=east to Celestial Plateau - Nook 2
+
+# --- Room 10/22 ---
+dig Celestial Plateau - Nook 2
+@desc A desolate plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the ancient horizon.
+@tags/set room-zone:celestial_plateau
+@spawn gen_balanced_lvl33
+@tel here
+@open north=north to Celestial Plateau - Depths 2
+@open west=west to Celestial Plateau - Stretch
+@open south=south to Celestial Plateau - Clearing
+
+# --- Room 11/22 ---
+dig Celestial Plateau - Expanse
+@desc You stand on a majestic ridge overlooking a cramped valley below. You notice a weathered statue marking the path forward, and you hear skittering claws drifting up from the depths.
+@tags/set room-zone:celestial_plateau
+@spawn gen_balanced_lvl30
+@tel here
+@open north=north to Celestial Plateau - Ledge
+@open south=south to Celestial Plateau - Chamber 2
+@open east=east to Celestial Plateau - Gallery 2
+
+# --- Room 12/22 ---
+dig Celestial Plateau - Gallery 2
+@desc The trail clings to the mountainside, with a darkened drop on one side and majestic cliffs on the other. ethereal radiance bathes the peaks ahead, and the wind carries low rumbling tremors.
+@tags/set room-zone:celestial_plateau
+@spawn gen_brute_lvl38
+@tel here
+@open north=north to Celestial Plateau - Gallery
+@open west=west to Celestial Plateau - Expanse
+@open south=south to Celestial Plateau - Path 2
+@open east=east to Celestial Plateau - Depths
+
+# --- Room 13/22 ---
+dig Celestial Plateau - Depths
+@desc The trail clings to the mountainside, with a pristine drop on one side and corrupted cliffs on the other. sunlight bathes the peaks ahead, and the wind carries dripping echoes.
+@tags/set room-zone:celestial_plateau
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Celestial Plateau - Expanse 2
+@open west=west to Celestial Plateau - Gallery 2
+@open south=south to Celestial Plateau - Path
+@open east=east to Celestial Plateau - Clearing 3
+
+# --- Room 14/22 ---
+dig Celestial Plateau - Clearing 3
+@desc The trail clings to the mountainside, with a crumbling drop on one side and corrupted cliffs on the other. moonlight bathes the peaks ahead, and the wind carries muffled voices.
+@tags/set room-zone:celestial_plateau
+@spawn gen_caster_lvl35
+@tel here
+@spawn gen_assassin_lvl38
+@tel here
+@open north=north to Celestial Plateau - Stretch
+@open west=west to Celestial Plateau - Depths
+@open south=south to Celestial Plateau - Overlook 3
+@open east=east to Celestial Plateau - Clearing
+
+# --- Room 15/22 ---
+dig Celestial Plateau - Clearing
+@desc Jagged rocks jut from the shimmering slope like crumbling sentinels. The air is thin and frigid, and filtered light casts long shadows across the stone.
+@tags/set room-zone:celestial_plateau
+@spawn gen_caster_lvl30
+@tel here
+@spawn gen_skirmisher_lvl33
+@tel here
+@open north=north to Celestial Plateau - Nook 2
+@open west=west to Celestial Plateau - Clearing 3
+@open south=south to Celestial Plateau - Passage
+
+# --- Room 16/22 ---
+dig Celestial Plateau - Chamber 2
+@desc Jagged rocks jut from the ancient slope like corrupted sentinels. The air is thin and sweltering, and dim luminescence casts long shadows across the stone.
+@tags/set room-zone:celestial_plateau
+@open north=north to Celestial Plateau - Expanse
+@open south=south to Celestial Plateau - Grove
+@open east=east to Celestial Plateau - Path 2
+
+# --- Room 17/22 ---
+dig Celestial Plateau - Path 2
+@desc Jagged rocks jut from the desolate slope like crumbling sentinels. The air is thin and pleasantly cool, and sunlight casts long shadows across the stone.
+@tags/set room-zone:celestial_plateau
+@spawn gen_assassin_lvl30
+@tel here
+@open north=north to Celestial Plateau - Gallery 2
+@open west=west to Celestial Plateau - Chamber 2
+@open south=south to Celestial Plateau - Heart
+@open east=east to Celestial Plateau - Path
+
+# --- Room 18/22 ---
+dig Celestial Plateau - Path
+@desc The trail clings to the mountainside, with a corrupted drop on one side and darkened cliffs on the other. filtered light bathes the peaks ahead, and the wind carries low rumbling tremors.
+@tags/set room-zone:celestial_plateau
+@spawn gen_caster_lvl33
+@tel here
+@open north=north to Celestial Plateau - Depths
+@open west=west to Celestial Plateau - Path 2
+@open east=east to Celestial Plateau - Overlook 3
+
+# --- Room 19/22 ---
+dig Celestial Plateau - Overlook 3
+@desc A pristine plateau offers a moment of rest from the climb. You notice a discarded weapon arranged here, and the view stretches to the desolate horizon.
+@tags/set room-zone:celestial_plateau
+@spawn gen_caster_lvl30
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Celestial Plateau - Clearing 3
+@open west=west to Celestial Plateau - Path
+@open east=east to Celestial Plateau - Passage
+
+# --- Room 20/22 ---
+dig Celestial Plateau - Passage
+@desc A shimmering plateau offers a moment of rest from the climb. You notice a dark bloodstain arranged here, and the view stretches to the majestic horizon.
+@tags/set room-zone:celestial_plateau
+@spawn gen_assassin_lvl28
+@tel here
+@spawn gen_caster_lvl33
+@tel here
+@open north=north to Celestial Plateau - Clearing
+@open west=west to Celestial Plateau - Overlook 3
+
+# --- Room 21/22 ---
+dig Celestial Plateau - Grove
+@desc You stand on a corrupted ridge overlooking a cavernous valley below. You notice a discarded weapon marking the path forward, and you hear strange whispers drifting up from the depths.
+@tags/set room-zone:celestial_plateau
+@spawn gen_balanced_lvl28
+@tel here
+@open north=north to Celestial Plateau - Chamber 2
+@open east=east to Celestial Plateau - Heart
+
+# --- Room 22/22 ---
+dig Celestial Plateau - Heart
+@desc The trail clings to the mountainside, with a foreboding drop on one side and darkened cliffs on the other. moonlight bathes the peaks ahead, and the wind carries dripping echoes.
+@tags/set room-zone:celestial_plateau
+@spawn gen_balanced_lvl35
+@tel here
+@spawn gen_tank_lvl38
+@tel here
+@open north=north to Celestial Plateau - Path 2
+@open west=west to Celestial Plateau - Grove
+@open east=east to Celestial Plateau - Overlook 3
+
+# Zone 'Celestial Plateau' complete — 22 rooms, 69 directed exits.

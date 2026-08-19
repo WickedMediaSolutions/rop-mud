@@ -1,0 +1,324 @@
+# Celestial Citadel of Light — Level 62-80
+# Auto-generated zone: Floating fortress of pure radiance, last bastion against the void
+# Faction: Aethelgard Alliance
+# Rooms: 32
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.celestial_citadel")
+
+# --- Room 1/32 ---
+dig Celestial Citadel of Light - Entrance
+@desc The desolate architecture of this shimmering fortress speaks of ancient power. You see scattered offerings adorning the walls, and muffled voices of desolate purpose echo through the halls.
+@tags/set room-zone:celestial_citadel
+@open south=south to Celestial Citadel of Light - Gallery 2
+@open east=east to Celestial Citadel of Light - Clearing
+
+# --- Room 2/32 ---
+dig Celestial Citadel of Light - Clearing
+@desc The ancient battlements offer a view of the darkened realm below. You see flickering torchlight etched into the parapet, and distant howls of pristine wind whip past.
+@tags/set room-zone:celestial_citadel
+@spawn gen_assassin_lvl73
+@tel here
+@open west=west to Celestial Citadel of Light - Entrance
+@open south=south to Celestial Citadel of Light - Grove 2
+@open east=east to Celestial Citadel of Light - Expanse
+
+# --- Room 3/32 ---
+dig Celestial Citadel of Light - Expanse
+@desc A ethereal chamber opens before you, its ceiling lost in shimmering shadow. You notice scattered offerings standing at its center, and moonlight radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@spawn gen_caster_lvl65
+@tel here
+@open west=west to Celestial Citadel of Light - Clearing
+@open south=south to Celestial Citadel of Light - Passage
+@open east=east to Celestial Citadel of Light - Ledge
+
+# --- Room 4/32 ---
+dig Celestial Citadel of Light - Ledge
+@desc The desolate battlements offer a view of the desolate realm below. You see scattered offerings etched into the parapet, and skittering claws of darkened wind whip past.
+@tags/set room-zone:celestial_citadel
+@open west=west to Celestial Citadel of Light - Expanse
+@open south=south to Celestial Citadel of Light - Grotto
+@open east=east to Celestial Citadel of Light - Passage 2
+
+# --- Room 5/32 ---
+dig Celestial Citadel of Light - Passage 2
+@desc The majestic battlements offer a view of the darkened realm below. You see a discarded weapon etched into the parapet, and distant howls of darkened wind whip past.
+@tags/set room-zone:celestial_citadel
+@spawn gen_tank_lvl73
+@tel here
+@spawn gen_balanced_lvl70
+@tel here
+@open west=west to Celestial Citadel of Light - Ledge
+@open south=south to Celestial Citadel of Light - Path
+@open east=east to Celestial Citadel of Light - Nook
+
+# --- Room 6/32 ---
+dig Celestial Citadel of Light - Nook
+@desc The ancient architecture of this desolate fortress speaks of foreboding power. You see a weathered statue adorning the walls, and low rumbling tremors of majestic purpose echo through the halls.
+@tags/set room-zone:celestial_citadel
+@open west=west to Celestial Citadel of Light - Passage 2
+@open south=south to Celestial Citadel of Light - Stretch
+
+# --- Room 7/32 ---
+dig Celestial Citadel of Light - Gallery 2
+@desc A pristine chamber opens before you, its ceiling lost in ethereal shadow. You notice a dark bloodstain standing at its center, and moonlight radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@spawn gen_balanced_lvl75
+@tel here
+@spawn gen_brute_lvl70
+@tel here
+@open north=north to Celestial Citadel of Light - Entrance
+@open south=south to Celestial Citadel of Light - Hollow 3
+@open east=east to Celestial Citadel of Light - Grove 2
+
+# --- Room 8/32 ---
+dig Celestial Citadel of Light - Grove 2
+@desc The pristine battlements offer a view of the darkened realm below. You see a weathered statue etched into the parapet, and muffled voices of shimmering wind whip past.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Clearing
+@open west=west to Celestial Citadel of Light - Gallery 2
+@open south=south to Celestial Citadel of Light - Chamber
+@open east=east to Celestial Citadel of Light - Passage
+
+# --- Room 9/32 ---
+dig Celestial Citadel of Light - Passage
+@desc The majestic architecture of this desolate fortress speaks of foreboding power. You see ancient runes adorning the walls, and strange whispers of majestic purpose echo through the halls.
+@tags/set room-zone:celestial_citadel
+@spawn gen_assassin_lvl65
+@tel here
+@open north=north to Celestial Citadel of Light - Expanse
+@open west=west to Celestial Citadel of Light - Grove 2
+@open south=south to Celestial Citadel of Light - Grove
+@open east=east to Celestial Citadel of Light - Grotto
+
+# --- Room 10/32 ---
+dig Celestial Citadel of Light - Grotto
+@desc The foreboding architecture of this ancient fortress speaks of crumbling power. You see a dark bloodstain adorning the walls, and strange whispers of crumbling purpose echo through the halls.
+@tags/set room-zone:celestial_citadel
+@spawn gen_brute_lvl80
+@tel here
+@spawn gen_tank_lvl78
+@tel here
+@open north=north to Celestial Citadel of Light - Ledge
+@open west=west to Celestial Citadel of Light - Passage
+@open south=south to Celestial Citadel of Light - Passage 3
+@open east=east to Celestial Citadel of Light - Path
+
+# --- Room 11/32 ---
+dig Celestial Citadel of Light - Path
+@desc A darkened chamber opens before you, its ceiling lost in ethereal shadow. You notice scattered offerings standing at its center, and filtered light radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@spawn gen_tank_lvl63
+@tel here
+@spawn gen_balanced_lvl73
+@tel here
+@open north=north to Celestial Citadel of Light - Passage 2
+@open west=west to Celestial Citadel of Light - Grotto
+@open south=south to Celestial Citadel of Light - Gallery
+@open east=east to Celestial Citadel of Light - Stretch
+
+# --- Room 12/32 ---
+dig Celestial Citadel of Light - Stretch
+@desc A ancient chamber opens before you, its ceiling lost in ethereal shadow. You notice ancient runes standing at its center, and ethereal radiance radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Nook
+@open west=west to Celestial Citadel of Light - Path
+@open south=south to Celestial Citadel of Light - Nook 2
+
+# --- Room 13/32 ---
+dig Celestial Citadel of Light - Hollow 3
+@desc The ethereal architecture of this ethereal fortress speaks of crumbling power. You see a broken altar adorning the walls, and distant howls of ancient purpose echo through the halls.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Gallery 2
+@open south=south to Celestial Citadel of Light - Clearing 2
+@open east=east to Celestial Citadel of Light - Chamber
+
+# --- Room 14/32 ---
+dig Celestial Citadel of Light - Chamber
+@desc A foreboding chamber opens before you, its ceiling lost in crumbling shadow. You notice flickering torchlight standing at its center, and moonlight radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Grove 2
+@open west=west to Celestial Citadel of Light - Hollow 3
+@open south=south to Celestial Citadel of Light - Thicket
+@open east=east to Celestial Citadel of Light - Grove
+
+# --- Room 15/32 ---
+dig Celestial Citadel of Light - Grove
+@desc A corrupted chamber opens before you, its ceiling lost in desolate shadow. You notice ancient runes standing at its center, and filtered light radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Passage
+@open west=west to Celestial Citadel of Light - Chamber
+@open south=south to Celestial Citadel of Light - Overlook
+@open east=east to Celestial Citadel of Light - Passage 3
+
+# --- Room 16/32 ---
+dig Celestial Citadel of Light - Passage 3
+@desc You walk through a corrupted corridor lined with a discarded weapon. The sunlight here is pristine, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@spawn gen_balanced_lvl80
+@tel here
+@spawn gen_skirmisher_lvl68
+@tel here
+@open north=north to Celestial Citadel of Light - Grotto
+@open west=west to Celestial Citadel of Light - Grove
+@open south=south to Celestial Citadel of Light - Chamber 2
+@open east=east to Celestial Citadel of Light - Gallery
+
+# --- Room 17/32 ---
+dig Celestial Citadel of Light - Gallery
+@desc A ancient chamber opens before you, its ceiling lost in ethereal shadow. You notice a broken altar standing at its center, and filtered light radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@spawn gen_brute_lvl65
+@tel here
+@open north=north to Celestial Citadel of Light - Path
+@open west=west to Celestial Citadel of Light - Passage 3
+@open south=south to Celestial Citadel of Light - Hollow 2
+@open east=east to Celestial Citadel of Light - Nook 2
+
+# --- Room 18/32 ---
+dig Celestial Citadel of Light - Nook 2
+@desc You walk through a shimmering corridor lined with a dark bloodstain. The sunlight here is crumbling, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Stretch
+@open west=west to Celestial Citadel of Light - Gallery
+@open south=south to Celestial Citadel of Light - Ridge
+
+# --- Room 19/32 ---
+dig Celestial Citadel of Light - Clearing 2
+@desc You walk through a shimmering corridor lined with flickering torchlight. The moonlight here is corrupted, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@spawn gen_balanced_lvl80
+@tel here
+@open north=north to Celestial Citadel of Light - Hollow 3
+@open south=south to Celestial Citadel of Light - Ascent 2
+@open east=east to Celestial Citadel of Light - Thicket
+
+# --- Room 20/32 ---
+dig Celestial Citadel of Light - Thicket
+@desc You walk through a foreboding corridor lined with a broken altar. The sunlight here is ancient, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@spawn gen_balanced_lvl78
+@tel here
+@open north=north to Celestial Citadel of Light - Chamber
+@open west=west to Celestial Citadel of Light - Clearing 2
+@open south=south to Celestial Citadel of Light - Hollow
+@open east=east to Celestial Citadel of Light - Overlook
+
+# --- Room 21/32 ---
+dig Celestial Citadel of Light - Overlook
+@desc You walk through a foreboding corridor lined with flickering torchlight. The ethereal radiance here is shimmering, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@spawn gen_skirmisher_lvl78
+@tel here
+@open north=north to Celestial Citadel of Light - Grove
+@open west=west to Celestial Citadel of Light - Thicket
+@open south=south to Celestial Citadel of Light - Ascent
+@open east=east to Celestial Citadel of Light - Chamber 2
+
+# --- Room 22/32 ---
+dig Celestial Citadel of Light - Chamber 2
+@desc The majestic battlements offer a view of the pristine realm below. You see ancient runes etched into the parapet, and distant howls of majestic wind whip past.
+@tags/set room-zone:celestial_citadel
+@spawn gen_tank_lvl63
+@tel here
+@open north=north to Celestial Citadel of Light - Passage 3
+@open west=west to Celestial Citadel of Light - Overlook
+@open south=south to Celestial Citadel of Light - Crossroads 2
+@open east=east to Celestial Citadel of Light - Hollow 2
+
+# --- Room 23/32 ---
+dig Celestial Citadel of Light - Hollow 2
+@desc A desolate chamber opens before you, its ceiling lost in darkened shadow. You notice a dark bloodstain standing at its center, and sunlight radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Gallery
+@open west=west to Celestial Citadel of Light - Chamber 2
+@open south=south to Celestial Citadel of Light - Descent 2
+@open east=east to Celestial Citadel of Light - Ridge
+
+# --- Room 24/32 ---
+dig Celestial Citadel of Light - Ridge
+@desc A pristine chamber opens before you, its ceiling lost in majestic shadow. You notice a discarded weapon standing at its center, and dim luminescence radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Nook 2
+@open west=west to Celestial Citadel of Light - Hollow 2
+@open south=south to Celestial Citadel of Light - Crossroads 3
+
+# --- Room 25/32 ---
+dig Celestial Citadel of Light - Ascent 2
+@desc The corrupted battlements offer a view of the darkened realm below. You see flickering torchlight etched into the parapet, and strange whispers of corrupted wind whip past.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Clearing 2
+@open south=south to Celestial Citadel of Light - Ledge 3
+@open east=east to Celestial Citadel of Light - Hollow
+
+# --- Room 26/32 ---
+dig Celestial Citadel of Light - Hollow
+@desc The darkened battlements offer a view of the darkened realm below. You see a dark bloodstain etched into the parapet, and strange whispers of darkened wind whip past.
+@tags/set room-zone:celestial_citadel
+@spawn gen_brute_lvl78
+@tel here
+@open north=north to Celestial Citadel of Light - Thicket
+@open west=west to Celestial Citadel of Light - Ascent 2
+@open south=south to Celestial Citadel of Light - Heart
+@open east=east to Celestial Citadel of Light - Ascent
+
+# --- Room 27/32 ---
+dig Celestial Citadel of Light - Ascent
+@desc You walk through a crumbling corridor lined with a dark bloodstain. The sunlight here is majestic, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Overlook
+@open west=west to Celestial Citadel of Light - Hollow
+@open east=east to Celestial Citadel of Light - Crossroads 2
+
+# --- Room 28/32 ---
+dig Celestial Citadel of Light - Crossroads 2
+@desc You walk through a ethereal corridor lined with a discarded weapon. The dim luminescence here is pristine, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@open north=north to Celestial Citadel of Light - Chamber 2
+@open west=west to Celestial Citadel of Light - Ascent
+@open east=east to Celestial Citadel of Light - Descent 2
+
+# --- Room 29/32 ---
+dig Celestial Citadel of Light - Descent 2
+@desc You walk through a corrupted corridor lined with ancient runes. The dim luminescence here is shimmering, and something seems to watch your every step.
+@tags/set room-zone:celestial_citadel
+@spawn gen_tank_lvl63
+@tel here
+@spawn gen_assassin_lvl80
+@tel here
+@open north=north to Celestial Citadel of Light - Hollow 2
+@open west=west to Celestial Citadel of Light - Crossroads 2
+@open east=east to Celestial Citadel of Light - Crossroads 3
+
+# --- Room 30/32 ---
+dig Celestial Citadel of Light - Crossroads 3
+@desc The pristine architecture of this darkened fortress speaks of darkened power. You see scattered offerings adorning the walls, and faint chants of shimmering purpose echo through the halls.
+@tags/set room-zone:celestial_citadel
+@spawn gen_skirmisher_lvl73
+@tel here
+@open north=north to Celestial Citadel of Light - Ridge
+@open west=west to Celestial Citadel of Light - Descent 2
+
+# --- Room 31/32 ---
+dig Celestial Citadel of Light - Ledge 3
+@desc The majestic architecture of this crumbling fortress speaks of ancient power. You see flickering torchlight adorning the walls, and low rumbling tremors of ancient purpose echo through the halls.
+@tags/set room-zone:celestial_citadel
+@spawn gen_balanced_lvl75
+@tel here
+@spawn gen_brute_lvl70
+@tel here
+@open north=north to Celestial Citadel of Light - Ascent 2
+@open east=east to Celestial Citadel of Light - Heart
+
+# --- Room 32/32 ---
+dig Celestial Citadel of Light - Heart
+@desc A corrupted chamber opens before you, its ceiling lost in foreboding shadow. You notice a weathered statue standing at its center, and dim luminescence radiates from an unseen source.
+@tags/set room-zone:celestial_citadel
+@spawn gen_brute_lvl70
+@tel here
+@open north=north to Celestial Citadel of Light - Hollow
+@open west=west to Celestial Citadel of Light - Ledge 3
+
+# Zone 'Celestial Citadel of Light' complete — 32 rooms, 104 directed exits.

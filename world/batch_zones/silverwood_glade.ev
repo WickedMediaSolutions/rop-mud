@@ -1,0 +1,190 @@
+# Silverwood Glade — Level 1-8
+# Auto-generated zone: Enchanted forest glade with gentle streams and friendly woodland creatures
+# Faction: Aethelgard Alliance
+# Rooms: 18
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.silverwood_glade")
+
+# --- Room 1/18 ---
+dig Silverwood Glade - Entrance
+@desc You have found a small clearing where dim luminescence streams through a break in the cypresses overhead. You notice a weathered statue resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:silverwood_glade
+@open south=south to Silverwood Glade - Expanse 2
+@open east=east to Silverwood Glade - Grove
+
+# --- Room 2/18 ---
+dig Silverwood Glade - Grove
+@desc A narrow trail winds through the twisted undergrowth. You hear strange whispers echoing among the oaks and spot a dark bloodstain half-hidden in the cracked stone.
+@tags/set room-zone:silverwood_glade
+@spawn gen_skirmisher_lvl5
+@tel here
+@open west=west to Silverwood Glade - Entrance
+@open south=south to Silverwood Glade - Ascent
+@open east=east to Silverwood Glade - Bend
+
+# --- Room 3/18 ---
+dig Silverwood Glade - Bend
+@desc Ancient pines tower overhead, their ancient canopy filtering the sunlight into dancing patterns on the forest floor. The air smells of brimstone, and the ground is carpeted with exposed roots.
+@tags/set room-zone:silverwood_glade
+@spawn gen_caster_lvl3
+@tel here
+@open west=west to Silverwood Glade - Grove
+@open south=south to Silverwood Glade - Stretch 2
+@open east=east to Silverwood Glade - Gallery
+
+# --- Room 4/18 ---
+dig Silverwood Glade - Gallery
+@desc A narrow trail winds through the tangled undergrowth. You hear strange whispers echoing among the ironwoods and spot a weathered statue half-hidden in the scattered bones.
+@tags/set room-zone:silverwood_glade
+@spawn gen_balanced_lvl3
+@tel here
+@spawn gen_tank_lvl5
+@tel here
+@open west=west to Silverwood Glade - Bend
+@open south=south to Silverwood Glade - Ridge
+@open east=east to Silverwood Glade - Stretch
+
+# --- Room 5/18 ---
+dig Silverwood Glade - Stretch
+@desc Ancient pines tower overhead, their emerald canopy filtering the sunlight into dancing patterns on the forest floor. The air smells of ozone, and the ground is carpeted with soft loam.
+@tags/set room-zone:silverwood_glade
+@open west=west to Silverwood Glade - Gallery
+@open south=south to Silverwood Glade - Ledge
+
+# --- Room 6/18 ---
+dig Silverwood Glade - Expanse 2
+@desc The ash trees grow sparse here, their ethereal branches intertwining overhead. You hear faint chants drifting on the breeze, and the path ahead looks barely visible.
+@tags/set room-zone:silverwood_glade
+@spawn gen_balanced_lvl1
+@tel here
+@open north=north to Silverwood Glade - Entrance
+@open south=south to Silverwood Glade - Hollow
+@open east=east to Silverwood Glade - Ascent
+
+# --- Room 7/18 ---
+dig Silverwood Glade - Ascent
+@desc Ancient cypresses tower overhead, their shimmering canopy filtering the ethereal radiance into dancing patterns on the forest floor. The air smells of decay, and the ground is carpeted with cracked stone.
+@tags/set room-zone:silverwood_glade
+@open north=north to Silverwood Glade - Grove
+@open west=west to Silverwood Glade - Expanse 2
+@open south=south to Silverwood Glade - Overlook
+@open east=east to Silverwood Glade - Stretch 2
+
+# --- Room 8/18 ---
+dig Silverwood Glade - Stretch 2
+@desc A narrow trail winds through the sparse undergrowth. You hear strange whispers echoing among the ash trees and spot scattered offerings half-hidden in the soft loam.
+@tags/set room-zone:silverwood_glade
+@open north=north to Silverwood Glade - Bend
+@open west=west to Silverwood Glade - Ascent
+@open south=south to Silverwood Glade - Passage
+@open east=east to Silverwood Glade - Ridge
+
+# --- Room 9/18 ---
+dig Silverwood Glade - Ridge
+@desc You have found a small clearing where filtered light streams through a break in the bloodoaks overhead. You notice scattered offerings resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:silverwood_glade
+@spawn gen_tank_lvl3
+@tel here
+@spawn gen_balanced_lvl1
+@tel here
+@open north=north to Silverwood Glade - Gallery
+@open west=west to Silverwood Glade - Stretch 2
+@open south=south to Silverwood Glade - Depths 2
+@open east=east to Silverwood Glade - Ledge
+
+# --- Room 10/18 ---
+dig Silverwood Glade - Ledge
+@desc A narrow trail winds through the sparse undergrowth. You hear distant howls echoing among the bloodoaks and spot a broken altar half-hidden in the cracked stone.
+@tags/set room-zone:silverwood_glade
+@spawn gen_brute_lvl3
+@tel here
+@spawn gen_caster_lvl3
+@tel here
+@open north=north to Silverwood Glade - Stretch
+@open west=west to Silverwood Glade - Ridge
+@open south=south to Silverwood Glade - Descent
+
+# --- Room 11/18 ---
+dig Silverwood Glade - Hollow
+@desc A narrow trail winds through the tangled undergrowth. You hear muffled voices echoing among the bloodoaks and spot a weathered statue half-hidden in the cracked stone.
+@tags/set room-zone:silverwood_glade
+@spawn gen_caster_lvl5
+@tel here
+@spawn gen_brute_lvl3
+@tel here
+@open north=north to Silverwood Glade - Expanse 2
+@open south=south to Silverwood Glade - Clearing
+@open east=east to Silverwood Glade - Overlook
+
+# --- Room 12/18 ---
+dig Silverwood Glade - Overlook
+@desc A narrow trail winds through the overgrown undergrowth. You hear low rumbling tremors echoing among the elms and spot a weathered statue half-hidden in the cracked stone.
+@tags/set room-zone:silverwood_glade
+@spawn gen_balanced_lvl8
+@tel here
+@open north=north to Silverwood Glade - Ascent
+@open west=west to Silverwood Glade - Hollow
+@open south=south to Silverwood Glade - Grove 2
+@open east=east to Silverwood Glade - Passage
+
+# --- Room 13/18 ---
+dig Silverwood Glade - Passage
+@desc A narrow trail winds through the twisted undergrowth. You hear strange whispers echoing among the willows and spot ancient runes half-hidden in the fallen leaves.
+@tags/set room-zone:silverwood_glade
+@open north=north to Silverwood Glade - Stretch 2
+@open west=west to Silverwood Glade - Overlook
+@open south=south to Silverwood Glade - Heart
+@open east=east to Silverwood Glade - Depths 2
+
+# --- Room 14/18 ---
+dig Silverwood Glade - Depths 2
+@desc You have found a small clearing where moonlight streams through a break in the ironwoods overhead. You notice a dark bloodstain resting here, and the forest seems to hold its breath around you.
+@tags/set room-zone:silverwood_glade
+@spawn gen_assassin_lvl8
+@tel here
+@spawn gen_caster_lvl5
+@tel here
+@open north=north to Silverwood Glade - Ridge
+@open west=west to Silverwood Glade - Passage
+@open east=east to Silverwood Glade - Descent
+
+# --- Room 15/18 ---
+dig Silverwood Glade - Descent
+@desc The bloodoaks grow sparse here, their pristine branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks well-worn.
+@tags/set room-zone:silverwood_glade
+@open north=north to Silverwood Glade - Ledge
+@open west=west to Silverwood Glade - Depths 2
+
+# --- Room 16/18 ---
+dig Silverwood Glade - Clearing
+@desc The oaks grow dense here, their ancient branches intertwining overhead. You hear faint chants drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:silverwood_glade
+@spawn gen_caster_lvl5
+@tel here
+@open north=north to Silverwood Glade - Hollow
+@open east=east to Silverwood Glade - Grove 2
+
+# --- Room 17/18 ---
+dig Silverwood Glade - Grove 2
+@desc The pines grow thick here, their ancient branches intertwining overhead. You hear dripping echoes drifting on the breeze, and the path ahead looks blocked by debris.
+@tags/set room-zone:silverwood_glade
+@spawn gen_balanced_lvl3
+@tel here
+@open north=north to Silverwood Glade - Overlook
+@open west=west to Silverwood Glade - Clearing
+@open east=east to Silverwood Glade - Heart
+
+# --- Room 18/18 ---
+dig Silverwood Glade - Heart
+@desc The ironwoods grow thick here, their ancient branches intertwining overhead. You hear strange whispers drifting on the breeze, and the path ahead looks barely visible.
+@tags/set room-zone:silverwood_glade
+@spawn gen_brute_lvl8
+@tel here
+@spawn gen_assassin_lvl3
+@tel here
+@open north=north to Silverwood Glade - Passage
+@open west=west to Silverwood Glade - Grove 2
+
+# Zone 'Silverwood Glade' complete — 18 rooms, 54 directed exits.

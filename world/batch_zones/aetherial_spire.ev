@@ -1,0 +1,261 @@
+# Aetherial Spire — Level 42-56
+# Auto-generated zone: Towering crystal spire that channels raw magical energy
+# Faction: Aethelgard Alliance
+# Rooms: 25
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.aetherial_spire")
+
+# --- Room 1/25 ---
+dig Aetherial Spire - Entrance
+@desc You stand on a foreboding ridge overlooking a sprawling valley below. You notice a dark bloodstain marking the path forward, and you hear skittering claws drifting up from the depths.
+@tags/set room-zone:aetherial_spire
+@open south=south to Aetherial Spire - Gallery
+@open east=east to Aetherial Spire - Nook
+
+# --- Room 2/25 ---
+dig Aetherial Spire - Nook
+@desc You stand on a ethereal ridge overlooking a sprawling valley below. You notice a discarded weapon marking the path forward, and you hear strange whispers drifting up from the depths.
+@tags/set room-zone:aetherial_spire
+@spawn gen_balanced_lvl45
+@tel here
+@open west=west to Aetherial Spire - Entrance
+@open south=south to Aetherial Spire - Ridge
+@open east=east to Aetherial Spire - Clearing
+
+# --- Room 3/25 ---
+dig Aetherial Spire - Clearing
+@desc You stand on a shimmering ridge overlooking a immense valley below. You notice scattered offerings marking the path forward, and you hear low rumbling tremors drifting up from the depths.
+@tags/set room-zone:aetherial_spire
+@open west=west to Aetherial Spire - Nook
+@open south=south to Aetherial Spire - Ledge
+@open east=east to Aetherial Spire - Bend
+
+# --- Room 4/25 ---
+dig Aetherial Spire - Bend
+@desc A corrupted plateau offers a moment of rest from the climb. You notice a dark bloodstain arranged here, and the view stretches to the foreboding horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_brute_lvl55
+@tel here
+@open west=west to Aetherial Spire - Clearing
+@open south=south to Aetherial Spire - Ascent
+@open east=east to Aetherial Spire - Stretch
+
+# --- Room 5/25 ---
+dig Aetherial Spire - Stretch
+@desc A darkened plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the pristine horizon.
+@tags/set room-zone:aetherial_spire
+@open west=west to Aetherial Spire - Bend
+@open south=south to Aetherial Spire - Chamber 2
+@open east=east to Aetherial Spire - Overlook
+
+# --- Room 6/25 ---
+dig Aetherial Spire - Overlook
+@desc You stand on a majestic ridge overlooking a sprawling valley below. You notice scattered offerings marking the path forward, and you hear skittering claws drifting up from the depths.
+@tags/set room-zone:aetherial_spire
+@spawn gen_balanced_lvl45
+@tel here
+@open west=west to Aetherial Spire - Stretch
+@open south=south to Aetherial Spire - Ascent 2
+
+# --- Room 7/25 ---
+dig Aetherial Spire - Gallery
+@desc You stand on a shimmering ridge overlooking a narrow valley below. You notice flickering torchlight marking the path forward, and you hear faint chants drifting up from the depths.
+@tags/set room-zone:aetherial_spire
+@open north=north to Aetherial Spire - Entrance
+@open south=south to Aetherial Spire - Chamber
+@open east=east to Aetherial Spire - Ridge
+
+# --- Room 8/25 ---
+dig Aetherial Spire - Ridge
+@desc Jagged rocks jut from the crumbling slope like majestic sentinels. The air is thin and frigid, and ethereal radiance casts long shadows across the stone.
+@tags/set room-zone:aetherial_spire
+@spawn gen_tank_lvl55
+@tel here
+@open north=north to Aetherial Spire - Nook
+@open west=west to Aetherial Spire - Gallery
+@open south=south to Aetherial Spire - Path 2
+@open east=east to Aetherial Spire - Ledge
+
+# --- Room 9/25 ---
+dig Aetherial Spire - Ledge
+@desc A pristine plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the ethereal horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_balanced_lvl43
+@tel here
+@spawn gen_brute_lvl55
+@tel here
+@open north=north to Aetherial Spire - Clearing
+@open west=west to Aetherial Spire - Ridge
+@open south=south to Aetherial Spire - Grotto
+@open east=east to Aetherial Spire - Ascent
+
+# --- Room 10/25 ---
+dig Aetherial Spire - Ascent
+@desc The trail clings to the mountainside, with a desolate drop on one side and pristine cliffs on the other. faint luminescence bathes the peaks ahead, and the wind carries low rumbling tremors.
+@tags/set room-zone:aetherial_spire
+@open north=north to Aetherial Spire - Bend
+@open west=west to Aetherial Spire - Ledge
+@open south=south to Aetherial Spire - Path
+@open east=east to Aetherial Spire - Chamber 2
+
+# --- Room 11/25 ---
+dig Aetherial Spire - Chamber 2
+@desc A ancient plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the pristine horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_balanced_lvl55
+@tel here
+@open north=north to Aetherial Spire - Stretch
+@open west=west to Aetherial Spire - Ascent
+@open south=south to Aetherial Spire - Hollow
+@open east=east to Aetherial Spire - Ascent 2
+
+# --- Room 12/25 ---
+dig Aetherial Spire - Ascent 2
+@desc A pristine plateau offers a moment of rest from the climb. You notice a discarded weapon arranged here, and the view stretches to the corrupted horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_brute_lvl48
+@tel here
+@spawn gen_caster_lvl55
+@tel here
+@open north=north to Aetherial Spire - Overlook
+@open west=west to Aetherial Spire - Chamber 2
+@open south=south to Aetherial Spire - Stretch 2
+
+# --- Room 13/25 ---
+dig Aetherial Spire - Chamber
+@desc Jagged rocks jut from the ethereal slope like pristine sentinels. The air is thin and sweltering, and moonlight casts long shadows across the stone.
+@tags/set room-zone:aetherial_spire
+@spawn gen_assassin_lvl48
+@tel here
+@open north=north to Aetherial Spire - Gallery
+@open south=south to Aetherial Spire - Grove
+@open east=east to Aetherial Spire - Path 2
+
+# --- Room 14/25 ---
+dig Aetherial Spire - Path 2
+@desc You stand on a corrupted ridge overlooking a vast valley below. You notice a discarded weapon marking the path forward, and you hear low rumbling tremors drifting up from the depths.
+@tags/set room-zone:aetherial_spire
+@spawn gen_caster_lvl43
+@tel here
+@open north=north to Aetherial Spire - Ridge
+@open west=west to Aetherial Spire - Chamber
+@open south=south to Aetherial Spire - Descent
+@open east=east to Aetherial Spire - Grotto
+
+# --- Room 15/25 ---
+dig Aetherial Spire - Grotto
+@desc The trail clings to the mountainside, with a majestic drop on one side and darkened cliffs on the other. ethereal radiance bathes the peaks ahead, and the wind carries distant howls.
+@tags/set room-zone:aetherial_spire
+@spawn gen_skirmisher_lvl45
+@tel here
+@spawn gen_caster_lvl48
+@tel here
+@open north=north to Aetherial Spire - Ledge
+@open west=west to Aetherial Spire - Path 2
+@open south=south to Aetherial Spire - Grove 3
+@open east=east to Aetherial Spire - Path
+
+# --- Room 16/25 ---
+dig Aetherial Spire - Path
+@desc The trail clings to the mountainside, with a majestic drop on one side and foreboding cliffs on the other. faint luminescence bathes the peaks ahead, and the wind carries muffled voices.
+@tags/set room-zone:aetherial_spire
+@spawn gen_skirmisher_lvl43
+@tel here
+@spawn gen_caster_lvl43
+@tel here
+@open north=north to Aetherial Spire - Ascent
+@open west=west to Aetherial Spire - Grotto
+@open south=south to Aetherial Spire - Depths 2
+@open east=east to Aetherial Spire - Hollow
+
+# --- Room 17/25 ---
+dig Aetherial Spire - Hollow
+@desc A darkened plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the crumbling horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_brute_lvl43
+@tel here
+@spawn gen_tank_lvl50
+@tel here
+@open north=north to Aetherial Spire - Chamber 2
+@open west=west to Aetherial Spire - Path
+@open south=south to Aetherial Spire - Crossroads
+@open east=east to Aetherial Spire - Stretch 2
+
+# --- Room 18/25 ---
+dig Aetherial Spire - Stretch 2
+@desc A pristine plateau offers a moment of rest from the climb. You notice a broken altar arranged here, and the view stretches to the corrupted horizon.
+@tags/set room-zone:aetherial_spire
+@open north=north to Aetherial Spire - Ascent 2
+@open west=west to Aetherial Spire - Hollow
+@open south=south to Aetherial Spire - Ridge 2
+
+# --- Room 19/25 ---
+dig Aetherial Spire - Grove
+@desc A shimmering plateau offers a moment of rest from the climb. You notice a dark bloodstain arranged here, and the view stretches to the darkened horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_tank_lvl50
+@tel here
+@spawn gen_tank_lvl43
+@tel here
+@open north=north to Aetherial Spire - Chamber
+@open south=south to Aetherial Spire - Heart
+@open east=east to Aetherial Spire - Descent
+
+# --- Room 20/25 ---
+dig Aetherial Spire - Descent
+@desc The trail clings to the mountainside, with a pristine drop on one side and majestic cliffs on the other. faint luminescence bathes the peaks ahead, and the wind carries distant howls.
+@tags/set room-zone:aetherial_spire
+@spawn gen_balanced_lvl50
+@tel here
+@open north=north to Aetherial Spire - Path 2
+@open west=west to Aetherial Spire - Grove
+@open east=east to Aetherial Spire - Grove 3
+
+# --- Room 21/25 ---
+dig Aetherial Spire - Grove 3
+@desc You stand on a shimmering ridge overlooking a sprawling valley below. You notice a broken altar marking the path forward, and you hear dripping echoes drifting up from the depths.
+@tags/set room-zone:aetherial_spire
+@spawn gen_caster_lvl50
+@tel here
+@open north=north to Aetherial Spire - Grotto
+@open west=west to Aetherial Spire - Descent
+@open east=east to Aetherial Spire - Depths 2
+
+# --- Room 22/25 ---
+dig Aetherial Spire - Depths 2
+@desc Jagged rocks jut from the darkened slope like darkened sentinels. The air is thin and deathly cold, and ethereal radiance casts long shadows across the stone.
+@tags/set room-zone:aetherial_spire
+@spawn gen_skirmisher_lvl43
+@tel here
+@open north=north to Aetherial Spire - Path
+@open west=west to Aetherial Spire - Grove 3
+@open east=east to Aetherial Spire - Crossroads
+
+# --- Room 23/25 ---
+dig Aetherial Spire - Crossroads
+@desc A crumbling plateau offers a moment of rest from the climb. You notice a dark bloodstain arranged here, and the view stretches to the crumbling horizon.
+@tags/set room-zone:aetherial_spire
+@open north=north to Aetherial Spire - Hollow
+@open west=west to Aetherial Spire - Depths 2
+@open east=east to Aetherial Spire - Ridge 2
+
+# --- Room 24/25 ---
+dig Aetherial Spire - Ridge 2
+@desc A shimmering plateau offers a moment of rest from the climb. You notice flickering torchlight arranged here, and the view stretches to the ethereal horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_brute_lvl55
+@tel here
+@open north=north to Aetherial Spire - Stretch 2
+@open west=west to Aetherial Spire - Crossroads
+
+# --- Room 25/25 ---
+dig Aetherial Spire - Heart
+@desc A foreboding plateau offers a moment of rest from the climb. You notice scattered offerings arranged here, and the view stretches to the ethereal horizon.
+@tags/set room-zone:aetherial_spire
+@spawn gen_brute_lvl53
+@tel here
+@open north=north to Aetherial Spire - Grove
+
+# Zone 'Aetherial Spire' complete — 25 rooms, 78 directed exits.

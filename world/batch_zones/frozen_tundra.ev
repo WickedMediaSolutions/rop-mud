@@ -1,0 +1,265 @@
+# Frozen Tundra of the North — Level 30-40
+# Auto-generated zone: Icy wasteland with howling winds and ancient glaciers
+# Faction: Neutral
+# Rooms: 25
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.frozen_tundra")
+
+# --- Room 1/25 ---
+dig Frozen Tundra of the North - Entrance
+@desc Endless dunes of ancient sand stretch in every direction, their crests sculpted by the darkened wind. The faint luminescence is harsh and unforgiving, and you see a dark bloodstain shimmering in the heat haze.
+@tags/set room-zone:frozen_tundra
+@open south=south to Frozen Tundra of the North - Ledge 3
+@open east=east to Frozen Tundra of the North - Ridge
+
+# --- Room 2/25 ---
+dig Frozen Tundra of the North - Ridge
+@desc You trudge through a darkened expanse of cracked earth and scattered flickering torchlight. The dim luminescence beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@spawn gen_balanced_lvl38
+@tel here
+@open west=west to Frozen Tundra of the North - Entrance
+@open south=south to Frozen Tundra of the North - Chamber
+@open east=east to Frozen Tundra of the North - Path
+
+# --- Room 3/25 ---
+dig Frozen Tundra of the North - Path
+@desc You trudge through a darkened expanse of cracked earth and scattered scattered offerings. The moonlight beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@spawn gen_tank_lvl40
+@tel here
+@spawn gen_brute_lvl35
+@tel here
+@open west=west to Frozen Tundra of the North - Ridge
+@open south=south to Frozen Tundra of the North - Thicket
+@open east=east to Frozen Tundra of the North - Grove
+
+# --- Room 4/25 ---
+dig Frozen Tundra of the North - Grove
+@desc The desert floor gives way to a foreboding canyon of weathered pristine stone. moonlight filters down from above, and you hear skittering claws echoing through the narrow passage.
+@tags/set room-zone:frozen_tundra
+@spawn gen_tank_lvl38
+@tel here
+@spawn gen_brute_lvl35
+@tel here
+@open west=west to Frozen Tundra of the North - Path
+@open south=south to Frozen Tundra of the North - Passage 2
+@open east=east to Frozen Tundra of the North - Nook 2
+
+# --- Room 5/25 ---
+dig Frozen Tundra of the North - Nook 2
+@desc A ancient oasis appears ahead, and you see a dark bloodstain near the water's edge. The air here is slightly cooler, and you can hear faint sounds of life.
+@tags/set room-zone:frozen_tundra
+@spawn gen_caster_lvl33
+@tel here
+@open west=west to Frozen Tundra of the North - Grove
+@open south=south to Frozen Tundra of the North - Overlook 2
+@open east=east to Frozen Tundra of the North - Gallery
+
+# --- Room 6/25 ---
+dig Frozen Tundra of the North - Gallery
+@desc You trudge through a ancient expanse of cracked earth and scattered a discarded weapon. The faint luminescence beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@open west=west to Frozen Tundra of the North - Nook 2
+@open south=south to Frozen Tundra of the North - Bend
+
+# --- Room 7/25 ---
+dig Frozen Tundra of the North - Ledge 3
+@desc You trudge through a ethereal expanse of cracked earth and scattered a discarded weapon. The faint luminescence beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@open north=north to Frozen Tundra of the North - Entrance
+@open south=south to Frozen Tundra of the North - Stretch
+@open east=east to Frozen Tundra of the North - Chamber
+
+# --- Room 8/25 ---
+dig Frozen Tundra of the North - Chamber
+@desc You trudge through a darkened expanse of cracked earth and scattered ancient runes. The faint luminescence beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@spawn gen_tank_lvl30
+@tel here
+@open north=north to Frozen Tundra of the North - Ridge
+@open west=west to Frozen Tundra of the North - Ledge 3
+@open south=south to Frozen Tundra of the North - Depths
+@open east=east to Frozen Tundra of the North - Thicket
+
+# --- Room 9/25 ---
+dig Frozen Tundra of the North - Thicket
+@desc You trudge through a darkened expanse of cracked earth and scattered ancient runes. The dim luminescence beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@open north=north to Frozen Tundra of the North - Path
+@open west=west to Frozen Tundra of the North - Chamber
+@open south=south to Frozen Tundra of the North - Ascent
+@open east=east to Frozen Tundra of the North - Passage 2
+
+# --- Room 10/25 ---
+dig Frozen Tundra of the North - Passage 2
+@desc Endless dunes of ancient sand stretch in every direction, their crests sculpted by the majestic wind. The faint luminescence is harsh and unforgiving, and you see a weathered statue shimmering in the heat haze.
+@tags/set room-zone:frozen_tundra
+@open north=north to Frozen Tundra of the North - Grove
+@open west=west to Frozen Tundra of the North - Thicket
+@open south=south to Frozen Tundra of the North - Overlook 3
+@open east=east to Frozen Tundra of the North - Overlook 2
+
+# --- Room 11/25 ---
+dig Frozen Tundra of the North - Overlook 2
+@desc A desolate oasis appears ahead, and you see a broken altar near the water's edge. The air here is slightly cooler, and you can hear faint sounds of life.
+@tags/set room-zone:frozen_tundra
+@open north=north to Frozen Tundra of the North - Nook 2
+@open west=west to Frozen Tundra of the North - Passage 2
+@open south=south to Frozen Tundra of the North - Chamber 2
+@open east=east to Frozen Tundra of the North - Bend
+
+# --- Room 12/25 ---
+dig Frozen Tundra of the North - Bend
+@desc A shimmering oasis appears ahead, and you see a dark bloodstain near the water's edge. The air here is slightly cooler, and you can hear faint sounds of life.
+@tags/set room-zone:frozen_tundra
+@spawn gen_brute_lvl38
+@tel here
+@spawn gen_brute_lvl38
+@tel here
+@open north=north to Frozen Tundra of the North - Gallery
+@open west=west to Frozen Tundra of the North - Overlook 2
+@open south=south to Frozen Tundra of the North - Clearing 2
+
+# --- Room 13/25 ---
+dig Frozen Tundra of the North - Stretch
+@desc Endless dunes of majestic sand stretch in every direction, their crests sculpted by the foreboding wind. The faint luminescence is harsh and unforgiving, and you see flickering torchlight shimmering in the heat haze.
+@tags/set room-zone:frozen_tundra
+@spawn gen_skirmisher_lvl33
+@tel here
+@spawn gen_balanced_lvl38
+@tel here
+@open north=north to Frozen Tundra of the North - Ledge 3
+@open south=south to Frozen Tundra of the North - Overlook
+@open east=east to Frozen Tundra of the North - Depths
+
+# --- Room 14/25 ---
+dig Frozen Tundra of the North - Depths
+@desc The desert floor gives way to a ancient canyon of weathered ancient stone. dim luminescence filters down from above, and you hear skittering claws echoing through the narrow passage.
+@tags/set room-zone:frozen_tundra
+@open north=north to Frozen Tundra of the North - Chamber
+@open west=west to Frozen Tundra of the North - Stretch
+@open south=south to Frozen Tundra of the North - Crossroads 2
+@open east=east to Frozen Tundra of the North - Ascent
+
+# --- Room 15/25 ---
+dig Frozen Tundra of the North - Ascent
+@desc A shimmering oasis appears ahead, and you see a broken altar near the water's edge. The air here is slightly cooler, and you can hear faint sounds of life.
+@tags/set room-zone:frozen_tundra
+@spawn gen_assassin_lvl38
+@tel here
+@spawn gen_brute_lvl33
+@tel here
+@open north=north to Frozen Tundra of the North - Thicket
+@open west=west to Frozen Tundra of the North - Depths
+@open south=south to Frozen Tundra of the North - Depths 2
+@open east=east to Frozen Tundra of the North - Overlook 3
+
+# --- Room 16/25 ---
+dig Frozen Tundra of the North - Overlook 3
+@desc The desert floor gives way to a pristine canyon of weathered pristine stone. faint luminescence filters down from above, and you hear dripping echoes echoing through the narrow passage.
+@tags/set room-zone:frozen_tundra
+@spawn gen_assassin_lvl35
+@tel here
+@open north=north to Frozen Tundra of the North - Passage 2
+@open west=west to Frozen Tundra of the North - Ascent
+@open south=south to Frozen Tundra of the North - Clearing 3
+@open east=east to Frozen Tundra of the North - Chamber 2
+
+# --- Room 17/25 ---
+dig Frozen Tundra of the North - Chamber 2
+@desc Endless dunes of ancient sand stretch in every direction, their crests sculpted by the majestic wind. The sunlight is harsh and unforgiving, and you see a broken altar shimmering in the heat haze.
+@tags/set room-zone:frozen_tundra
+@spawn gen_caster_lvl35
+@tel here
+@spawn gen_caster_lvl40
+@tel here
+@open north=north to Frozen Tundra of the North - Overlook 2
+@open west=west to Frozen Tundra of the North - Overlook 3
+@open south=south to Frozen Tundra of the North - Thicket 2
+@open east=east to Frozen Tundra of the North - Clearing 2
+
+# --- Room 18/25 ---
+dig Frozen Tundra of the North - Clearing 2
+@desc You trudge through a foreboding expanse of cracked earth and scattered a weathered statue. The filtered light beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@spawn gen_caster_lvl33
+@tel here
+@spawn gen_caster_lvl38
+@tel here
+@open north=north to Frozen Tundra of the North - Bend
+@open west=west to Frozen Tundra of the North - Chamber 2
+@open south=south to Frozen Tundra of the North - Hollow 2
+
+# --- Room 19/25 ---
+dig Frozen Tundra of the North - Overlook
+@desc Endless dunes of pristine sand stretch in every direction, their crests sculpted by the ancient wind. The dim luminescence is harsh and unforgiving, and you see a dark bloodstain shimmering in the heat haze.
+@tags/set room-zone:frozen_tundra
+@spawn gen_brute_lvl30
+@tel here
+@open north=north to Frozen Tundra of the North - Stretch
+@open south=south to Frozen Tundra of the North - Heart
+@open east=east to Frozen Tundra of the North - Crossroads 2
+
+# --- Room 20/25 ---
+dig Frozen Tundra of the North - Crossroads 2
+@desc The desert floor gives way to a majestic canyon of weathered corrupted stone. sunlight filters down from above, and you hear skittering claws echoing through the narrow passage.
+@tags/set room-zone:frozen_tundra
+@spawn gen_skirmisher_lvl30
+@tel here
+@open north=north to Frozen Tundra of the North - Depths
+@open west=west to Frozen Tundra of the North - Overlook
+@open east=east to Frozen Tundra of the North - Depths 2
+
+# --- Room 21/25 ---
+dig Frozen Tundra of the North - Depths 2
+@desc Endless dunes of darkened sand stretch in every direction, their crests sculpted by the majestic wind. The moonlight is harsh and unforgiving, and you see a weathered statue shimmering in the heat haze.
+@tags/set room-zone:frozen_tundra
+@spawn gen_balanced_lvl35
+@tel here
+@spawn gen_caster_lvl33
+@tel here
+@open north=north to Frozen Tundra of the North - Ascent
+@open west=west to Frozen Tundra of the North - Crossroads 2
+@open east=east to Frozen Tundra of the North - Clearing 3
+
+# --- Room 22/25 ---
+dig Frozen Tundra of the North - Clearing 3
+@desc You trudge through a crumbling expanse of cracked earth and scattered scattered offerings. The moonlight beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@open north=north to Frozen Tundra of the North - Overlook 3
+@open west=west to Frozen Tundra of the North - Depths 2
+@open east=east to Frozen Tundra of the North - Thicket 2
+
+# --- Room 23/25 ---
+dig Frozen Tundra of the North - Thicket 2
+@desc You trudge through a majestic expanse of cracked earth and scattered a discarded weapon. The sunlight beats down mercilessly, and the vast emptiness swallows all sound.
+@tags/set room-zone:frozen_tundra
+@spawn gen_balanced_lvl30
+@tel here
+@open north=north to Frozen Tundra of the North - Chamber 2
+@open west=west to Frozen Tundra of the North - Clearing 3
+@open east=east to Frozen Tundra of the North - Hollow 2
+
+# --- Room 24/25 ---
+dig Frozen Tundra of the North - Hollow 2
+@desc Endless dunes of desolate sand stretch in every direction, their crests sculpted by the darkened wind. The faint luminescence is harsh and unforgiving, and you see a discarded weapon shimmering in the heat haze.
+@tags/set room-zone:frozen_tundra
+@spawn gen_brute_lvl38
+@tel here
+@spawn gen_skirmisher_lvl38
+@tel here
+@open north=north to Frozen Tundra of the North - Clearing 2
+@open west=west to Frozen Tundra of the North - Thicket 2
+
+# --- Room 25/25 ---
+dig Frozen Tundra of the North - Heart
+@desc The desert floor gives way to a foreboding canyon of weathered crumbling stone. moonlight filters down from above, and you hear muffled voices echoing through the narrow passage.
+@tags/set room-zone:frozen_tundra
+@spawn gen_caster_lvl38
+@tel here
+@open north=north to Frozen Tundra of the North - Overlook
+
+# Zone 'Frozen Tundra of the North' complete — 25 rooms, 78 directed exits.

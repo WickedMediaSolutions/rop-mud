@@ -1,0 +1,220 @@
+# Crystal Caverns — Level 12-24
+# Auto-generated zone: Glittering underground caves filled with luminescent crystals
+# Faction: Neutral
+# Rooms: 22
+#
+# Usage (in Evennia shell):
+#   from evennia import batch_process
+#   batch_process("world.batch_zones.crystal_caverns")
+
+# --- Room 1/22 ---
+dig Crystal Caverns - Entrance
+@desc You enter a ancient grotto where glowing crystal crystals pulse with a faint inner moonlight. You notice ancient runes carved into the stone floor, and the air hums with darkened energy.
+@tags/set room-zone:crystal_caverns
+@open south=south to Crystal Caverns - Path 3
+@open east=east to Crystal Caverns - Ascent
+
+# --- Room 2/22 ---
+dig Crystal Caverns - Ascent
+@desc Stalactites hang like ethereal teeth from the ceiling of this cramped cavern. glowing crystal deposits glitter in the dim luminescence, and you hear dripping echoes reverberating through the stone.
+@tags/set room-zone:crystal_caverns
+@spawn gen_skirmisher_lvl22
+@tel here
+@spawn gen_assassin_lvl15
+@tel here
+@open west=west to Crystal Caverns - Entrance
+@open south=south to Crystal Caverns - Depths
+@open east=east to Crystal Caverns - Ridge
+
+# --- Room 3/22 ---
+dig Crystal Caverns - Ridge
+@desc A sprawling tunnel narrows ahead, its walls slick with moisture. The ethereal radiance here is crumbling, and you hear strange whispers that seem to come from everywhere at once.
+@tags/set room-zone:crystal_caverns
+@open west=west to Crystal Caverns - Ascent
+@open south=south to Crystal Caverns - Gallery
+@open east=east to Crystal Caverns - Path
+
+# --- Room 4/22 ---
+dig Crystal Caverns - Path
+@desc A vast tunnel narrows ahead, its walls slick with soot. The sunlight here is corrupted, and you hear strange whispers that seem to come from everywhere at once.
+@tags/set room-zone:crystal_caverns
+@open west=west to Crystal Caverns - Ridge
+@open south=south to Crystal Caverns - Descent
+@open east=east to Crystal Caverns - Depths 2
+
+# --- Room 5/22 ---
+dig Crystal Caverns - Depths 2
+@desc The cave opens into a narrow chamber where ethereal radiance reflects off glowing crystal formations on the walls. You hear strange whispers echoing from deeper within, and the air is frigid and crumbling.
+@tags/set room-zone:crystal_caverns
+@spawn gen_skirmisher_lvl12
+@tel here
+@open west=west to Crystal Caverns - Path
+@open south=south to Crystal Caverns - Nook 2
+
+# --- Room 6/22 ---
+dig Crystal Caverns - Path 3
+@desc Stalactites hang like corrupted teeth from the ceiling of this cramped cavern. amethyst deposits glitter in the ethereal radiance, and you hear faint chants reverberating through the stone.
+@tags/set room-zone:crystal_caverns
+@spawn gen_tank_lvl18
+@tel here
+@open north=north to Crystal Caverns - Entrance
+@open south=south to Crystal Caverns - Ledge
+@open east=east to Crystal Caverns - Depths
+
+# --- Room 7/22 ---
+dig Crystal Caverns - Depths
+@desc You enter a shimmering grotto where quartz crystals pulse with a faint inner faint luminescence. You notice scattered offerings carved into the stone floor, and the air hums with darkened energy.
+@tags/set room-zone:crystal_caverns
+@spawn gen_skirmisher_lvl15
+@tel here
+@spawn gen_caster_lvl20
+@tel here
+@open north=north to Crystal Caverns - Ascent
+@open west=west to Crystal Caverns - Path 3
+@open south=south to Crystal Caverns - Clearing
+@open east=east to Crystal Caverns - Gallery
+
+# --- Room 8/22 ---
+dig Crystal Caverns - Gallery
+@desc Stalactites hang like pristine teeth from the ceiling of this narrow cavern. quartz deposits glitter in the filtered light, and you hear strange whispers reverberating through the stone.
+@tags/set room-zone:crystal_caverns
+@spawn gen_tank_lvl15
+@tel here
+@open north=north to Crystal Caverns - Ridge
+@open west=west to Crystal Caverns - Depths
+@open south=south to Crystal Caverns - Descent 2
+@open east=east to Crystal Caverns - Descent
+
+# --- Room 9/22 ---
+dig Crystal Caverns - Descent
+@desc The cave opens into a immense chamber where sunlight reflects off amethyst formations on the walls. You hear faint chants echoing from deeper within, and the air is unbearably hot and darkened.
+@tags/set room-zone:crystal_caverns
+@open north=north to Crystal Caverns - Path
+@open west=west to Crystal Caverns - Gallery
+@open south=south to Crystal Caverns - Expanse
+@open east=east to Crystal Caverns - Nook 2
+
+# --- Room 10/22 ---
+dig Crystal Caverns - Nook 2
+@desc You enter a darkened grotto where amethyst crystals pulse with a faint inner sunlight. You notice a broken altar carved into the stone floor, and the air hums with foreboding energy.
+@tags/set room-zone:crystal_caverns
+@open north=north to Crystal Caverns - Depths 2
+@open west=west to Crystal Caverns - Descent
+@open south=south to Crystal Caverns - Gallery 2
+
+# --- Room 11/22 ---
+dig Crystal Caverns - Ledge
+@desc The cave opens into a narrow chamber where dim luminescence reflects off obsidian formations on the walls. You hear distant howls echoing from deeper within, and the air is deathly cold and foreboding.
+@tags/set room-zone:crystal_caverns
+@spawn gen_tank_lvl22
+@tel here
+@open north=north to Crystal Caverns - Path 3
+@open south=south to Crystal Caverns - Grove
+@open east=east to Crystal Caverns - Clearing
+
+# --- Room 12/22 ---
+dig Crystal Caverns - Clearing
+@desc Stalactites hang like darkened teeth from the ceiling of this immense cavern. iron deposits glitter in the moonlight, and you hear faint chants reverberating through the stone.
+@tags/set room-zone:crystal_caverns
+@open north=north to Crystal Caverns - Depths
+@open west=west to Crystal Caverns - Ledge
+@open south=south to Crystal Caverns - Chamber
+@open east=east to Crystal Caverns - Descent 2
+
+# --- Room 13/22 ---
+dig Crystal Caverns - Descent 2
+@desc The cave opens into a cramped chamber where filtered light reflects off iron formations on the walls. You hear muffled voices echoing from deeper within, and the air is deathly cold and pristine.
+@tags/set room-zone:crystal_caverns
+@spawn gen_tank_lvl20
+@tel here
+@open north=north to Crystal Caverns - Gallery
+@open west=west to Crystal Caverns - Clearing
+@open south=south to Crystal Caverns - Grove 2
+@open east=east to Crystal Caverns - Expanse
+
+# --- Room 14/22 ---
+dig Crystal Caverns - Expanse
+@desc Stalactites hang like corrupted teeth from the ceiling of this narrow cavern. obsidian deposits glitter in the sunlight, and you hear faint chants reverberating through the stone.
+@tags/set room-zone:crystal_caverns
+@spawn gen_skirmisher_lvl15
+@tel here
+@spawn gen_skirmisher_lvl20
+@tel here
+@open north=north to Crystal Caverns - Descent
+@open west=west to Crystal Caverns - Descent 2
+@open south=south to Crystal Caverns - Ascent 2
+@open east=east to Crystal Caverns - Gallery 2
+
+# --- Room 15/22 ---
+dig Crystal Caverns - Gallery 2
+@desc The cave opens into a cavernous chamber where dim luminescence reflects off silver formations on the walls. You hear low rumbling tremors echoing from deeper within, and the air is frigid and corrupted.
+@tags/set room-zone:crystal_caverns
+@spawn gen_assassin_lvl18
+@tel here
+@open north=north to Crystal Caverns - Nook 2
+@open west=west to Crystal Caverns - Expanse
+@open south=south to Crystal Caverns - Chamber 2
+
+# --- Room 16/22 ---
+dig Crystal Caverns - Grove
+@desc The cave opens into a narrow chamber where moonlight reflects off iron formations on the walls. You hear strange whispers echoing from deeper within, and the air is sweltering and darkened.
+@tags/set room-zone:crystal_caverns
+@spawn gen_assassin_lvl15
+@tel here
+@open north=north to Crystal Caverns - Ledge
+@open south=south to Crystal Caverns - Ascent 3
+@open east=east to Crystal Caverns - Chamber
+
+# --- Room 17/22 ---
+dig Crystal Caverns - Chamber
+@desc A vast tunnel narrows ahead, its walls slick with moisture. The moonlight here is desolate, and you hear strange whispers that seem to come from everywhere at once.
+@tags/set room-zone:crystal_caverns
+@open north=north to Crystal Caverns - Clearing
+@open west=west to Crystal Caverns - Grove
+@open south=south to Crystal Caverns - Heart
+@open east=east to Crystal Caverns - Grove 2
+
+# --- Room 18/22 ---
+dig Crystal Caverns - Grove 2
+@desc A cramped tunnel narrows ahead, its walls slick with ancient blood. The moonlight here is pristine, and you hear muffled voices that seem to come from everywhere at once.
+@tags/set room-zone:crystal_caverns
+@spawn gen_brute_lvl12
+@tel here
+@open north=north to Crystal Caverns - Descent 2
+@open west=west to Crystal Caverns - Chamber
+@open east=east to Crystal Caverns - Ascent 2
+
+# --- Room 19/22 ---
+dig Crystal Caverns - Ascent 2
+@desc You enter a desolate grotto where amethyst crystals pulse with a faint inner sunlight. You notice a dark bloodstain carved into the stone floor, and the air hums with corrupted energy.
+@tags/set room-zone:crystal_caverns
+@open north=north to Crystal Caverns - Expanse
+@open west=west to Crystal Caverns - Grove 2
+@open east=east to Crystal Caverns - Chamber 2
+
+# --- Room 20/22 ---
+dig Crystal Caverns - Chamber 2
+@desc A sprawling tunnel narrows ahead, its walls slick with a strange slime. The moonlight here is foreboding, and you hear low rumbling tremors that seem to come from everywhere at once.
+@tags/set room-zone:crystal_caverns
+@open north=north to Crystal Caverns - Gallery 2
+@open west=west to Crystal Caverns - Ascent 2
+
+# --- Room 21/22 ---
+dig Crystal Caverns - Ascent 3
+@desc Stalactites hang like majestic teeth from the ceiling of this cavernous cavern. obsidian deposits glitter in the filtered light, and you hear muffled voices reverberating through the stone.
+@tags/set room-zone:crystal_caverns
+@spawn gen_caster_lvl15
+@tel here
+@open north=north to Crystal Caverns - Grove
+@open east=east to Crystal Caverns - Heart
+
+# --- Room 22/22 ---
+dig Crystal Caverns - Heart
+@desc You enter a corrupted grotto where iron crystals pulse with a faint inner moonlight. You notice a weathered statue carved into the stone floor, and the air hums with ethereal energy.
+@tags/set room-zone:crystal_caverns
+@spawn gen_brute_lvl22
+@tel here
+@open north=north to Crystal Caverns - Chamber
+@open west=west to Crystal Caverns - Ascent 3
+
+# Zone 'Crystal Caverns' complete — 22 rooms, 68 directed exits.

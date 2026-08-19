@@ -1,0 +1,464 @@
+/* ================================================================
+   Rites of Passage — Terminal WebClient Stylesheet v2.0
+   ================================================================
+   Clean, dark-mode, monospace terminal aesthetic.
+   Full ANSI 16-color table + audio controls.
+   ================================================================ */
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-primary:    #0d1117;
+    --bg-secondary:  #161b22;
+    --bg-tertiary:   #21262d;
+    --border:        #30363d;
+    --text-primary:  #c9d1d9;
+    --text-secondary:#8b949e;
+    --text-muted:    #484f58;
+    --accent:        #d4a843;
+    --accent-dim:    #8b6914;
+    --green:         #3fb950;
+    --red:           #f85149;
+    --yellow:        #d2991d;
+    --blue:          #58a6ff;
+    --font-mono:     'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', monospace;
+    --font-sans:     -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --status-height: 36px;
+    --input-height:  48px;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Layout ───────────────────────────────────────────────────── */
+.rop-client {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ── Status Bar ───────────────────────────────────────────────── */
+#rop-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: var(--status-height);
+    min-height: var(--status-height);
+    padding: 0 12px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--text-secondary);
+    user-select: none;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+}
+
+.status-dot.connected {
+    background: var(--green);
+    box-shadow: 0 0 6px rgba(63, 185, 80, 0.5);
+}
+
+.status-dot.connecting {
+    background: var(--yellow);
+    box-shadow: 0 0 6px rgba(210, 153, 29, 0.5);
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.status-dot.disconnected {
+    background: var(--red);
+    box-shadow: 0 0 6px rgba(248, 81, 73, 0.4);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+}
+
+#rop-status-text {
+    flex: 1;
+}
+
+.rop-btn {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    padding: 2px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.rop-btn:hover:not(:disabled) {
+    background: var(--border);
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+}
+
+.rop-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.rop-btn--reconnect {
+    border-color: var(--accent-dim);
+    color: var(--accent);
+}
+
+.rop-btn--reconnect:hover:not(:disabled) {
+    background: rgba(212, 168, 67, 0.12);
+    border-color: var(--accent);
+}
+
+/* ── Audio Controls ───────────────────────────────────────────── */
+.rop-audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.rop-mute-btn {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+}
+
+.rop-mute-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.rop-mute-btn.rop-muted {
+    color: var(--red);
+}
+
+.rop-volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 70px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.rop-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s;
+}
+
+.rop-volume-slider::-webkit-slider-thumb:hover {
+    background: #e6c35a;
+}
+
+.rop-volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+}
+
+/* ── Terminal Output ──────────────────────────────────────────── */
+.rop-terminal {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px 16px;
+    background: var(--bg-primary);
+    cursor: text;
+    scroll-behavior: smooth;
+}
+
+.rop-terminal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.rop-terminal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rop-terminal::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+.rop-terminal::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ── Welcome Banner ───────────────────────────────────────────── */
+.rop-welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+.rop-ascii-banner {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--accent);
+    white-space: pre;
+    margin-bottom: 16px;
+}
+
+.rop-welcome__connecting {
+    color: var(--text-secondary);
+    font-size: 13px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ── Output Lines ─────────────────────────────────────────────── */
+.rop-line {
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 1px 0;
+    animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(2px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* System messages */
+.rop-system {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    padding: 4px 8px;
+    margin: 4px 0;
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--border);
+}
+
+.rop-system.rop-connected {
+    border-left-color: var(--green);
+    color: var(--green);
+}
+
+.rop-system.rop-disconnected {
+    border-left-color: var(--red);
+    color: var(--red);
+}
+
+.rop-system.rop-warning {
+    border-left-color: var(--yellow);
+    color: var(--yellow);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FULL ANSI SGR COLOR TABLE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Standard foreground colors (30-37) ───────────────────────── */
+.rop-line .ansi-fg-0  { color: #000000; }
+.rop-line .ansi-fg-1  { color: #cc0000; }
+.rop-line .ansi-fg-2  { color: #4e9a06; }
+.rop-line .ansi-fg-3  { color: #c4a000; }
+.rop-line .ansi-fg-4  { color: #3465a4; }
+.rop-line .ansi-fg-5  { color: #75507b; }
+.rop-line .ansi-fg-6  { color: #06989a; }
+.rop-line .ansi-fg-7  { color: #d3d7cf; }
+
+/* ── Bright foreground colors (90-97, mapped to fg-8 through fg-15) ── */
+.rop-line .ansi-fg-8  { color: #555753; }
+.rop-line .ansi-fg-9  { color: #ef2929; }
+.rop-line .ansi-fg-10 { color: #8ae234; }
+.rop-line .ansi-fg-11 { color: #fce94f; }
+.rop-line .ansi-fg-12 { color: #729fcf; }
+.rop-line .ansi-fg-13 { color: #ad7fa8; }
+.rop-line .ansi-fg-14 { color: #34e2e2; }
+.rop-line .ansi-fg-15 { color: #eeeeec; }
+
+/* ── Standard background colors (40-47) ───────────────────────── */
+.rop-line .ansi-bg-0  { background-color: #000000; }
+.rop-line .ansi-bg-1  { background-color: #cc0000; }
+.rop-line .ansi-bg-2  { background-color: #4e9a06; }
+.rop-line .ansi-bg-3  { background-color: #c4a000; }
+.rop-line .ansi-bg-4  { background-color: #3465a4; }
+.rop-line .ansi-bg-5  { background-color: #75507b; }
+.rop-line .ansi-bg-6  { background-color: #06989a; }
+.rop-line .ansi-bg-7  { background-color: #d3d7cf; }
+
+/* ── Bright background colors (100-107, mapped to bg-8 through bg-15) ── */
+.rop-line .ansi-bg-8  { background-color: #555753; }
+.rop-line .ansi-bg-9  { background-color: #ef2929; }
+.rop-line .ansi-bg-10 { background-color: #8ae234; }
+.rop-line .ansi-bg-11 { background-color: #fce94f; }
+.rop-line .ansi-bg-12 { background-color: #729fcf; }
+.rop-line .ansi-bg-13 { background-color: #ad7fa8; }
+.rop-line .ansi-bg-14 { background-color: #34e2e2; }
+.rop-line .ansi-bg-15 { background-color: #eeeeec; }
+
+/* ── Text attributes ──────────────────────────────────────────── */
+.rop-line .ansi-bold           { font-weight: bold; }
+.rop-line .ansi-dim            { opacity: 0.65; }
+.rop-line .ansi-italic         { font-style: italic; }
+.rop-line .ansi-underline      { text-decoration: underline; }
+.rop-line .ansi-blink          { animation: ansi-blink 1s step-end infinite; }
+.rop-line .ansi-hidden         { visibility: hidden; }
+.rop-line .ansi-strikethrough  { text-decoration: line-through; }
+.rop-line .ansi-reverse        {
+    /* Swap foreground and background */
+    /* The JS engine computes explicit color/background-color inline,
+       so reverse is primarily a last-resort fallback. */
+    filter: invert(100%);
+}
+
+@keyframes ansi-blink {
+    50% { opacity: 0; }
+}
+
+/* Ensure Evennia's HTML spans render correctly as inline elements */
+.rop-line span[class^="ansi-"],
+.rop-line span[class*=" ansi-"] {
+    display: inline;
+}
+
+/* ── Input Bar ────────────────────────────────────────────────── */
+.rop-input-bar {
+    display: flex;
+    align-items: center;
+    height: var(--input-height);
+    min-height: var(--input-height);
+    padding: 0 12px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    gap: 8px;
+}
+
+.rop-prompt {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 16px;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.rop-command-input {
+    flex: 1;
+    height: 34px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 0 10px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.rop-command-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(212, 168, 67, 0.15);
+}
+
+.rop-command-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.rop-command-input::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    :root {
+        --status-height: 32px;
+        --input-height: 44px;
+    }
+
+    .rop-terminal {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .rop-ascii-banner {
+        font-size: 10px;
+    }
+
+    .rop-command-input {
+        font-size: 13px;
+    }
+
+    .rop-volume-slider {
+        width: 48px;
+    }
+}
+
+/* ── Accessibility ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .rop-line {
+        animation: none;
+    }
+
+    .status-dot.connecting {
+        animation: none;
+    }
+
+    .rop-welcome__connecting {
+        animation: none;
+    }
+
+    .rop-line .ansi-blink {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    .rop-command-input:focus {
+        outline: 2px solid Highlight;
+    }
+}
