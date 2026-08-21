@@ -178,78 +178,38 @@ class Character(DefaultCharacter):
         """
         Hook called before every command is executed.
 
-        Delivers the MajorMUD-style status prompt automatically whenever
-        the player presses enter, so it always reflects current stats.
-        Respects the `prompt_enabled` attribute so players can use the
-        `prompt` command to toggle it off.
-
-        Also pushes Char.Vitals via GMCP for rich clients (Mudlet, etc.)
-        so their GUI health bars and stat displays stay in sync.
+        The status prompt is now delivered by MuxCommand.at_post_cmd()
+        after every command completes, so it always reflects the latest
+        stats.  This hook is intentionally left empty — it exists only
+        so that subclasses can hook into the pre-command lifecycle if
+        needed.
         """
-        if self.attributes.get("prompt_enabled", default=True):
-            self.msg(prompt=self.get_status_prompt())
-
-        # Push GMCP Char.Vitals to all GMCP-capable sessions
-        try:
-            from world.gmcp_handler import push_char_vitals
-            push_char_vitals(self)
-        except Exception:
-            pass
-
-    def at_post_login(self, session=None, **kwargs):
-        # Call super() if Evennia ever adds at_post_login to DefaultCharacter.
-        try:
-            super().at_post_login(session=session, **kwargs)
-        except AttributeError:
-            pass
-
-        # Safety net: launch the chargen menu only if this character was
-        # created outside of normal chargen (e.g. admin @create) and the
-        # flag is missing.  Both chargen.py and charcreate.py now set
-        # chargen_completed=True on the newly created character so this
-        # guard should rarely trigger during normal play.
-        if not self.attributes.has("chargen_completed") or not self.db.chargen_completed:
-            from world.chargen import start_chargen
-            start_chargen(self)
-            return
-
-        # P2.2 — Daily quest reset check on login
-        try:
-            self.quests.check_daily_resets()
-        except Exception:
-            pass
-
-        # Display the Message of the Day after successful login
-        from world.motd import render_motd
-        self.msg(render_motd(self))
-
-        # Phase 8 — Notify friends that this character came online
-        try:
-            from commands.social import notify_friends_online
-            notify_friends_online(self)
-        except Exception:
-            pass
-
-        # Push initial GMCP data to rich clients (Char.Vitals + Room.Info)
-        try:
-            from world.gmcp_handler import push_char_vitals, push_room_info
-            push_char_vitals(self)
-            push_room_info(self)
-        except Exception:
-            pass
+        pass
 
     def at_post_puppet(self, **kwargs):
         """
         Hook called after this character is puppeted by a session.
 
-        Pushes initial GMCP data (Char.Vitals + Room.Info) to the
-        newly attached session so rich clients can populate their
-        GUI modules immediately on login.
+        Calls the base class (which sends the room description via
+        at_look), then pushes GMCP data and sends the initial status
+        prompt exactly once.  All subsequent prompts are delivered by
+        MuxCommand.at_post_cmd() after every command.
         """
+        # Let Evennia's DefaultCharacter send the room description.
+        super().at_post_puppet(**kwargs)
+
+        # Push initial GMCP data to rich clients.
         try:
             from world.gmcp_handler import push_char_vitals, push_room_info
             push_char_vitals(self)
             push_room_info(self)
+        except Exception:
+            pass
+
+        # Send the initial status prompt — once, and only once.
+        try:
+            if self.attributes.get("prompt_enabled", default=True):
+                self.msg(prompt=self.get_status_prompt())
         except Exception:
             pass
 

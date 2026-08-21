@@ -4,7 +4,7 @@ CommandSets for 'rop'
 
 from evennia import default_cmds
 from commands.spells import CmdCast, CmdSpells, CmdRead, CmdInscribe
-from commands.movement import CmdMove, CmdRun
+from commands.movement import CmdMove, CmdRun, CmdLookDir
 from commands.doors import CmdOpen, CmdClose, CmdLock, CmdUnlock
 from commands.general import CmdLookSelf, CmdRest, CmdRent, CmdMeditate, CmdConsider, CmdRecall, CmdPrompt, CmdWho, CmdRules, CmdWarpoints, CmdStats, CmdBrief, CmdVerbose, CmdExits, CmdExamine, CmdScan, CmdSleep, CmdWake, CmdStamina, CmdRevive
 from commands.gossip import CmdGossip
@@ -90,6 +90,7 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         # Movement
         self.add(CmdMove())
         self.add(CmdRun())
+        self.add(CmdLookDir())
         # Doors (Phase 1.2)
         self.add(CmdOpen())
         self.add(CmdClose())

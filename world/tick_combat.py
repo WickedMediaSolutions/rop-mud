@@ -424,8 +424,41 @@ class CombatEngine(_get_default_script_base()):
                         and opp_dbref in ENGAGEMENTS.get(attacker.id, set())):
                     _execute_attack_round(opponent, attacker)
 
+        # Refresh the status prompt for every player still engaged so it
+        # stays pinned to the bottom of their screen after the tick's
+        # combat spam scrolls it out of view.
+        self._send_combat_prompts()
+
         if not ENGAGEMENTS:
             self.stop()
+
+    def _send_combat_prompts(self):
+        """Send a fresh status prompt to every player in a live engagement.
+
+        Combat tick output is delivered as regular scrolling text, which
+        pushes the transient prompt line off screen.  Re-sending the prompt
+        after each tick keeps it visible and up-to-date with the latest
+        HP/SP/MV values without waiting for the player to type a command.
+        """
+        global ENGAGEMENTS
+        sent: Set[int] = set()
+        for dbref in ENGAGEMENTS.keys():
+            combatant = _resolve_dbref(dbref)
+            if combatant is None or not _player(combatant):
+                continue
+            try:
+                if combatant.id in sent:
+                    continue
+                sent.add(combatant.id)
+
+                from typeclasses.characters import Character
+                if not isinstance(combatant, Character):
+                    continue
+                if not combatant.attributes.get("prompt_enabled", default=True):
+                    continue
+                combatant.msg(prompt=combatant.get_status_prompt())
+            except Exception:
+                pass
 
     def at_stop(self):
         """Clean up when the engine shuts down."""

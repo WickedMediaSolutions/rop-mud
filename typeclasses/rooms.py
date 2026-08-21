@@ -15,6 +15,11 @@ from .objects import ObjectParent
 # Regex to strip trailing coordinate numbers like "Zone Name (73,16)"
 _COORD_SUFFIX_RE = re.compile(r"\s*\(\d+,\d+\)$")
 
+# Regex to strip parenthetical metadata like "(Starter 1-10)", "(Level 5-15)", etc.
+# Matches a trailing parenthetical that contains at least one digit and may
+# include letters, spaces, hyphens — but NOT bare coordinate pairs (handled above).
+_PAREN_META_RE = re.compile(r"\s*\([^)]*\d[^)]*\)$")
+
 
 class Room(ObjectParent, DefaultRoom):
     """
@@ -184,6 +189,7 @@ class Room(ObjectParent, DefaultRoom):
         """
         name = super().get_display_name(looker, **kwargs)
         name = _COORD_SUFFIX_RE.sub("", name)
+        name = _PAREN_META_RE.sub("", name)
         name = strip_ansi(name)
         return f"|c{name}|n"
 

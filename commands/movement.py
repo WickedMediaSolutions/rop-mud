@@ -67,10 +67,10 @@ def get_move_cost(character) -> int:
     return cost
 
 
-def _find_exit_in_room(room, canonical_direction):
+def _find_exit_in_room(room, canonical_direction, include_doors=False):
     """
-    Return the first traversable exit in *room* whose canonical
-    direction matches *canonical_direction*, or None.
+    Return the first exit in *room* whose canonical direction matches
+    *canonical_direction*, or None.
 
     Matching strategy (in order):
       1. Normalise the exit's key to canonical and compare.
@@ -79,12 +79,14 @@ def _find_exit_in_room(room, canonical_direction):
          direction (so exits created with the short key are found even
          before their bidirectional aliases are populated).
 
-    Closed/locked doors are skipped.
+    When *include_doors* is False (default), closed/locked doors are
+    skipped.  When True, they are returned so the caller can inspect
+    their state.
     """
     if not room:
         return None
     for ex in room.exits:
-        if hasattr(ex, "is_hidden_door") and ex.is_hidden_door():
+        if not include_doors and hasattr(ex, "is_hidden_door") and ex.is_hidden_door():
             continue
         # 1) Direct canonical match on the key
         ex_canonical = ALIAS_TO_DIRECTION.get(ex.key.lower(), ex.key.lower())
@@ -137,6 +139,7 @@ class CmdMove(Command):
             caller.msg("You cannot go that way.")
             return
 
+        # First try to find an open exit
         exit_obj = _find_exit_in_room(location, canonical)
 
         if exit_obj and exit_obj.destination:
@@ -153,8 +156,19 @@ class CmdMove(Command):
             except Exception:
                 pass
             exit_obj.at_traverse(caller, exit_obj.destination)
+            return
+
+        # No open exit found — check if there's a closed/locked door
+        door = _find_exit_in_room(location, canonical, include_doors=True)
+        if door:
+            if hasattr(door, "is_locked") and door.is_locked():
+                caller.msg("|rIt's locked.|n")
+            elif hasattr(door, "is_closed") and door.is_closed():
+                caller.msg("|rIt's closed.|n")
+            else:
+                caller.msg("You cannot go that way.")
         else:
-            caller.msg("You cannot go that way.")
+            caller.msg(f"|rYou see no exit to the {canonical}.|n")
 
 
 class CmdRun(Command):
@@ -263,3 +277,82 @@ class CmdRun(Command):
 
         # Show the room we stopped in
         caller.msg(caller.location.return_appearance(caller))
+
+
+class CmdLookDir(Command):
+    """
+    Look in a specific direction to see what lies beyond.
+
+    Usage:
+      look <direction>
+      l <direction>
+
+    Examples:
+      look north
+      l n
+      look up
+
+    Peers into the adjacent room without moving there.  If the exit is
+    a closed or locked door you will be told its state.  If there is no
+    exit in that direction you will be told so.
+    """
+
+    key = "look"
+    aliases = ["l"]
+    help_category = "Movement"
+    locks = "cmd:all()"
+    auto_help = True
+
+    def parse(self):
+        self.args = (self.args or "").strip()
+
+    def func(self):
+        caller = self.caller
+
+        if not self.args:
+            # No direction given — show current room (default look)
+            if caller.location:
+                caller.msg(caller.location.return_appearance(caller))
+            else:
+                caller.msg("|rYou are floating in the void.|n")
+            return
+
+        # Normalize the direction argument
+        raw = self.args.lower()
+        canonical = ALIAS_TO_DIRECTION.get(raw, raw)
+
+        # If the argument is NOT a recognized direction, fall back to
+        # default look behavior (examine an object/character in the room).
+        # Special-case "me" and "self" to delegate to CmdLookSelf.
+        if raw not in VALID_DIRECTIONS:
+            if raw in ("me", "self"):
+                caller.execute_cmd("lookself")
+            else:
+                caller.execute_cmd(f"examine {self.args}")
+            return
+
+        location = caller.location
+        if not location:
+            caller.msg("|rYou are nowhere — there is nothing to look at.|n")
+            return
+
+        # Check for a door first (include closed/locked)
+        door = _find_exit_in_room(location, canonical, include_doors=True)
+
+        if door:
+            if hasattr(door, "is_locked") and door.is_locked():
+                caller.msg(f"|rThe {canonical} door is locked.|n")
+                return
+            if hasattr(door, "is_closed") and door.is_closed():
+                caller.msg(f"|rThe {canonical} door is closed.|n")
+                return
+
+            # Open exit — show the destination room
+            dest = door.destination
+            if dest:
+                caller.msg(f"|wYou look to the {canonical}:|n")
+                caller.msg(dest.return_appearance(caller))
+            else:
+                caller.msg(f"|rThe {canonical} exit leads nowhere.|n")
+        else:
+            caller.msg(f"|rYou see no exit to the {canonical}.|n")

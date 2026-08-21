@@ -363,6 +363,30 @@ html, body {
     display: inline;
 }
 
+/* ── Status Prompt Bar (MajorMUD-style, fixed, never scrolls) ── */
+.rop-status-prompt {
+    min-height: 24px;
+    padding: 2px 16px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    word-break: break-word;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+/* Never collapse the prompt bar — it must remain as a persistent
+   status bar even when empty, so the layout doesn't shift and the
+   bar is always ready to display the last-known prompt state. */
+.rop-status-prompt:empty::after {
+    content: "\00a0";
+    display: inline;
+}
+
 /* ── Input Bar ────────────────────────────────────────────────── */
 .rop-input-bar {
     display: flex;

@@ -7,7 +7,7 @@ from evennia import Command
 class CmdUnloggedinLook(Command):
     """Look command for unlogged-in users — re-displays the connection screen."""
     key = "look"
-    aliases = ["l"]
+    aliases = ["l", "__unloggedin_look_command"]
     locks = "cmd:all()"
 
     def func(self):

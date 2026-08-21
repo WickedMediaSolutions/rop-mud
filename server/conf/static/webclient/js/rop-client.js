@@ -30,7 +30,7 @@
     var QUOT = _a + "quot;";
     var APOS = _a + "#039;";
 
-    // ── DOM references ──────────────────────────────────────────
+    // ── DOM references ──
     var terminal    = document.getElementById("rop-terminal");
     var inputEl     = document.getElementById("rop-command");
     var statusDot   = document.getElementById("rop-status-dot");
@@ -39,7 +39,7 @@
     var muteBtn     = document.getElementById("rop-mute-btn");
     var volumeSlider = document.getElementById("rop-volume-slider");
 
-    // ── Configuration ───────────────────────────────────────────
+    // ── Configuration ──
     var CFG = window.ROP_CONFIG || {};
     var WS_PROTOCOL = CFG.subprotocol || "v1.evennia.com";
     var WS_PORT = CFG.websocketPort || 4012;
@@ -53,24 +53,30 @@
     var intentionalClose = false;
     var cuid = generateUID();
 
-    // ── Command History ─────────────────────────────────────────
+    // ── Command History ──
     var MAX_HISTORY = 500;
     var cmdHistory = [];
     var historyIndex = -1;
     var currentDraft = "";
 
-    // ── Smart Auto-Scroll State ─────────────────────────────────
+    // ── Smart Auto-Scroll State ──
     var userScrolledUp = false;
 
-    // ── Volume / Mute State ─────────────────────────────────────
+    // ── Prompt persistence ──
+    // Cache the last known prompt HTML so the status bar never goes blank.
+    // When incoming server text does NOT contain a prompt update, the
+    // client holds and continues displaying this cached state in real time.
+    var lastPromptHtml = "";
+
+    // ── Volume / Mute State ──
     var audioMuted = false;
     var audioVolume = 0.7;
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     // ANSI SGR → HTML ENGINE
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
 
-    var ANSI_RE = /\[([\d;]*)m/g;
+    var ANSI_RE = /\x1b\[([\d;]*)m/g;
 
     var FG_COLORS_16 = [
         "#000000", "#cc0000", "#4e9a06", "#c4a000",
@@ -99,7 +105,7 @@
     }
 
     function ansiToHtml(text) {
-        if (text.indexOf("[") === -1) {
+        if (text.indexOf("\x1b[") === -1) {
             return escapeHtml(text);
         }
 
@@ -248,9 +254,9 @@
             .replace(new RegExp(String.fromCharCode(39), "g"), APOS);
     }
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     // AUDIO / SFX ENGINE
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
 
     var AUDIO_TRIGGERS = [
         { pattern: /\b(?:hit|strike|slash|bash|pierce|wound|injure)\b.*\b(?:for \d+|hard|solidly)\b/i, url: "https://cdn.dirtysouthjosh.com/rop/sounds/combat_hit.ogg", volume: 0.7, cooldown: 300 },
@@ -325,7 +331,7 @@
         }
     }
 
-    // ── Volume control handlers ─────────────────────────────────
+    // ── Volume control handlers ──
     if (volumeSlider) {
         volumeSlider.value = Math.round(audioVolume * 100);
         volumeSlider.addEventListener("input", function () {
@@ -356,9 +362,9 @@
         updateMuteButtonState();
     }
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
     // HELPERS
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
 
     function generateUID() {
         return Math.random().toString(36).substring(2, 15) +
@@ -420,6 +426,30 @@
         if (!userScrolledUp) scrollToBottom();
     }
 
+    // ── Prompt persistence helpers ──
+
+    function ensurePromptBar() {
+        var promptBar = document.getElementById("rop-status-prompt");
+        if (!promptBar) {
+            promptBar = document.createElement("div");
+            promptBar.id = "rop-status-prompt";
+            promptBar.className = "rop-status-prompt";
+            var inputBar = document.getElementById("rop-input-bar");
+            if (inputBar && inputBar.parentNode) {
+                inputBar.parentNode.insertBefore(promptBar, inputBar);
+            } else if (terminal && terminal.parentNode) {
+                terminal.parentNode.appendChild(promptBar);
+            }
+        }
+        return promptBar;
+    }
+
+    function restoreLastPrompt() {
+        if (!lastPromptHtml) return;
+        var promptBar = ensurePromptBar();
+        promptBar.innerHTML = lastPromptHtml;
+    }
+
     function connect() {
         if (socket && (socket.readyState === WebSocket.OPEN ||
                        socket.readyState === WebSocket.CONNECTING)) return;
@@ -451,6 +481,9 @@
             reconnectAttempts = 0;
             setStatus("connected", "Connected");
             appendSystemMessage("Connected to Rites of Passage.", "rop-connected");
+            // Restore the last known prompt so the status bar never
+            // goes blank across reconnection cycles.
+            restoreLastPrompt();
             inputEl.focus();
         };
 
@@ -464,7 +497,7 @@
                     if (cmdname === "text" && args.length > 0) {
                         var raw = args[0];
                         var html;
-                        if (raw.indexOf("[") !== -1) {
+                        if (raw.indexOf("\x1b[") !== -1) {
                             html = ansiToHtml(raw);
                             processAudioTriggers(raw);
                         } else if (raw.indexOf("<") !== -1 && raw.indexOf(">") !== -1) {
@@ -476,7 +509,24 @@
                         }
                         appendOutput(html);
                     } else if (cmdname === "prompt" && args.length > 0) {
-                        appendOutput(args[0]);
+                        // MajorMUD-style: update the fixed status prompt bar.
+                        // The bar is pinned between the terminal and input bar
+                        // and NEVER scrolls — it stays as a persistent status bar.
+                        var promptBar = ensurePromptBar();
+                        var rawPrompt = args[0];
+                        var rendered;
+                        if (rawPrompt.indexOf("\x1b[") !== -1) {
+                            rendered = ansiToHtml(rawPrompt);
+                        } else if (rawPrompt.indexOf("<") !== -1 && rawPrompt.indexOf(">") !== -1) {
+                            rendered = rawPrompt;
+                        } else {
+                            rendered = escapeHtml(rawPrompt);
+                        }
+                        promptBar.innerHTML = rendered;
+                        // Cache for real-time persistence — if subsequent
+                        // server text does not include a prompt update, the
+                        // bar continues to display this last known state.
+                        lastPromptHtml = rendered;
                     } else if (cmdname === "audio") {
                         handleAudioPayload(args[0]);
                     } else {
@@ -499,6 +549,9 @@
                 setStatus("disconnected", "Disconnected");
                 intentionalClose = false;
             }
+            // Restore the last known prompt on disconnect so the status
+            // bar never goes blank across disconnection cycles.
+            restoreLastPrompt();
         };
 
         socket.onerror = function () {

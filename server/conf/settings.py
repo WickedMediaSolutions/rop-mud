@@ -24,6 +24,10 @@ START_LOCATION = "#20"
 # Point to the custom character typeclass
 BASE_CHARACTER_TYPECLASS = "typeclasses.characters.Character"
 
+# Use our custom MuxCommand as the default command parent so that
+# at_post_cmd() delivers the status prompt after every command.
+COMMAND_DEFAULT_CLASS = "commands.command.MuxCommand"
+
 ######################################################################
 # Authentication & Session Security (Forces Manual Connect Prompt)
 ######################################################################
